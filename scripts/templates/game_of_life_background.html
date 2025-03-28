@@ -1,0 +1,140 @@
+<canvas id="game-of-life-background"></canvas>
+
+<style>
+    #game-of-life-background {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: -1;
+    }
+</style>
+
+<script>
+    const gridSize = {x: 40, y: 50}
+    const onColor = "rgba(0, 0, 0, 1)"
+    const offColor = "rgba(255, 255, 255, 0.9)"
+
+    const TRANSPARENCY = 0.2
+
+    const logoColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131", "#4273b5", "#223759", "#080d15", "#020305"]
+    const randomLogoOffset = Math.floor(Math.random() * logoColors.length)
+
+    const greyScales = Array.from({length: gridSize.x * gridSize.y}).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`)
+
+    function randomLogoColor() {
+        const randomIndex = Math.floor(Math.random() * logoColors.length)
+        return logoColors[randomIndex]
+    }
+
+    let canvas = document.getElementById("game-of-life-background")
+    let context = canvas.getContext("2d")
+
+    function resizeCanvas() {
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+    }
+
+    resizeCanvas()
+    window.addEventListener("resize", resizeCanvas)
+
+    let grid = new Uint8Array(gridSize.x * gridSize.y)
+
+    function setGrid(grid, x, y, on=true) {
+        const i = (y * gridSize.x) + x
+        grid[i] = on ? 1 : 0
+    }
+
+    function getGrid(grid, x, y) {
+        if (x < 0 || y < 0 || x > gridSize.x - 1 || y > gridSize.y) {
+            return false
+        }
+
+        const i = (y * gridSize.x) + x
+        return grid[i] == 1
+    }
+
+    const neighbourDirections = [
+        [1, 1], [1, 0], [1, -1], [0, -1],
+        [0, 1], [-1, 1], [-1, 0], [-1, -1]
+    ]
+
+    function getSorroundingSum(grid, x, y) {
+        let sum = 0
+        for (const [dx, dy] of neighbourDirections) {
+            sum += getGrid(grid, x + dx, y + dy)
+        }
+        return sum
+    }
+
+    function applyGridRules() {
+        const newGrid = new Uint8Array(grid.length)
+        for (let x = 0; x < gridSize.x; x++) {
+            for (let y = 0; y < gridSize.y; y++) {
+                const sorroundingSum = getSorroundingSum(grid, x, y)
+                if (getGrid(grid, x, y)) {
+                    if (sorroundingSum < 2) {
+                        // setGrid(newGrid, x, y, false)
+                    } else if (sorroundingSum > 3) {
+                        // setGrid(newGrid, x, y, false)
+                    } else {
+                        setGrid(newGrid, x, y, true)
+                    }
+                } else {
+                    if (sorroundingSum == 3) {
+                        setGrid(newGrid, x, y, true)
+                    }
+                }
+            }
+        }
+        grid = newGrid
+    }
+
+    function updateCanvas() {
+        context.clearRect(0, 0, canvas.width, canvas.height)
+
+        const cellWidth = canvas.width / gridSize.x
+        const cellHeight = cellWidth // canvas.height / gridSize.y
+
+        context.globalAlpha = TRANSPARENCY
+        for (let x = 0; x < gridSize.x; x++) {
+            for (let y = 0; y < gridSize.y; y++) {
+                const value = getGrid(grid, x, y)
+                if (value) {
+                    context.fillStyle = logoColors[(y * gridSize.x + x + randomLogoOffset) % logoColors.length]
+                } else {
+                    context.fillStyle = greyScales[(y * gridSize.x + x) % greyScales.length]
+                }
+
+                context.fillRect(
+                    x * cellWidth,
+                    y * cellHeight,
+                    cellWidth,
+                    cellHeight
+                )
+            }
+        }
+        context.globalAlpha = 1
+    }
+
+    const GUN = "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX"
+
+    const gunOffset = {x: 2, y: 2}
+    const gunLines = GUN.split("/")
+
+    for (let i = 0; i < gunLines.length; i++) {
+        for (let j = 0; j < gunLines[i].length; j++) {
+            if (gunLines[i][j] == "X") {
+                setGrid(grid, j + gunOffset.x, i + gunOffset.y, true)
+            }
+        }
+    }
+
+    function loop() {
+        updateCanvas()
+        applyGridRules()
+
+        setTimeout(loop, 1000)
+    }
+
+    loop()
+</script>

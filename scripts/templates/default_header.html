@@ -1,0 +1,86 @@
+<header class="at-top">
+    <div class="header-content">
+        <a href="$base-path$" class="logo-container">
+            <img src="$base-path$assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+            <div class="logo-text" href="$base-path$">$logo_name$</div>
+        </a>
+        <div class="link-island">
+            <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
+                <span lang="en">Join</span>
+                <span lang="de">Beitreten</span>
+            </a>
+
+            <a class="change-lang-button"></a>
+        </div>
+        <div class="hamburger-icon" tabindex="0">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    <div class="header-drop-menu">
+        <a lang="en" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">Join Club</a>
+
+        <a lang="de" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">Beitreten</a>
+
+        <a class="change-lang-button"></a>
+    </div>
+</header>
+<div class="header-placeholder"></div>
+
+<script>
+    {
+        const changeLangButtons = document.querySelectorAll(".change-lang-button")
+        for (const changeLangButton of changeLangButtons) {
+            changeLangButton.onclick = event => {
+                const languages = ["en", "de"]
+                const currStyle = localStorage.getItem("lang") || languages[0]
+                const nextIndex = (languages.indexOf(currStyle) + 1) % languages.length
+                const nextNextIndex = (languages.indexOf(currStyle) + 2) % languages.length
+                localStorage.setItem("lang", languages[nextIndex])
+                document.documentElement.lang = localStorage.getItem("lang")
+
+                changeLangButton.animate([
+                    { transform: "rotateX(0deg)" },
+                    { transform: "rotateX(360deg)" }
+                ], {
+                    easing: "ease-in-out",
+                    duration: 350,
+                    fill: "forwards"
+                })
+
+                event.preventDefault()
+            }
+        }
+
+        const header = document.querySelector("header")
+        const hamburger = document.querySelector(".hamburger-icon")
+        const headerDropMenu = document.querySelector(".header-drop-menu")
+
+        hamburger.onclick = () => {
+            header.classList.toggle("expanded")
+            hamburger.classList.toggle("x")
+            headerDropMenu.classList.toggle("visible")
+        }
+
+        const getLastUrlBit = href => href.split("/").filter(s => s).slice(-1)[0]
+        for (const a of document.querySelectorAll("header .link-island a")) {
+            if (getLastUrlBit(a.href) == getLastUrlBit(location.href)) {
+                a.classList.add("current")
+            }
+        }
+
+        addEventListener("scroll", () => {
+            // on bouncy browser views (e.g. latest safari),
+            // window.scrollY can be negative during the bouncing animation!
+
+            if (window.scrollY <= 0) {
+                header.classList.add("at-top")
+                headerDropMenu.classList.add("at-top")
+            } else {
+                header.classList.remove("at-top")
+                headerDropMenu.classList.remove("at-top")
+            }
+        })
+    }
+</script>
