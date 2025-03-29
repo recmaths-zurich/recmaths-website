@@ -263,14 +263,6 @@
             let canvas = document.getElementById("game-of-life-background")
             let context = canvas.getContext("2d")
         
-            function resizeCanvas() {
-                canvas.width = canvas.clientWidth
-                canvas.height = canvas.clientHeight
-            }
-        
-            resizeCanvas()
-            window.addEventListener("resize", resizeCanvas)
-        
             let grid = new Uint8Array(gridSize.x * gridSize.y)
         
             function setGrid(grid, x, y, on=true) {
@@ -371,6 +363,15 @@
             }
         
             loop()
+            
+            function resizeCanvas() {
+                canvas.width = canvas.clientWidth
+                canvas.height = canvas.clientHeight
+                updateCanvas()
+            }
+        
+            resizeCanvas()
+            window.addEventListener("resize", resizeCanvas)
         </script>
         <!-- END -->
 
