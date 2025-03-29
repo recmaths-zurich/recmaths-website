@@ -121,11 +121,16 @@
         }
     }
 
+    const urlParams = new URLSearchParams(location.search)
+    const highSpeedModeActive = urlParams.has("highspeed")
+
+    const updateIntervalMs = highSpeedModeActive ? 100 : 1000
+
     function loop() {
         updateCanvas()
         applyGridRules()
 
-        setTimeout(loop, 1000)
+        setTimeout(loop, updateIntervalMs)
     }
 
     loop()
