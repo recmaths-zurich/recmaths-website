@@ -34,7 +34,7 @@ body {
     --footer-hr-color: #f4f4f4;
     --footer-text-color: #707070;
     
-    --header-font: "Karla", system-ui, serif;
+    --header-font: "Karla", sans-serif;
     --general-font: system-ui, serif;
     --general-font-size: 1rem;
 
@@ -100,6 +100,11 @@ body {
 
 .huge-text-container .headline {
     font-family: var(--header-font);
+    
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+
     font-size: var(--huge-text-size);
     padding: .5em;
     padding-right: 0;
@@ -112,6 +117,10 @@ body {
     padding: .5em;
     font-family: var(--header-font);
     font-size: var(--subtitle-huge-text-size);
+
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -135,6 +144,10 @@ body {
 h1, h2, h3,
 h4, h5, h6 {
     font-family: var(--header-font);
+    
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
 }
 
 * {
@@ -210,7 +223,10 @@ header .logo-container .logo-text {
     font-family: var(--header-font);
     display: flex;
     align-self: center;
+    
+    font-optical-sizing: auto;
     font-weight: bold;
+    font-style: normal;
 }
 
 header .link-island {
@@ -241,6 +257,10 @@ header .link-island a {
     color: var(--card-text-color);
     font-family: var(--header-font);
     font-size: 1.3em;
+    
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
 }
 
 header .link-island a:nth-child(1) { text-decoration-color: #90e979 !important; }
@@ -273,6 +293,10 @@ header .link-island .change-lang-button {
     text-decoration: none !important;
     margin-left: 1rem;
     transition: 100ms;
+    
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
 }
 
 header .link-island .change-lang-button:hover {
@@ -294,6 +318,9 @@ header .link-island .change-lang-button:hover {
     border-bottom-right-radius: 1rem;
 
     font-family: var(--header-font);
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
 }
 
 body:not(.sticky-header) .header-drop-menu {
@@ -523,8 +550,12 @@ main .pic-link .pic-container .pic-text {
     padding-bottom: 0;
     margin-bottom: -1px;
     background: var(--card-background);
+
     font-family: var(--header-font);
+    font-optical-sizing: auto;
     font-weight: bold;
+    font-style: normal;
+
     font-size: 1.2em;
     border-top-right-radius: .8rem;
     z-index: 100;
@@ -790,8 +821,10 @@ footer .link-group {
 }
 
 footer .link-group .group-header {
-    font-weight: bold;
     font-family: var(--header-font);
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
     font-size: 1.1em;
     margin-bottom: .3rem;
     display: block;
@@ -908,9 +941,12 @@ main:has(section.visible .back-button) {
     position: relative;
     color: white;
     text-align: center;
-    font-weight: 900;
     font-family: var(--header-font);
     font-size: 2rem;
+    
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
 }
 
 .player-status-container {
@@ -971,10 +1007,13 @@ main:has(section.visible .back-button) {
 
 #game-config-container > div .name {
     font-family: var(--header-font);
-    font-weight: bold;
     font-size: 1.1em;
     display: flex;
     align-items: center;
+    
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
 }
 
 #game-config-container > div .input-container {
@@ -1106,13 +1145,16 @@ main .object-selection-container .title {
     top: 0;
     left: 0;
     padding: .5rem;
-    font-weight: bold;
     background-color: white;
     border-top-left-radius: var(--object-border-radius);
     border-bottom-right-radius: var(--object-border-radius);
     font-family: var(--header-font);
     border-bottom: var(--button-border);
     border-right: var(--button-border);
+
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
 }
 
 main .scoreboard-container {
