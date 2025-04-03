@@ -122,6 +122,9 @@ async function simulate() {
         k += 1
         await new Promise(resolve => setTimeout(resolve, 100))
     }
+    
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    showGrid(grid)
 
     isSimulating = false
 }
