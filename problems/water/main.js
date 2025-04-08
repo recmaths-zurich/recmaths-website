@@ -2,7 +2,8 @@ const gridParent = document.getElementById("grid-parent")
 const simulateButton = document.getElementById("simulate-button")
 const optimalButton = document.getElementById("optimal-button")
 
-const N = 8
+const urlSearchParams = new URLSearchParams(location.search)
+const N = parseInt(urlSearchParams.get("n")) || 8
 
 function makeGrid(n, func=()=>0) {
     return Array.from({length: n}).map((_, i) => Array.from({length: n}).map((_, j) => func(i, j)))
