@@ -155,12 +155,12 @@
                     For an n*n grid, we define f(n) to be the maximum number in the grid after simulation.
                     Using computer simulations, we figured out that f(1)=1 (trivial case), f(2)=2 (also easy),
                     f(3)=5 (simple), f(4)=10 (hard!), and f(5)=16 (harder!). For 8*8, the maximum we found is 41 (see "optimal solution?" button).
-                    Hence, f(8) >= 41. For large enough n, we managed to show that 13/18 * n^2 <= f(n) <= n^2.
+                    Hence, f(8) >= 41. For large enough n, we managed to show that 13/18 · n² - 2n ≤ f(n) ≤ n² - n.
                 </span>
                 <span lang="de">
                     Für ein n×n-Gitter definieren wir f(n) als die größte Zahl im Gitter nach der Simulation. Mithilfe von Computersimulationen haben wir herausgefunden, dass f(1) = 1 (trivialer Fall), f(2) = 2 (ebenfalls einfach), f(3) = 5 (simpel), f(4) = 10 (schon schwieriger!) und f(5) = 16 (noch schwieriger!) ist. Für ein 8×8-Gitter haben wir ein Maximum von 41 gefunden (siehe "Optimale Lösung?"-button). Daher gilt: f(8) ≥ 41. Für ausreichend großes n konnten wir zeigen, dass gilt:
                     <br>
-                    13/18 · n² ≤ f(n) ≤ n².
+                    13/18 · n² - 2n ≤ f(n) ≤ n² - n.
                 </span>
             </p>
             <p>
@@ -200,6 +200,7 @@
                 cursor: pointer;
                 border: 1px solid black;
                 color: white;
+                transition: 200ms;
             }
         </style>
 
