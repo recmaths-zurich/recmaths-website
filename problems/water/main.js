@@ -4,6 +4,7 @@ const optimalButton = document.getElementById("optimal-button")
 
 const urlSearchParams = new URLSearchParams(location.search)
 const N = parseInt(urlSearchParams.get("n")) || 8
+const SEE_TIME_MS = parseInt(urlSearchParams.get("m")) || 2000
 
 function makeGrid(n, func=()=>0) {
     return Array.from({length: n}).map((_, i) => Array.from({length: n}).map((_, j) => func(i, j)))
@@ -124,7 +125,7 @@ async function simulate() {
         await new Promise(resolve => setTimeout(resolve, 100))
     }
     
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, SEE_TIME_MS))
     showGrid(grid)
 
     isSimulating = false
