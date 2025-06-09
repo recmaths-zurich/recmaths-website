@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Impressum | RecMaths Zürich -->
-    <!-- SET description=Impressum and legal contact info for recmaths.ch -->
+    <!-- SET title=Über uns | RecMaths Zürich -->
+    <!-- SET description=About us page for recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Impressum | RecMaths Zürich</title>
-        <meta name="description" content="Impressum and legal contact info for recmaths.ch">
+        <title>Über uns | RecMaths Zürich</title>
+        <meta name="description" content="About us page for recmaths.ch">
         <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
         <link rel="stylesheet" href="../default_style.css">
         
@@ -112,64 +112,152 @@
         
         <main>
             <h1>
-                <span lang="en">Imprint & Contact</span>
-                <span lang="de">Impressum & Kontakt</span>
+                <span lang="en">About us</span>
+                <span lang="de">Über uns</span>
             </h1>
-            <h2>
-                <span lang="en">Website Information</span>
-                <span lang="de">Website Informationen</span>
-            </h2>
-            <p>
-                <span lang="en">
-                    This website is hosted and built as a personal
-                    project by Noel Friedrich.<br>
-                    If you have a question regarding this project, please feel free to contact
-                    me at the given Email.
-                </span>
-                <span lang="de">
-                    Diese Website wird von Noel Friedrich entwickelt
-                    und betrieben.<br>
-                    Für Fragen, Feedback und Hilfe bin ich erreichbar
-                    unter der gegebenen Email.
-                </span>
-            </p>
-            <h3>
-                <span lang="en">Website Author</span>
-                <span lang="de">Website Autor</span>
-            </h3>
-            <p>
-                <span lang="en">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-                <span lang="de">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-            </p>
-            <h2>
-                <span lang="en">Contact</span>
-                <span lang="de">Kontakt</span>
-            </h2>
-            <ul>
-                <li>
-                    <span lang="en">By email at </span>
-                    <span lang="de">Via Email bei </span>
-                    <a id="email-out"></a>
-                </li>
-            </ul>
-        </main>
 
-        <script>
-            // my lazy attempt at preventing *simple* scrapers from getting my email
-            const email = "moc.liamg@hciruz.shtamcer".split("").reverse().join("")
-            document.querySelector("#email-out").textContent = email
-            document.querySelector("#email-out").href = "mailto:" + email
-        </script>
+            <h2>
+                <span lang="en">
+                    History
+                </span>
+                <span lang="de">
+                    Geschichte
+                </span>
+            </h2>
+
+            <p>
+                <span lang="de">
+                    Der Verein hat im Frühjahrssemester 2025 begonnen, wöchentliche Treffen zu organisieren.
+                    Seitdem haben wir einige Veranstaltungen organisiert und mit vielen Personen an vielen
+                    mathematischen Fragestellungen und kreativen Projekten gearbeitet. Am 08.05.2025 haben
+                    wir zusammen mit 39 Gründungsmitgliedern offiziell einen
+                    juristischen Verein gegründet und sind seitdem als "Recreational Maths Zürich" aktiv.
+                </span>
+                <span lang="en">
+                    The association began organizing weekly meetings in the
+                    spring semester of 2025. Since then, we have hosted
+                    several events and worked with many people on a variety
+                    of mathematical questions and creative projects. On
+                    May 8, 2025, together with 39 founding members, we
+                    officially registered as a legal association and have
+                    since been active under the name "Recreational Maths Zürich.".
+                </span>
+            </p>
+
+            <p>
+                <span lang="de">
+                    Am Anfang jeden Semesters halten wir unsere Mitgliederversammlung. Dort treffen alle Mitglieder
+                    zusammen und wählen unter anderem neue Vorstandsmitglieder. Der Vorstand setzt sich aus der
+                    Administration und den Repräsentativen von Studiengängen zusammen. Wenn du Interesse an einer
+                    Rolle hast, kannst du uns gerne anschreiben oder ansprechen!
+                </span>
+                <span lang="en">
+                    At the beginning of each semester, we hold our general assembly. All members come together there and, among other things, elect new board members. The board consists of the administration and representatives from the different study programs. If you’re interested in a role, feel free to write to us or just speak up!
+                </span>
+            </p>
+
+            <h2>
+                <span lang="en">
+                    Active Board
+                </span>
+                <span lang="de">
+                    Aktiver Vorstand
+                </span>
+            </h2>
+
+            <div class="cards-container" id="active-board-member-cards-container">
+                <div class="card">
+                    <img src="../assets/board-members/johnny-van-kempen.jpg">
+                    <div class="card-body">
+                        <div class="card-header">
+                            Johnny van Kempen
+                        </div>
+                        Communications
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../assets/board-members/jagoda.jpg">
+                    <div class="card-body">
+                        <div class="card-header">
+                            Jagoda Roza Uryasz-Majewska
+                        </div>
+                        Collaborations
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../assets/board-members/eric-schieferdecker.jpg">
+                    <div class="card-body">
+                        <div class="card-header">
+                            Eric Schieferdecker
+                        </div>
+                        Puzzlemaster
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../assets/board-members/noel-friedrich.jpg">
+                    <div class="card-body">
+                        <div class="card-header">
+                            Noel Friedrich
+                        </div>
+                        <span lang="en">President</span>
+                        <span lang="de">Präsident</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../assets/board-members/lena-heubner.png">
+                    <div class="card-body">
+                        <div class="card-header">
+                            Lena Josefine Heubner
+                        </div>
+                        <span lang="en">Representative Interdis.</span>
+                        <span lang="de">Repräsentantin Interdis.</span>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // randomise the order of active-board-member-cards-container
+                function randomizeBoardMemberOrder() {
+                    const cardsContainer = document.getElementById("active-board-member-cards-container")
+                    const cards = Array.from(cardsContainer.children)
+                    for (const card of cards) {
+                        card.style.order = Math.floor(Math.random() * 10000)
+                    }
+                }
+
+                randomizeBoardMemberOrder()
+            </script>
+
+            <h2>
+                <span lang="en">
+                    Past and Present Board Members
+                </span>
+                <span lang="de">
+                    Aktuelle und Ehemalige Vorstandsmitglieder
+                </span>
+            </h2>
+
+            <p>
+                <ul>
+                    <li>
+                        <b lang="en">08.05.2025 > Present:</b>
+                        <b lang="de">08.05.2025 > Heute:</b>
+                        Noel Friedrich (Präsident),
+                        Johnny van Kempen (Communications),
+                        Jagoda Roza Uryasz-Majewska (Collaborations),
+                        Eric Schieferdecker (Puzzlemaster),
+                        Raymond Tea (Rep Maths1-ETH),
+                        Theodor Babusiaux (Rep Maths3-ETH),
+                        Lilia Eisenmann (Rep Bio1-ETH),
+                        Miro Pihan (Rep Phys1-ETH),
+                        Lena Josefine Heubner (Rep Interdis1-ETH),
+                        Julian Hofmann (Rep Info1-ETH),
+                        Bowen Zeng (Rep Pharma1-ETH),
+                        Nikola Tomic (Rep Elektrotech1-ETH)
+                    </li>
+                </ul>
+            </p>
+        </main>
 
         <!-- BEGIN default_footer -->
         <footer>

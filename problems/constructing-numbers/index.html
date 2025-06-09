@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Impressum | RecMaths Zürich -->
-    <!-- SET description=Impressum and legal contact info for recmaths.ch -->
+    <!-- SET title=Constructing Numbers | RecMaths Zürich -->
+    <!-- SET description=Constructing Numbers Summary Site for recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Impressum | RecMaths Zürich</title>
-        <meta name="description" content="Impressum and legal contact info for recmaths.ch">
-        <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
-        <link rel="stylesheet" href="../default_style.css">
+        <title>Constructing Numbers | RecMaths Zürich</title>
+        <meta name="description" content="Constructing Numbers Summary Site for recmaths.ch">
+        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
+        <link rel="stylesheet" href="../../default_style.css">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,9 @@
         <!-- BEGIN default_header -->
         <header class="at-top">
             <div class="header-content">
-                <a href="../" class="logo-container">
-                    <img src="../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
-                    <div class="logo-text" href="../">RecMaths Zürich</div>
+                <a href="../../" class="logo-container">
+                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <div class="logo-text" href="../../">RecMaths Zürich</div>
                 </a>
                 <div class="link-island">
                     <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
@@ -112,64 +112,41 @@
         
         <main>
             <h1>
-                <span lang="en">Imprint & Contact</span>
-                <span lang="de">Impressum & Kontakt</span>
+                <span lang="en">Constructing Numbers</span>
+                <span lang="de">Zahlen Konstruieren</span>
             </h1>
-            <h2>
-                <span lang="en">Website Information</span>
-                <span lang="de">Website Informationen</span>
-            </h2>
             <p>
                 <span lang="en">
-                    This website is hosted and built as a personal
-                    project by Noel Friedrich.<br>
-                    If you have a question regarding this project, please feel free to contact
-                    me at the given Email.
+                    The constructible-numbers problem explores which real (or complex) numbers can be obtained from a given unit segment using only straightedge-and-compass constructions. Starting from points 0 and 1, each new point arises as the intersection of two constructible lines or circles.
                 </span>
                 <span lang="de">
-                    Diese Website wird von Noel Friedrich entwickelt
-                    und betrieben.<br>
-                    Für Fragen, Feedback und Hilfe bin ich erreichbar
-                    unter der gegebenen Email.
+                    Das Konstruktionszahlen-Problem untersucht, welche reellen (bzw. komplexen) Zahlen sich aus einem gegebenen Einheitssegment allein mit Lineal-und-Zirkel-Konstruktionen erzeugen lassen. Ausgehend von den Punkten 0 und 1 entstehen neue Punkte als Schnittpunkte von Linien oder Kreisen, die bereits konstruiert wurden.
                 </span>
             </p>
-            <h3>
-                <span lang="en">Website Author</span>
-                <span lang="de">Website Autor</span>
-            </h3>
-            <p>
-                <span lang="en">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-                <span lang="de">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-            </p>
-            <h2>
-                <span lang="en">Contact</span>
-                <span lang="de">Kontakt</span>
-            </h2>
-            <ul>
-                <li>
-                    <span lang="en">By email at </span>
-                    <span lang="de">Via Email bei </span>
-                    <a id="email-out"></a>
-                </li>
-            </ul>
-        </main>
+            
+            <img class="smaller" src="../../assets/problem-headers/constructing-numbers.png">
 
-        <script>
-            // my lazy attempt at preventing *simple* scrapers from getting my email
-            const email = "moc.liamg@hciruz.shtamcer".split("").reverse().join("")
-            document.querySelector("#email-out").textContent = email
-            document.querySelector("#email-out").href = "mailto:" + email
-        </script>
+            <p>
+                <span lang="en">
+                    We create step-by-step animations showing classical constructions (bisecting angles, extracting square roots, etc.), and investigate minimal construction sequences for various target lengths as well as sensible notions of “minimality.”
+                </span>
+                <span lang="de">
+                    Wir erstellen schrittweise Animationen klassischer Konstruktionen (z. B. Winkelhalbierung, Quadratwurzelkonstruktion) und untersuchen dabei minimale Konstruktionsfolgen für verschiedene Zielstrecken sowie geeignete Minimalitätsbegriffe.
+                </span>
+            </p>
+
+            <p>
+                <span lang="en">
+                    For definitions and proofs, see  
+                    <a href="https://en.wikipedia.org/wiki/Constructible_number" target="_blank">Constructible number (Wikipedia)</a>.
+                </span>
+                <span lang="de">
+                    Für Definitionen und Beweise siehe  
+                    <a href="https://en.wikipedia.org/wiki/Constructible_number" target="_blank">Konstruktible Zahl (Wikipedia)</a>.
+                </span>
+            </p>
+
+        </main>
 
         <!-- BEGIN default_footer -->
         <footer>
@@ -179,15 +156,15 @@
                         <span lang="en">Sitemap</span>
                         <span lang="de">Unterseiten</span>
                     </div>
-                    <a class="group-item" href="../problems">
+                    <a class="group-item" href="../../problems">
                         <span lang="en">Projects</span>
                         <span lang="de">Projekte</span>
                     </a>
-                    <a class="group-item" href="../games">
+                    <a class="group-item" href="../../games">
                         <span lang="en">Games</span>
                         <span lang="de">Spiele</span>
                     </a>
-                    <a class="group-item" href="../about-us">
+                    <a class="group-item" href="../../about-us">
                         <span lang="en">About us</span>
                         <span lang="de">Über uns</span>
                     </a>
@@ -229,15 +206,15 @@
                         <span lang="en">Legal</span>
                         <span lang="de">Legales</span>
                     </div>
-                    <a class="group-item" href="../impressum">
+                    <a class="group-item" href="../../impressum">
                         <span lang="en">Imprint</span>
                         <span lang="de">Impressum</span>
                     </a>
-                    <a class="group-item" href="../data-privacy">
+                    <a class="group-item" href="../../data-privacy">
                         <span lang="en">Data-Privacy</span>
                         <span lang="de">Datenschutz</span>
                     </a>
-                    <a class="group-item" href="../assets/statuten.pdf">
+                    <a class="group-item" href="../../assets/statuten.pdf">
                         <span lang="en">Statutes</span>
                         <span lang="de">Statuten</span>
                     </a>
@@ -449,7 +426,7 @@
         
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = "../"
+            const URL_BASE_PATH = "../../"
         
             {
                 // update theme
@@ -482,7 +459,7 @@
         
                 // register service worker for PWA functionality
                 if ("serviceWorker" in navigator) {
-                    navigator.serviceWorker.register("../service_worker.js")
+                    navigator.serviceWorker.register("../../service_worker.js")
                 }
         
                 // make smooth jump links work

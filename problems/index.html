@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Impressum | RecMaths Zürich -->
-    <!-- SET description=Impressum and legal contact info for recmaths.ch -->
+    <!-- SET title=Projekte | RecMaths Zürich -->
+    <!-- SET description=projects list page for recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Impressum | RecMaths Zürich</title>
-        <meta name="description" content="Impressum and legal contact info for recmaths.ch">
+        <title>Projekte | RecMaths Zürich</title>
+        <meta name="description" content="projects list page for recmaths.ch">
         <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
         <link rel="stylesheet" href="../default_style.css">
         
@@ -112,64 +112,73 @@
         
         <main>
             <h1>
-                <span lang="en">Imprint & Contact</span>
-                <span lang="de">Impressum & Kontakt</span>
+                <span lang="en">Projects and Problems</span>
+                <span lang="de">Projekte und Probleme</span>
             </h1>
-            <h2>
-                <span lang="en">Website Information</span>
-                <span lang="de">Website Informationen</span>
-            </h2>
-            <p>
-                <span lang="en">
-                    This website is hosted and built as a personal
-                    project by Noel Friedrich.<br>
-                    If you have a question regarding this project, please feel free to contact
-                    me at the given Email.
-                </span>
-                <span lang="de">
-                    Diese Website wird von Noel Friedrich entwickelt
-                    und betrieben.<br>
-                    Für Fragen, Feedback und Hilfe bin ich erreichbar
-                    unter der gegebenen Email.
-                </span>
-            </p>
-            <h3>
-                <span lang="en">Website Author</span>
-                <span lang="de">Website Autor</span>
-            </h3>
-            <p>
-                <span lang="en">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-                <span lang="de">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-            </p>
-            <h2>
-                <span lang="en">Contact</span>
-                <span lang="de">Kontakt</span>
-            </h2>
-            <ul>
-                <li>
-                    <span lang="en">By email at </span>
-                    <span lang="de">Via Email bei </span>
-                    <a id="email-out"></a>
-                </li>
-            </ul>
-        </main>
 
-        <script>
-            // my lazy attempt at preventing *simple* scrapers from getting my email
-            const email = "moc.liamg@hciruz.shtamcer".split("").reverse().join("")
-            document.querySelector("#email-out").textContent = email
-            document.querySelector("#email-out").href = "mailto:" + email
-        </script>
+            <p>
+                <span lang="en">
+                    These are all problems and projects we've worked on and bothered to document here. For newer or smaller projects,
+                    there may not be a dedicated page here (yet). If you want to suggest a new problem or want to add a
+                    page, message us or just join us at the next weekly meetup.
+                </span>
+                <span lang="de">
+                    Hier sind alle größeren Projekte und Probleme, die jemand aufgeschrieben hat. Kleinere oder neuere Projekte
+                    haben eventuell (noch) keine eigene Seite. Wenn du ein neues Problem vorschlagen willst oder eine Seite
+                    hinzufügen willst, kannst du uns gerne irgendwo anschreiben oder einfach zum nächsten wöchentlichen Treffen kommen.
+                </span>
+            </p>
+
+            <div class="cards-container">
+                <a class="card" href="water">
+                    <img src="../assets/problem-headers/water-problem.png">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span lang="en">Minecraft Water Problem</span>
+                            <span lang="de">Minecraft Wasser Problem</span>
+                        </div>
+                        <span lang="en">Where should you place water on an n×n grid to maximize the steps of the “two-neighbor” spreading process?</span>
+                        <span lang="de">Wo platziert man Wasser auf einem n×n-Gitter, um die Schritte des „Zwei-Nachbarn“-Ausbreitungsprozesses zu maximieren?</span>
+                    </div>
+                </a>
+                
+                <a class="card" href="procedural-music">
+                    <img src="../assets/problem-headers/procedural-music.png">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span lang="en">Procedural Music</span>
+                            <span lang="de">Prozedurale Musik</span>
+                        </div>
+                        <span lang="en">Procedural music uses algorithms and mathematical processes—like Fourier transforms, curve- or sequence-to-sound mappings, and algebraic structures—to generate and shape compositions.</span>
+                        <span lang="de">Prozedurale Musik nutzt Algorithmen und mathematische Verfahren—z. B. Fourier-Transformationen, Kurven- oder Zahlenmappings und algebraische Strukturen—zur Erzeugung und Gestaltung von Kompositionen.</span>
+                    </div>
+                </a>
+                
+                <a class="card" href="constructing-numbers">
+                    <img src="../assets/problem-headers/constructing-numbers.png">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span lang="en">Constructing Numbers</span>
+                            <span lang="de">Zahlen konstruieren</span>
+                        </div>
+                        <span lang="en">Visualizing constructible numbers means creating animated demonstrations of straightedge-and-compass constructions, while investigating minimal construction sequences and sensible notions of “minimality.”</span>
+                        <span lang="de">Die Visualisierung konstruierbarer Zahlen besteht darin, mit Animationen Schritt-für-Schritt-Konstruktionen per Lineal und Zirkel zu zeigen und zugleich minimale Konstruktionsfolgen sowie passende Minimalitätsbegriffe zu untersuchen.</span>
+                    </div>
+                </a>
+                
+                <a class="card" href="stamp-folding">
+                    <img src="../assets/problem-headers/stamp-folding.png">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span lang="en">Stamp Folding Problem</span>
+                            <span lang="de">Stamp Folding Problem</span>
+                        </div>
+                        <span lang="en">Given a strip of paper with n evenly spaced creases that can fold both up and down, how many distinct permutations of its segments can you generate?</span>
+                        <span lang="de">Gegeben ein Papierstreifen mit n gleichmäßig verteilten Knicken, die sich berg- oder talwärts falten lassen – wie viele verschiedene Permutationen der Segmente entstehen dabei?</span>
+                    </div>
+                </a>
+            </div>
+        </main>
 
         <!-- BEGIN default_footer -->
         <footer>

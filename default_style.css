@@ -1255,3 +1255,58 @@ main .layout-choice button {
     color: var(--on-primary-accent-color);
     background: var(--primary-accent-color);
 }
+
+/* card logic START */
+
+main .cards-container {
+    display: grid;
+    gap: .8em;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+main .cards-container .card {
+    --card-padding: .5em;
+    --card-border-radius: .5em;
+
+    border: var(--button-border);
+    border-radius: var(--card-border-radius);
+    background-color: var(--button-background);
+
+    --card-basecolor: var(--primary-accent-color);
+
+    text-decoration: none;
+    font-size: .9em;
+}
+
+main .cards-container a[href].card:hover {
+    transform: scale(1.03);
+}
+
+main .cards-container .card:nth-child(1) { --card-basecolor: #90e979; }
+main .cards-container .card:nth-child(4) { --card-basecolor: #62db3d; }
+main .cards-container .card:nth-child(3) { --card-basecolor: #18556d; }
+main .cards-container .card:nth-child(2) { --card-basecolor: #c22ff1; }
+main .cards-container .card:nth-child(5) { --card-basecolor: #201131; }
+
+main .cards-container .card img {
+    aspect-ratio: 16 / 9;
+    object-position: 0 0;
+    border-top-left-radius: var(--card-border-radius);
+    border-top-right-radius: var(--card-border-radius);
+}
+
+main .cards-container .card .card-body {
+    padding: var(--card-padding);
+}
+
+main .cards-container .card:has(img) .card-body {
+    margin-top: -5px;
+    border-top: var(--button-border);
+}
+
+main .cards-container .card .card-header {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* card logic end */

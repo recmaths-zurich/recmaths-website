@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Impressum | RecMaths Zürich -->
-    <!-- SET description=Impressum and legal contact info for recmaths.ch -->
+    <!-- SET title=Stamp Folding Problem | RecMaths Zürich -->
+    <!-- SET description=Stamp Folding Problem Summary Site for recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Impressum | RecMaths Zürich</title>
-        <meta name="description" content="Impressum and legal contact info for recmaths.ch">
-        <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
-        <link rel="stylesheet" href="../default_style.css">
+        <title>Stamp Folding Problem | RecMaths Zürich</title>
+        <meta name="description" content="Stamp Folding Problem Summary Site for recmaths.ch">
+        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
+        <link rel="stylesheet" href="../../default_style.css">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,9 @@
         <!-- BEGIN default_header -->
         <header class="at-top">
             <div class="header-content">
-                <a href="../" class="logo-container">
-                    <img src="../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
-                    <div class="logo-text" href="../">RecMaths Zürich</div>
+                <a href="../../" class="logo-container">
+                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <div class="logo-text" href="../../">RecMaths Zürich</div>
                 </a>
                 <div class="link-island">
                     <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
@@ -112,64 +112,55 @@
         
         <main>
             <h1>
-                <span lang="en">Imprint & Contact</span>
-                <span lang="de">Impressum & Kontakt</span>
+                <span lang="en">Stamp Folding Problem</span>
+                <span lang="de">Stamp Folding Problem</span>
             </h1>
-            <h2>
-                <span lang="en">Website Information</span>
-                <span lang="de">Website Informationen</span>
-            </h2>
-            <p>
-                <span lang="en">
-                    This website is hosted and built as a personal
-                    project by Noel Friedrich.<br>
-                    If you have a question regarding this project, please feel free to contact
-                    me at the given Email.
-                </span>
-                <span lang="de">
-                    Diese Website wird von Noel Friedrich entwickelt
-                    und betrieben.<br>
-                    Für Fragen, Feedback und Hilfe bin ich erreichbar
-                    unter der gegebenen Email.
-                </span>
-            </p>
-            <h3>
-                <span lang="en">Website Author</span>
-                <span lang="de">Website Autor</span>
-            </h3>
-            <p>
-                <span lang="en">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-                <span lang="de">
-                    Noel Friedrich<br>
-                    Götzstrasse 8<br>
-                    8006 Zürich<br>
-                    Switzerland
-                </span>
-            </p>
-            <h2>
-                <span lang="en">Contact</span>
-                <span lang="de">Kontakt</span>
-            </h2>
-            <ul>
-                <li>
-                    <span lang="en">By email at </span>
-                    <span lang="de">Via Email bei </span>
-                    <a id="email-out"></a>
-                </li>
-            </ul>
-        </main>
 
-        <script>
-            // my lazy attempt at preventing *simple* scrapers from getting my email
-            const email = "moc.liamg@hciruz.shtamcer".split("").reverse().join("")
-            document.querySelector("#email-out").textContent = email
-            document.querySelector("#email-out").href = "mailto:" + email
-        </script>
+            <p>
+                <span lang="en">
+                    The stamp‐folding problem is as follows: given a strip of paper with n creases spaced evenly along it, you may fold each crease either “mountain” or “valley.” After unfolding, the stamps (segments) end up in some order. How many distinct permutations of the n + 1 segments can be produced by all possible fold sequences?
+                </span>
+                <span lang="de">
+                    Das Stamp-Folding-Problem lautet wie folgt: Gegeben ist ein Papierstreifen mit n gleichmäßig verteilten Knicken, die jeweils als Berg- oder Talfalte ausgeführt werden können. Nach dem Auseinanderfalten entstehen Permutationen der n + 1 Segmente. Wie viele verschiedene Permutationen lassen sich auf diese Weise erzeugen?
+                </span>
+            </p>
+            
+            <img class="smaller" src="../../assets/problem-headers/stamp-folding.png">
+
+            <p>
+                <span lang="en">
+                    We simulate all 2ⁿ possible fold patterns (each crease up or down) and record the resulting order of segments. This yields the total number of distinct permutations achievable for a given n. Here's code for simulating it:
+                    <a href="https://gist.github.com/noel-friedrich/22a1c071a0adb1bdf34c872a6a4fcf1c">GitHub Gist von Noel Friedrich</a>.
+                    Unfortunately, the code must contain some error, because it's producing a wrong sequence for n>5... If you can find the mistake, do let us know!
+                </span>
+                <span lang="de">
+                    Wir simulieren alle 2ⁿ möglichen Faltmuster (jeder Knick berg‐ oder talwärts) und notieren die Reihenfolge der Segmente nach dem Auseinanderfalten. Daraus ergibt sich die Gesamtzahl der erreichbaren Permutationen für ein gegebenes n. Hier ist der Code dazu: 
+                    <a href="https://gist.github.com/noel-friedrich/22a1c071a0adb1bdf34c872a6a4fcf1c">GitHub Gist von Noel Friedrich</a>.
+                    Leider beinhaltet der Code Fehler und gibt ab n=6 falsche Zahlen. Wir haben den Fehler noch nicht gefunden.
+                </span>
+            </p>
+
+            <p>
+                <span lang="en">
+                    For detailed background and enumeration methods, see Robert Dickau’s overview: 
+                    <a href="https://www.robertdickau.com/stampfolding.html" target="_blank">Stamp Folding (Dickau)</a>.
+                </span>
+                <span lang="de">
+                    Für Hintergrundinformationen und Methoden zur Aufzählung siehe Robert Dickaus Übersicht:
+                    <a href="https://www.robertdickau.com/stampfolding.html" target="_blank">Stamp Folding (Dickau)</a>.
+                </span>
+            </p>
+            
+            <p>
+                <span lang="en">
+                    Have any ideas? Try them out and come to the next weekly recreational math meeting!
+                </span>
+                <span lang="de">
+                    Hast du Ideen zum Problem? Probiere sie aus und komm zum nächsten wöchentlichen Treffen für Recreational Maths!
+                </span>
+            </p>
+
+        </main>
 
         <!-- BEGIN default_footer -->
         <footer>
@@ -179,15 +170,15 @@
                         <span lang="en">Sitemap</span>
                         <span lang="de">Unterseiten</span>
                     </div>
-                    <a class="group-item" href="../problems">
+                    <a class="group-item" href="../../problems">
                         <span lang="en">Projects</span>
                         <span lang="de">Projekte</span>
                     </a>
-                    <a class="group-item" href="../games">
+                    <a class="group-item" href="../../games">
                         <span lang="en">Games</span>
                         <span lang="de">Spiele</span>
                     </a>
-                    <a class="group-item" href="../about-us">
+                    <a class="group-item" href="../../about-us">
                         <span lang="en">About us</span>
                         <span lang="de">Über uns</span>
                     </a>
@@ -229,15 +220,15 @@
                         <span lang="en">Legal</span>
                         <span lang="de">Legales</span>
                     </div>
-                    <a class="group-item" href="../impressum">
+                    <a class="group-item" href="../../impressum">
                         <span lang="en">Imprint</span>
                         <span lang="de">Impressum</span>
                     </a>
-                    <a class="group-item" href="../data-privacy">
+                    <a class="group-item" href="../../data-privacy">
                         <span lang="en">Data-Privacy</span>
                         <span lang="de">Datenschutz</span>
                     </a>
-                    <a class="group-item" href="../assets/statuten.pdf">
+                    <a class="group-item" href="../../assets/statuten.pdf">
                         <span lang="en">Statutes</span>
                         <span lang="de">Statuten</span>
                     </a>
@@ -449,7 +440,7 @@
         
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = "../"
+            const URL_BASE_PATH = "../../"
         
             {
                 // update theme
@@ -482,7 +473,7 @@
         
                 // register service worker for PWA functionality
                 if ("serviceWorker" in navigator) {
-                    navigator.serviceWorker.register("../service_worker.js")
+                    navigator.serviceWorker.register("../../service_worker.js")
                 }
         
                 // make smooth jump links work

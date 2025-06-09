@@ -2,6 +2,24 @@
     <div class="link-grid">
         <div class="link-group">
             <div class="group-header">
+                <span lang="en">Sitemap</span>
+                <span lang="de">Unterseiten</span>
+            </div>
+            <a class="group-item" href="$base-path$problems">
+                <span lang="en">Projects</span>
+                <span lang="de">Projekte</span>
+            </a>
+            <a class="group-item" href="$base-path$games">
+                <span lang="en">Games</span>
+                <span lang="de">Spiele</span>
+            </a>
+            <a class="group-item" href="$base-path$about-us">
+                <span lang="en">About us</span>
+                <span lang="de">Über uns</span>
+            </a>
+        </div>
+        <div class="link-group">
+            <div class="group-header">
                 <span lang="en">Socials</span>
                 <span lang="de">Medien</span>
             </div>
@@ -53,8 +71,11 @@
     </div>
     <hr>
     <div class="footer-text">
-        <span lang="en" class="text">Made for RecMaths Zurich</span>
-        <span lang="de" class="text">Erstellt für RecMaths Zürich</span>
+        <span lang="en" class="text">Made with ❤️ for RecMaths Zurich (<output data-fill="footer-year"></output>)</span>
+        <span lang="de" class="text">Erstellt mit ❤️ für RecMaths Zürich (<output data-fill="footer-year"></output>)</span>
+        <script>
+            Array.from(document.querySelectorAll('[data-fill="footer-year"]')).forEach(e => e.textContent = new Date().getFullYear())
+        </script>
         <button class="theme-changer" id="change-style-a">
             <span lang="en">Change Theme</span>
             <span lang="de">Hell/Dunkel</span>
