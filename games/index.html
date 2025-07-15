@@ -118,14 +118,39 @@
 
             <p>
                 <span lang="de">
-                    Hier sollen mathematische Online-Spiele entstehen, die man auf dieser Website spielen kann.
-                    Bisher haben wir es jedoch noch nicht geschafft, hier Spiele aufzusetzen. Wenn du Ideen
-                    oder Spaß an Programmierung von solchen Spielen hast, schreib uns gerne auf WhatsApp!
+                    Hier sind ein paar semi-mathematische Spiele, die du auf dieser Website spielen kannst.
+                    Wenn du Ideen hast oder gerne solche Spiele programmierst, melde dich bei uns auf WhatsApp!
                 </span>
                 <span lang="en">
-                    This is intended to be where mathematical online games are developed for you to play on this website. So far, however, we haven’t yet managed to get any games up and running. If you have ideas or enjoy programming such games, please reach out to us on WhatsApp!
+                    Here are some semi-mathematical games you can play on this website.
+                    If you have ideas or like programming such games, let us know on WhatsApp!
                 </span>
             </p>
+            
+            <div class="cards-container">
+                <a class="card" href="rock-paper-scissors">
+                    <img src="../assets/problem-headers/rock-paper-scissors.svg">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span lang="en">Rock Paper Scissors vs AI</span>
+                            <span lang="de">Schere Stein Papier gegen KI</span>
+                        </div>
+                        <span lang="en">An AI plays 30 games of rock, paper, scissors against you by learning your patterns.</span>
+                        <span lang="de">Eine KI versucht dich bei 30 Schere-Stein-Papier Spielen mit Pattern-Learning zu besiegen.</span>
+                    </div>
+                </a>
+                
+                <a class="card">
+                    <img src="../assets/board-members/placeholder.svg">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span lang="en">Coming Soon...</span>
+                            <span lang="de">Coming Soon...</span>
+                        </div>
+                        <span lang="en">Help us create more games! If you have any ideas, let us know (text us!)</span>
+                        <span lang="de">Hilf uns, mehr Spiele zu erstellen! Wenn du Ideen hast, lass es uns wissen (schreib uns!)</span>
+                    </div>
+                </a>
         </main>
 
         <!-- BEGIN default_footer -->
@@ -411,8 +436,8 @@
             {
                 // update theme
                 if (localStorage.getItem("style") == null) {
-                    // const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-                    localStorage.setItem("style", "light")
+                    const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+                    localStorage.setItem("style", prefersDarkMode ? "dark" : "light")
                 }
                 document.body.dataset.style = localStorage.getItem("style")
         
@@ -436,11 +461,6 @@
                 }
                 updateInnerHeight()
                 addEventListener("resize", updateInnerHeight)
-        
-                // register service worker for PWA functionality
-                if ("serviceWorker" in navigator) {
-                    navigator.serviceWorker.register("../service_worker.js")
-                }
         
                 // make smooth jump links work
                 for (const element of document.querySelectorAll(".smooth-jump")) {

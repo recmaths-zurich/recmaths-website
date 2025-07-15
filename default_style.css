@@ -43,7 +43,7 @@ body {
     --card-shadow: none;
     --card-text-color: black;
 
-    --button-background: rgb(244, 244, 244);
+    --button-background: #f9f9f9;
     --button-color: var(--card-text-color);
     --button-border: 1px solid #a1a1a1;
 

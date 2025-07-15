@@ -30,11 +30,6 @@
         updateInnerHeight()
         addEventListener("resize", updateInnerHeight)
 
-        // register service worker for PWA functionality
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("$base-path$service_worker.js")
-        }
-
         // make smooth jump links work
         for (const element of document.querySelectorAll(".smooth-jump")) {
             console.log(element)

@@ -542,8 +542,8 @@
             {
                 // update theme
                 if (localStorage.getItem("style") == null) {
-                    // const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-                    localStorage.setItem("style", "light")
+                    const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+                    localStorage.setItem("style", prefersDarkMode ? "dark" : "light")
                 }
                 document.body.dataset.style = localStorage.getItem("style")
         
@@ -567,11 +567,6 @@
                 }
                 updateInnerHeight()
                 addEventListener("resize", updateInnerHeight)
-        
-                // register service worker for PWA functionality
-                if ("serviceWorker" in navigator) {
-                    navigator.serviceWorker.register("../service_worker.js")
-                }
         
                 // make smooth jump links work
                 for (const element of document.querySelectorAll(".smooth-jump")) {

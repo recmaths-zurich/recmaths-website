@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Projekte | RecMaths Zürich -->
-    <!-- SET description=projects list page for recmaths.ch -->
+    <!-- SET title=Rock Paper Scissors vs. AI | RecMaths Zürich -->
+    <!-- SET description=Plaz Rock Paper Scissors against AI, for recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Projekte | RecMaths Zürich</title>
-        <meta name="description" content="projects list page for recmaths.ch">
-        <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
-        <link rel="stylesheet" href="../default_style.css">
+        <title>Rock Paper Scissors vs. AI | RecMaths Zürich</title>
+        <meta name="description" content="$description$">
+        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
+        <link rel="stylesheet" href="../../default_style.css">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,9 @@
         <!-- BEGIN default_header -->
         <header class="at-top">
             <div class="header-content">
-                <a href="../" class="logo-container">
-                    <img src="../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
-                    <div class="logo-text" href="../">RecMaths Zürich</div>
+                <a href="../../" class="logo-container">
+                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <div class="logo-text" href="../../">RecMaths Zürich</div>
                 </a>
                 <div class="link-island">
                     <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
@@ -112,73 +112,160 @@
         
         <main>
             <h1>
-                <span lang="en">Projects and Problems</span>
-                <span lang="de">Projekte und Probleme</span>
+                <span lang="en">Rock, Paper, Scissors vs. AI</span>
+                <span lang="de">Schere-Stein-Papier vs. KI</span>
             </h1>
+
+            <div class="rps-container-container">
+                <div class="rps-container">
+                    <div class="rps-button-container">
+                        <button class="rps-button" id="rock-button">
+                            <span lang="en">(1) Rock 🪨</span>
+                            <span lang="de">(1) Stein 🪨</span>
+                        </button>
+                        <button class="rps-button" id="paper-button">
+                            <span lang="en">(2) Paper 📄</span>
+                            <span lang="de">(2) Papier 📄</span
+                        </button>
+                        <button class="rps-button" id="scissors-button">
+                            <span lang="en">(3) Scissors ✂️</span>
+                            <span lang="de">(3) Schere ✂️</span>
+                        </button>
+                    </div>
+                    <div class="rps-results-container">
+                        <canvas id="rps-results-canvas">
+                            <span lang="en">Your browser does not support the canvas element.</span>
+                            <span lang="de">Dein Browser unterstützt das Canvas-Element nicht.</span>
+                        </canvas>
+                    </div>
+                </div>
+            </div>
 
             <p>
                 <span lang="en">
-                    These are all problems and projects we've worked on and bothered to document here. For newer or smaller projects,
-                    there may not be a dedicated page here (yet). If you want to suggest a new problem or want to add a
-                    page, message us or just join us at the next weekly meetup.
+                    This is a simple game of Rock, Paper, Scissors against an AI that learns from your moves.
+                    The AI uses a neural network to predict your next move based on your previous moves.
+                    The more you play, the better the AI gets at predicting your moves. Can you get to
+                    30 wins before the AI does?
                 </span>
                 <span lang="de">
-                    Hier sind alle größeren Projekte und Probleme, die jemand aufgeschrieben hat. Kleinere oder neuere Projekte
-                    haben eventuell (noch) keine eigene Seite. Wenn du ein neues Problem vorschlagen willst oder eine Seite
-                    hinzufügen willst, kannst du uns gerne irgendwo anschreiben oder einfach zum nächsten wöchentlichen Treffen kommen.
+                    Dies ist ein einfaches Spiel von Schere, Stein, Papier gegen eine KI, die aus deinen Zügen lernt.
+                    Die KI verwendet ein neuronales Netzwerk, um deinen nächsten Zug basierend auf deinen vorherigen Zügen vorherzusagen.
+                    Je mehr du spielst, desto besser wird die KI darin, deine Züge vorherzusagen. Kannst du 30 Siege erreichen,
+                    bevor die KI es tut?
                 </span>
             </p>
 
-            <div class="cards-container">
-                <a class="card" href="water">
-                    <img src="../assets/problem-headers/water-problem.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Minecraft Water Problem</span>
-                            <span lang="de">Minecraft Wasser Problem</span>
-                        </div>
-                        <span lang="en">Where should you place water on an n×n grid to maximize the steps of the “two-neighbor” spreading process?</span>
-                        <span lang="de">Wo platziert man Wasser auf einem n×n-Gitter, um die Schritte des „Zwei-Nachbarn“-Ausbreitungsprozesses zu maximieren?</span>
-                    </div>
-                </a>
-                
-                <a class="card" href="procedural-music">
-                    <img src="../assets/problem-headers/procedural-music.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Procedural Music</span>
-                            <span lang="de">Prozedurale Musik</span>
-                        </div>
-                        <span lang="en">Procedural music uses algorithms and mathematical processes—like Fourier transforms, curve- or sequence-to-sound mappings, and algebraic structures—to generate and shape compositions.</span>
-                        <span lang="de">Prozedurale Musik nutzt Algorithmen und mathematische Verfahren—z. B. Fourier-Transformationen, Kurven- oder Zahlenmappings und algebraische Strukturen—zur Erzeugung und Gestaltung von Kompositionen.</span>
-                    </div>
-                </a>
-                
-                <a class="card" href="constructing-numbers">
-                    <img src="../assets/problem-headers/constructing-numbers.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Constructing Numbers</span>
-                            <span lang="de">Zahlen konstruieren</span>
-                        </div>
-                        <span lang="en">Visualizing constructible numbers means creating animated demonstrations of straightedge-and-compass constructions, while investigating minimal construction sequences and sensible notions of “minimality.”</span>
-                        <span lang="de">Die Visualisierung konstruierbarer Zahlen besteht darin, mit Animationen Schritt-für-Schritt-Konstruktionen per Lineal und Zirkel zu zeigen und zugleich minimale Konstruktionsfolgen sowie passende Minimalitätsbegriffe zu untersuchen.</span>
-                    </div>
-                </a>
-                
-                <a class="card" href="stamp-folding">
-                    <img src="../assets/problem-headers/stamp-folding.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Stamp Folding Problem</span>
-                            <span lang="de">Stamp Folding Problem</span>
-                        </div>
-                        <span lang="en">Given a strip of paper with n evenly spaced creases that can fold both up and down, how many distinct permutations of its segments can you generate?</span>
-                        <span lang="de">Gegeben ein Papierstreifen mit n gleichmäßig verteilten Knicken, die sich berg- oder talwärts falten lassen – wie viele verschiedene Permutationen der Segmente entstehen dabei?</span>
-                    </div>
-                </a>
+            <p>
+                <span lang="en">
+                    You will only see the outcome, not what the AI actually did. If you want to see what the AI will play next
+                    (this is cheating!), you can reveal the AI's live prediction below.
+                </span>
+                <span lang="de">
+                    Du wirst nur das Ergebnis sehen, nicht was die KI tatsächlich gemacht hat. Wenn du sehen möchtest, was die KI als nächstes spielen wird
+                    (das ist schummeln!), kannst du die Live-Vorhersage der KI unten anzeigen lassen.
+                </span>
+            </p>
+
+            <div style="display: none" id="cheat-mode-container">
+                <code id="cheat-mode-output">Test</code>
             </div>
+
+            <button class="rps-button" id="show-ai-prediction-button">
+                <span lang="en">Reveal AI Prediction</span>
+                <span lang="de">Zeige KI Vorhersage</span>
+            </button>
+            
+            <button style="display: none" class="rps-button" id="hide-ai-prediction-button">
+                <span lang="en">Hide AI Prediction</span>
+                <span lang="de">Verstecke KI Vorhersage</span>
+            </button>
+
+            <script src="neuralnet.js" defer></script>
+            <script src="main.js" defer></script>
         </main>
+
+        <style>
+            #cheat-mode-container {
+                text-align: center;
+            }
+
+            #cheat-mode-output {
+                white-space: pre-wrap;
+                color: green;
+            }
+
+            body[data-style="dark"] #cheat-mode-output {
+                color: lightgreen;
+            }
+
+            .rps-container-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .rps-container {
+                --rps-max-width: 900px;
+                width: min(var(--rps-max-width), 100%);
+                display: grid;
+                /* auto scale to fit and go 2 rows on mobile */
+                grid-template-columns: 250px 2fr;
+                gap: 1rem;
+            }
+
+            /* when displaying on mobile, switch to 1 column */
+            @media (max-width: 700px) {
+                .rps-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .rps-button-container {
+                    order: 2;
+                }
+
+                .rps-results-container {
+                    order: 1;
+                }
+            }
+
+            .rps-button-container {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+            }
+
+            .rps-button {
+                padding: 10px;
+                font-family: var(--header-font);
+                background-color: white;
+                color: black;
+                border: none;
+                
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .rps-button-container > .rps-button:hover,
+            .rps-button-container > .rps-button:focus {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .rps-results-container {
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                background-color: white;
+            }
+
+            .rps-results-container > canvas {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
 
         <!-- BEGIN default_footer -->
         <footer>
@@ -188,15 +275,15 @@
                         <span lang="en">Sitemap</span>
                         <span lang="de">Unterseiten</span>
                     </div>
-                    <a class="group-item" href="../problems">
+                    <a class="group-item" href="../../problems">
                         <span lang="en">Projects</span>
                         <span lang="de">Projekte</span>
                     </a>
-                    <a class="group-item" href="../games">
+                    <a class="group-item" href="../../games">
                         <span lang="en">Games</span>
                         <span lang="de">Spiele</span>
                     </a>
-                    <a class="group-item" href="../about-us">
+                    <a class="group-item" href="../../about-us">
                         <span lang="en">About us</span>
                         <span lang="de">Über uns</span>
                     </a>
@@ -238,15 +325,15 @@
                         <span lang="en">Legal</span>
                         <span lang="de">Legales</span>
                     </div>
-                    <a class="group-item" href="../impressum">
+                    <a class="group-item" href="../../impressum">
                         <span lang="en">Imprint</span>
                         <span lang="de">Impressum</span>
                     </a>
-                    <a class="group-item" href="../data-privacy">
+                    <a class="group-item" href="../../data-privacy">
                         <span lang="en">Data-Privacy</span>
                         <span lang="de">Datenschutz</span>
                     </a>
-                    <a class="group-item" href="../assets/statuten.pdf">
+                    <a class="group-item" href="../../assets/statuten.pdf">
                         <span lang="en">Statutes</span>
                         <span lang="de">Statuten</span>
                     </a>
@@ -458,7 +545,7 @@
         
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = "../"
+            const URL_BASE_PATH = "../../"
         
             {
                 // update theme
