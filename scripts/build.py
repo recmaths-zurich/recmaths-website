@@ -78,7 +78,7 @@ def handle_file(file_path: str):
 
     directory_depth = file_path.count('\\')
     file_dict["base-path"] = "../" * (directory_depth - 1)
-    file_dict["logo_name"] = "RecMaths Zürich"
+    file_dict["logo_name"] = "RecMaths"
 
     with open(file_path, "r", encoding="utf-8") as file:
         lines = file.read().split("\n")
