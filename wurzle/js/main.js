@@ -1,3 +1,15 @@
+const urlParams = new URLSearchParams(location.search)
+
+let trainingModeActive = urlParams.has("training")
+if (trainingModeActive) {
+    revealElements("trainingmode")
+    enableTrainingModeButton.style.display = "none"
+    
+    secretFunctionString = functionGenerator.generate()
+} else {
+    disableTrainingModeButton.style.display = "none"
+}
+
 const f = new WurzleFunction(secretFunctionString)
 const wurzleGame = new WurzleGame(wurzleGridContainer, f)
 
@@ -63,4 +75,16 @@ for (const button of shareResultsButtons) {
             alert("Copied Text to Clipboard!")
         }
     })
+
+    if (trainingModeActive) {
+        button.disabled = true
+    }
 }
+
+enableTrainingModeButton.addEventListener("click", () => {
+    location.href += "?training"
+})
+
+disableTrainingModeButton.addEventListener("click", () => {
+    location.href = location.href.split("?")[0]
+})

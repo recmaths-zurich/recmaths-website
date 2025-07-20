@@ -1,5 +1,5 @@
-const secretFunctionString = "x^2-x-1"
-const wurzleNumero = 1
+let secretFunctionString = "x^2-x-1"
+let wurzleNumero = 1
 
 const wurzleGameContainer = document.getElementById("wurzle-game-container")
 const wurzleGridContainer = document.getElementById("wurzle-grid-container")
@@ -19,6 +19,9 @@ const wurzleClosePopupButton = document.getElementById("close-popup-button")
 const revealFunctionButtons = document.querySelectorAll(".function-reveal-button")
 const shareResultsButtons = document.querySelectorAll(".share-results-button")
 
+const enableTrainingModeButton = document.getElementById("enable-training-mode-button")
+const disableTrainingModeButton = document.getElementById("disable-training-mode-button")
+
 const NUM_CELLS_PER_ROW = 6
 const NUM_MAX_GUESSES = 12
 
@@ -35,6 +38,12 @@ function updateCSSCellSize() {
 function fillDataElements(key, value) {
     for (const element of document.querySelectorAll(`[data-fill='${key}']`)) {
         element.textContent = value
+    }
+}
+
+function revealElements(revealKey) {
+    for (const element of document.querySelectorAll(`[data-revealwhen='${revealKey}']`)) {
+        element.style.display = "block"
     }
 }
 

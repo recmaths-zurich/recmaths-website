@@ -111,6 +111,11 @@
         <!-- END -->
         
         <main>
+            <h1 data-revealwhen="trainingmode">
+                <span lang="en">Training Mode Active</span>
+                <span lang="de">Übungsmodus Aktiv</span>
+            </h1>
+
             <div class="wurzle-global-container" id="wurzle-global-container">
                 <div class="wurzle-game-container" id="wurzle-game-container">
                     <div class="wurzle-grid-container" id="wurzle-grid-container">
@@ -213,6 +218,39 @@
                     </span>
                 </li>
             </ul>
+
+            <h2>
+                <span lang="en">Training Mode</span>
+                <span lang="de">Übungsmodus</span>
+            </h2>
+            <p>
+                <span lang="en">
+                    There is only one Wurzle per day. However, you can also activate Training Mode by clicking the button below!
+                    Training Mode will generate a random function for you to practice with. Be aware that these functions
+                    may not be as exciting as the daily ones, since those are hand-picked to be fun (they can be super hard!).
+                </span>
+                <span lang="de">
+                    Es gibt nur ein Wurzle pro Tag. Du kannst jedoch auch den Trainingsmodus aktivieren,
+                    indem du auf die Schaltfläche unten klickst!
+                    Der Trainingsmodus generiert eine zufällige Funktion, mit der du üben kannst.
+                    Beachte, dass diese Funktionen möglicherweise nicht so spannend sind wie die
+                    täglichen, da diese von Hand ausgewählt werden, um Spaß zu machen (sie können super schwer sein!).
+                </span>
+            </p>
+            <button id="enable-training-mode-button">
+                <span lang="en">Activate Training Mode</span>
+                <span lang="de">Übungsmodus Starten</span>
+            </button>
+            
+            <button data-revealwhen="trainingmode" onclick="location.reload()">
+                <span lang="en">Generate new Function</span>
+                <span lang="de">Neue Funktion generieren</span>
+            </button>
+            
+            <button id="disable-training-mode-button">
+                <span lang="en">Leave Training Mode</span>
+                <span lang="de">Übungsmodus Beenden</span>
+            </button>
         </main>
 
         <div class="wurzle-popup-background" id="wurzle-popup-background"></div>
@@ -308,14 +346,24 @@
 
         <!-- JS_IMPORT wurzle/js/constants.js -->
         <!-- JS_IMPORT wurzle/js/wurzlefunction.js -->
+        <!-- JS_IMPORT wurzle/js/functiongenerator.js -->
         <!-- JS_IMPORT wurzle/js/wurzlegame.js -->
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/j62c9ee72b54de026.min.js?v1"></script>
+        <script src="../js/minified/je95004686c4080ff.min.js?v1"></script>
         <!-- END -->
 
         <style>
+            [data-revealwhen] {
+                display: none;
+            }
+
+            button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed !important;
+            }
+
             .wurzle-global-container {
                 display: flex;
                 justify-content: center;
