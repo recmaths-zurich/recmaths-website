@@ -59,7 +59,7 @@ for (const button of shareResultsButtons) {
             })
         } else {
             // gosh I really hate firefox
-            await navigator.clipboard.writeText(`${header}\n\n${shareText}`)
+            await navigator.clipboard.writeText(shareText)
             alert("Copied Text to Clipboard!")
         }
     })
