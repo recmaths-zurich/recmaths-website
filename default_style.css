@@ -43,7 +43,7 @@ body {
     --card-shadow: none;
     --card-text-color: black;
 
-    --button-background: #f9f9f9;
+    --button-background: #f5f5f5;
     --button-color: var(--card-text-color);
     --button-border: 1px solid #a1a1a1;
 
@@ -626,6 +626,11 @@ main h1 {
 main ol,
 main ul {
     margin: 0;
+}
+
+main ol > li,
+main ul > li {
+    margin-bottom: .5em;
 }
 
 main fieldset {
