@@ -48,12 +48,19 @@ wurzleClosePopupButton.addEventListener("click", () => {
 })
 
 for (const button of shareResultsButtons) {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
         const shareText = wurzleGame.resultString
         const header = shareText.split("\n")[0]
-        navigator.share({
-            title: header,
-            text: shareText
-        })
+
+        if (navigator.share) {
+            navigator.share({
+                title: header,
+                text: shareText
+            })
+        } else {
+            // gosh I really hate firefox
+            await navigator.clipboard.writeText(`${header}\n\n${shareText}`)
+            alert("Copied Text to Clipboard!")
+        }
     })
 }
