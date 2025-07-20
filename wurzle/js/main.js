@@ -47,6 +47,15 @@ wurzleInput.addEventListener("keydown", event => {
 for (const button of revealFunctionButtons) {
     button.addEventListener("click", () => {
         fillDataElements("secret-function", " " + f.termString)
+
+        const canvas = document.createElement("canvas")
+        canvas.style.width = "100%"
+        canvas.style.aspectRatio = "16 / 9"
+        button.replaceWith(canvas)
+
+        const plotter = new FunctionPlotter(canvas)
+        plotter.addFunction(f)
+        plotter.makeInteractive()
     
         for (const btn of revealFunctionButtons) {
             btn.remove()

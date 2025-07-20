@@ -5,7 +5,9 @@ class NumberParserError extends Error {
     }
 }
 
-function evaluateNumberString(numberString) { //argOption, error
+function evaluateNumberString(numberString) {
+    console.log(numberString)
+
     // GRAMMAR:
     // number: "-" number | decimal | number "/" number | "0x" hexint | "0x" hexdecimal |
     //         "0b" binint | "0b" bindecimal | "sqrt(" number ")" |
@@ -34,6 +36,10 @@ function evaluateNumberString(numberString) { //argOption, error
             return value
         }
     }
+    
+    if (numberString.startsWith("-")) {
+        return evaluateNumberString("0" + numberString)
+    }
 
     if (numberString == "inf") {
         throw new NumberParserError(`Infinity is not a number`)
@@ -46,10 +52,6 @@ function evaluateNumberString(numberString) { //argOption, error
     const binDecimalRegex = /^0b[01]+\.[01]+$/
     const binIntRegex = /^0b[01]+$/
     const scientificRegex = /^\-?[0123456789]+(\.[0123456789]+)?e-?[0123456789]+$/
-
-    if (numberString.startsWith("-")) {
-        return -evaluateNumberString(numberString.slice(1))
-    }
 
     const allowedFunctions = {
         "sqrt": {
@@ -216,6 +218,10 @@ function evaluateNumberString(numberString) { //argOption, error
         }
 
         return operatorFunc(parts[0], parts[1])
+    }
+    
+    if (numberString.startsWith("-")) {
+        return -evaluateNumberString(numberString.slice(1))
     }
 
     throw new NumberParserError(`Invalid number`)
