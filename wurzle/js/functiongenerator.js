@@ -156,6 +156,10 @@ class FunctionGenerator {
 
             } else if (chosenType == "abs") {
                 f = "abs"
+                
+                if (Math.sign(a) == Math.sign(d)) {
+                    d *= -1
+                }
             }
 
             // negative b results in the same, so let's simplify
