@@ -1,4 +1,4 @@
-const secretFunctionString = "(x-5)^2"
+const secretFunctionString = "x^2-x-1"
 const wurzleNumero = 1
 
 const wurzleGameContainer = document.getElementById("wurzle-game-container")
@@ -20,7 +20,7 @@ const revealFunctionButtons = document.querySelectorAll(".function-reveal-button
 const shareResultsButtons = document.querySelectorAll(".share-results-button")
 
 const NUM_CELLS_PER_ROW = 6
-const NUM_MAX_GUESSES = 10
+const NUM_MAX_GUESSES = 12
 
 wurzleGameContainer.style.setProperty("--num-cells-per-row", NUM_CELLS_PER_ROW)
 

@@ -169,7 +169,7 @@
                     There is a new Wurzle every day. Come back tomorrow and share your results with the world!
                 </span>
                 <span lang="de">
-                    Es gibt jeden Tag einen neuen Wurzle. Komm morgen wieder und teile deine Ergebnisse mit der Welt!
+                    Es gibt jeden Tag ein neues Wurzle. Komm morgen wieder und teile deine Ergebnisse mit der Welt!
                 </span>
             </p>
 
@@ -202,6 +202,14 @@
                     </span>
                     <span lang="de">
                         Du hast höchstens <output data-fill="max-num-guesses"></output> Versuche, also nutze sie weise!
+                    </span>
+                </li>
+                <li>
+                    <span lang="en">
+                        Sometimes, the root might not be rational. You can also input numbers like "pi" or "e*sqrt(2)".
+                    </span>
+                    <span lang="de">
+                        Manchmal ist die Nullstelle möglicherweise nicht rational. Du kannst auch Zahlen wie „pi“ oder „e*sqrt(2)“ eingeben.
                     </span>
                 </li>
             </ul>
@@ -264,7 +272,7 @@
                 <span lang="de">
                     Leider konntest du in <output data-fill="num-guesses"></output>
                     Versuchen keine Nullstelle der Funktion finden. Das ist schade!
-                    Sei nicht traurig, komm einfach morgen wieder für deinen nächsten
+                    Sei nicht traurig, komm einfach morgen wieder für das nächste
                     Wurzle! Klicke auf die Schaltfläche unten, um die Funktion zu enthüllen.
                 </span>
 
@@ -296,7 +304,7 @@
         </div>
 
         <!-- SET js_version=1 -->
-        <!-- SET js_minify=false -->
+        <!-- SET js_minify=true -->
 
         <!-- JS_IMPORT wurzle/js/constants.js -->
         <!-- JS_IMPORT wurzle/js/wurzlefunction.js -->
@@ -304,10 +312,7 @@
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../wurzle/js/constants.js?v1"></script>
-        <script src="../wurzle/js/wurzlefunction.js?v1"></script>
-        <script src="../wurzle/js/wurzlegame.js?v1"></script>
-        <script src="../wurzle/js/main.js?v1"></script>
+        <script src="../js/minified/j59c494cc436c3309.min.js?v1"></script>
         <!-- END -->
 
         <style>
@@ -342,7 +347,7 @@
             }
 
             .wurzle-grid-row-header {
-                font-size: calc(var(--cell-size-px) * 0.3);
+                font-size: 1em;
             }
 
             .wurzle-grid-row-cells {
