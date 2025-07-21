@@ -6,8 +6,6 @@ class NumberParserError extends Error {
 }
 
 function evaluateNumberString(numberString) {
-    console.log(numberString)
-
     // GRAMMAR:
     // number: "-" number | decimal | number "/" number | "0x" hexint | "0x" hexdecimal |
     //         "0b" binint | "0b" bindecimal | "sqrt(" number ")" |
@@ -90,6 +88,34 @@ function evaluateNumberString(numberString) {
         "cosh":    {compute: n => Math.cosh(n)},
         "tanh":    {compute: n => Math.tanh(n)},
         "arcsinh": {compute: n => Math.asinh(n)},
+        "ln":      {
+            compute: n => Math.log(n),
+            constraints: [{
+                if: n => (n <= 0),
+                err: () => new NumberParserError("ln is only defined on (0, inf)")
+            }]
+        },
+        "log10":   {
+            compute: n => Math.log10(n),
+            constraints: [{
+                if: n => (n <= 0),
+                err: () => new NumberParserError("log10 is only defined on (0, inf)")
+            }]
+        },
+        "log2":    {
+            compute: n => Math.log2(n),
+            constraints: [{
+                if: n => (n <= 0),
+                err: () => new NumberParserError("log2 is only defined on (0, inf)")
+            }]
+        },
+        "log3":    {
+            compute: n => Math.log(n) / Math.log(3),
+            constraints: [{
+                if: n => (n <= 0),
+                err: () => new NumberParserError("log3 is only defined on (0, inf)")
+            }]
+        },
         "arccosh": {
             compute: n => Math.acosh(n),
             constraints: [

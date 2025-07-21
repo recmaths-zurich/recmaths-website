@@ -34,7 +34,12 @@ class WurzleGame {
 
         const header = document.createElement("div")
         header.classList.add("wurzle-grid-row-header")
-        header.textContent = `f(${stringInput})`
+        const b = document.createElement("span")
+        const span = document.createElement("b")
+        b.textContent = `(${this.guesses.length}/${NUM_MAX_GUESSES}) `
+        span.textContent = `f(${stringInput})`
+        header.appendChild(b)
+        header.appendChild(span)
 
         const cells = document.createElement("div")
         cells.classList.add("wurzle-grid-row-cells")

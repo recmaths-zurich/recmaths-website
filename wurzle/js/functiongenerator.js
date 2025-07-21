@@ -27,7 +27,7 @@ class FunctionGenerator {
 
         const randomIntegerCoefficient = () => weightedRandomChoice(
             [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5],
-            [ 1,  1,  1,  1,  3, 4, 3, 1, 1, 1]
+            [ 1,  1,  1,  2,  6, 8, 5, 1, 1, 1]
         )
 
         const chosenType = weightedRandomChoice(Object.keys(functionTypes), Object.values(functionTypes))
@@ -103,8 +103,11 @@ class FunctionGenerator {
         else if (chosenType == "exponential") {
             // a*base^(bx)-c
 
-            const base = weightedRandomChoice(["2", "e", "3"], [1, 3, 1])
-            const a = randomIntegerCoefficient()
+            const base = weightedRandomChoice(["2", "e", "3"], [6, 7, 1])
+
+            // in an attempt to make it easier
+            const a = 1 // randomIntegerCoefficient()
+            
             const b = randomIntegerCoefficient()
 
             // make sure a and c are different ins absolute so that 0 is not a root (that'd be boring)
@@ -143,7 +146,10 @@ class FunctionGenerator {
             let f = weightedRandomChoice(["sin", "cos", "tan"], [2, 2, 3])
 
             let a = randomIntegerCoefficient()
-            let b = randomIntegerCoefficient()
+
+            // in an attempt to make it easier...
+            let b = 1 // randomIntegerCoefficient()
+
             let c = randomIntegerCoefficient()
             let d = randomIntegerCoefficient()
 
@@ -214,7 +220,7 @@ class FunctionGenerator {
             // a / x^b + c
 
             let a = randomIntegerCoefficient()
-            let b = weightedRandomChoice([1, 2], [2, 1])
+            let b = weightedRandomChoice([1, 2], [5, 1])
             let c = randomIntegerCoefficient()
 
             if (Math.sign(a) == Math.sign(c)) {
