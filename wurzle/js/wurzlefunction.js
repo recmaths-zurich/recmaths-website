@@ -272,23 +272,17 @@ class WurzleFunction {
         } else if (y < maxNegativeNumber) {
             return "<" + maxNegativeNumber
         } else {
-            let yString = y.toFixed(NUM_CELLS_PER_ROW)
+            let yString = null
+            for (let n = 0; n <= NUM_CELLS_PER_ROW; n++) {
+                yString = (y >= 0 && y < 10) ? ("0" + y.toFixed(n)) : y.toFixed(n)
 
-            if (yString.startsWith("-")) {
-                const lengthBeforePoint = yString.length - NUM_CELLS_PER_ROW - 2
-                const availableDigits = Math.max(NUM_CELLS_PER_ROW - lengthBeforePoint - 3, 0)
-                yString = y.toFixed(availableDigits)
-            } else {
-                const lengthBeforePoint = yString.length - NUM_CELLS_PER_ROW - 1
-                const availableDigits = Math.max(NUM_CELLS_PER_ROW - lengthBeforePoint - 2, 0)
-                yString = y.toFixed(availableDigits)
+                if (yString.length == NUM_CELLS_PER_ROW - 1) {
+                    break
+                } else if (yString.length >= NUM_CELLS_PER_ROW) {
+                    yString = yString.slice(0, NUM_CELLS_PER_ROW - 1)
+                }
             }
 
-            if (yString.length < NUM_CELLS_PER_ROW - 1) {
-                yString = yString + "."
-            }
-            
-            console.assert(yString.length == NUM_CELLS_PER_ROW - 1)
             if (parseFloat(yString) == y) {
                 return `=${yString}`
             } else {
@@ -313,3 +307,11 @@ class WurzleFunction {
     }
 
 }
+
+// // test numericToStringResult Implementation
+// for (let x of [0, -99.98764323786, 9.999896570288696, 3, 11, 12.5, 0.0001, -0.01, -0.0001, 9999, 9999.6, 99999, 99999.6, 999999, -9999, -9999.6, -10000]) {
+//     let f = new WurzleFunction()
+//     const str = f.numericToStringResult(x)
+//     console.log(x, str)
+//     console.assert(str.length == NUM_CELLS_PER_ROW)
+// }

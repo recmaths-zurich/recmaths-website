@@ -18,6 +18,7 @@ const wurzleClosePopupButton = document.getElementById("close-popup-button")
 
 const revealFunctionButtons = document.querySelectorAll(".function-reveal-button")
 const shareResultsButtons = document.querySelectorAll(".share-results-button")
+const showResultsButton = document.getElementById("show-results-button")
 
 const enableTrainingModeButton = document.getElementById("enable-training-mode-button")
 const disableTrainingModeButton = document.getElementById("disable-training-mode-button")
@@ -56,3 +57,10 @@ const CELL_HIDDEN_BACKGROUND_COLOR = "var(--background)"
 const CELL_CARD_BACKGROUND_COLOR = "grey"
 const CELL_FOREGROUND_COLOR = "white"
 const CELL_GOOD_BACKGROUND_COLOR = "#6aba65"
+
+function showPopup() {
+    wurzlePopupBackground.style.display = "block"
+    wurzleResultsPopup.style.display = "block"
+    wurzleInputContainer.style.display = "none"
+    wurzleShareContainer.style.display = "block"
+}

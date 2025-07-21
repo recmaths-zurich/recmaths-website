@@ -97,3 +97,11 @@ enableTrainingModeButton.addEventListener("click", () => {
 disableTrainingModeButton.addEventListener("click", () => {
     location.href = location.href.split("?")[0]
 })
+
+showResultsButton.addEventListener("click", () => {
+    if (wurzleGame.state != WurzleGameState.Results) {
+        return
+    }
+
+    showPopup()
+})

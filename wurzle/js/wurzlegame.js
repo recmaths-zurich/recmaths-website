@@ -119,10 +119,7 @@ class WurzleGame {
 
     endgame() {
         fillDataElements("num-guesses", this.guesses.length)
-        wurzlePopupBackground.style.display = "block"
-        wurzleResultsPopup.style.display = "block"
-        wurzleInputContainer.style.display = "none"
-        wurzleShareContainer.style.display = "block"
+        showPopup()
 
         this.resultString = this.makeResultsString()
     }
