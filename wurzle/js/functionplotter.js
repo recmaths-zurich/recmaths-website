@@ -192,8 +192,7 @@ class FunctionPlotter {
             }
 
             for (let i = 0; i < this.guessedPoints.length; i++) {
-                const labelName = `p${i + 1}`
-                this.drawPoint(this.guessedPoints[i], {label: labelName})
+                this.drawPoint(this.guessedPoints[i])
             }
         }
 
