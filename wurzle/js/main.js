@@ -55,6 +55,17 @@ for (const button of revealFunctionButtons) {
 
         const plotter = new FunctionPlotter(canvas)
         plotter.addFunction(f)
+
+        plotter.guessedPoints = wurzleGame.guesses.map(({input}) => {
+            try {
+                const x = parseFloat(input)
+                const y = f.computeAt(x)
+                return new Vector2d(x, y)
+            } catch {
+                return null
+            }
+        }).filter(g => g !== null)
+
         plotter.makeInteractive()
     
         for (const btn of revealFunctionButtons) {

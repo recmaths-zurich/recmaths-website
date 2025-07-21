@@ -1,5 +1,5 @@
-let secretFunctionString = "tan(pi*(x+4)/14)"
-let wurzleNumero = 2
+let secretFunctionString = "1-e^(-(x+e)^2/2)"
+let wurzleNumero = 3
 
 const wurzleGameContainer = document.getElementById("wurzle-game-container")
 const wurzleGridContainer = document.getElementById("wurzle-grid-container")

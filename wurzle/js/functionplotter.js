@@ -8,6 +8,7 @@ class FunctionPlotter {
         this.viewHeight = viewHeight ?? 5
 
         this.wurzleFunctions = []
+        this.guessedPoints = []
     }
 
     get defaultForegroundColor() {
@@ -141,7 +142,17 @@ class FunctionPlotter {
     plot(wurzleFunction, color="blue") {
         const points = Array.from({length: this.canvas.width}) 
             .map((_, i) => this.screenPosToPoint(new Vector2d(i, 0)).x)
-            .map(x => new Vector2d(x, wurzleFunction.computeAt(x)))
+            .map(x => {
+                try {
+                    const y = wurzleFunction.computeAt(x)
+                    if (isNaN(y)) {
+                        throw new Error("Value may not be NaN")
+                    }
+                    return new Vector2d(x, y)
+                } catch {
+                    return null
+                }
+            })
 
         // if we experience jumps of more than maxDelta, it's very likely
         // that we've hit an asymptote. We do not want to connect asymptote ends!
@@ -149,6 +160,10 @@ class FunctionPlotter {
 
         for (let i = 1; i < points.length; i++) {
             const [p1, p2] = [points[i - 1], points[i]]
+
+            if (p1 === null || p2 === null) {
+                continue
+            }
 
             if (p1.distance(p2) < maxDelta) { 
                 this.connectPoints([p1, p2], {color})
@@ -174,6 +189,11 @@ class FunctionPlotter {
             this.drawAxes()
             for (const func of this.wurzleFunctions) {
                 this.plot(func)
+            }
+
+            for (let i = 0; i < this.guessedPoints.length; i++) {
+                const labelName = `p${i + 1}`
+                this.drawPoint(this.guessedPoints[i], {label: labelName})
             }
         }
 
