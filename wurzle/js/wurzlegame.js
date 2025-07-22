@@ -96,7 +96,7 @@ class WurzleGame {
         return won
     }
 
-    makeResultsString() {
+    makeResultsString(won=true) {
         const characterEmojiMap = {
             "0": "0️⃣", "1": "1️⃣", "2": "2️⃣",
             "3": "3️⃣", "4": "4️⃣", "5": "5️⃣",
@@ -104,7 +104,8 @@ class WurzleGame {
             "9": "9️⃣", ".": "*️⃣", "-": "⛔"
         }
 
-        let str = `Wurzle #${wurzleNumero} ${this.guesses.length}/${NUM_MAX_GUESSES}\n`
+        const guessIndicator = (!won) ? "x" : this.guesses.length
+        let str = `Wurzle #${wurzleNumero} ${guessIndicator}/${NUM_MAX_GUESSES}\n`
         for (const guess of this.guesses) {
             for (const char of guess.output) {
                 if (characterEmojiMap[char]) {
@@ -121,25 +122,32 @@ class WurzleGame {
     endgame() {
         fillDataElements("num-guesses", this.guesses.length)
         showPopup()
-
-        this.resultString = this.makeResultsString()
-
-        if (!hasSentApiFinishUpdate) {
-            hasSentApiFinishUpdate = true
-            fetch("https://www.noel-friedrich.de/wurzle-api/finish.php")
-        }
     }
 
     win() {
         this.endgame()
         wurzleGoodResultsContainer.style.display = "block"
         wurzleBadResultsContainer.style.display = "none"
+
+        if (!hasSentApiFinishUpdate) {
+            hasSentApiFinishUpdate = true
+            fetch("https://www.noel-friedrich.de/wurzle-api/success.php")
+        }
+        
+        this.resultString = this.makeResultsString(true)
     }
 
     lose() {
         this.endgame()
         wurzleGoodResultsContainer.style.display = "none"
         wurzleBadResultsContainer.style.display = "block"
+        
+        if (!hasSentApiFinishUpdate) {
+            hasSentApiFinishUpdate = true
+            fetch("https://www.noel-friedrich.de/wurzle-api/finish.php")
+        }
+        
+        this.resultString = this.makeResultsString(false)
     }
 
     inputNumber(number) {
