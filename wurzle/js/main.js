@@ -30,11 +30,18 @@ wurzleInput.addEventListener("input", () => {
     }
 })
 
+let hasSentApiInitUpdate = false
 wurzleSubmitButton.addEventListener("click", () => {
     try {
         const x = evaluateNumberString(wurzleInput.value)
         wurzleGame.inputNumber(x)
         wurzleInput.value = ""
+
+        if (!hasSentApiInitUpdate) {
+            hasSentApiInitUpdate = true
+            // for usage monitoring
+            fetch("https://www.noel-friedrich.de/wurzle-api/init.php")
+        }
     } catch {}
 })
 

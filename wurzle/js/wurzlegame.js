@@ -3,6 +3,7 @@ const WurzleGameState = {
     Results: "results"
 }
 
+let hasSentApiFinishUpdate = false
 class WurzleGame {
 
     constructor(cellsContainer, wurzleFunction) {
@@ -122,6 +123,11 @@ class WurzleGame {
         showPopup()
 
         this.resultString = this.makeResultsString()
+
+        if (!hasSentApiFinishUpdate) {
+            hasSentApiFinishUpdate = true
+            fetch("https://www.noel-friedrich.de/wurzle-api/finish.php")
+        }
     }
 
     win() {
