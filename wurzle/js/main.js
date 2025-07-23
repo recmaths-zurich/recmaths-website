@@ -17,6 +17,7 @@ async function init() {
         revealElements("trainingmode")
         enableTrainingModeButton.style.display = "none"
         secretFunctionString = functionGenerator.generate()
+        WurzleLoader.loadWurzles()
     } else {
         let wurzle = null
         revealElements("loading")
@@ -147,11 +148,11 @@ for (const button of shareResultsButtons) {
 }
 
 enableTrainingModeButton.addEventListener("click", () => {
-    location.href += "?training"
+    location.search = "training"
 })
 
 disableTrainingModeButton.addEventListener("click", () => {
-    location.href = location.href.split("?")[0]
+    location.search = ""
 })
 
 showResultsButton.addEventListener("click", () => {
