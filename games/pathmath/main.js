@@ -297,9 +297,10 @@ class PathMathGame {
         return numCountMap
     }
 
-    static random(size=new Vector2d(3, 3), range=10) {
-        const game = new PathMathGame(Array.from({length: size.y})
-            .map(_ => Array.from({length: size.x}).map(_ => Math.floor((Math.random() * range * 2 + 1) - range - 1))))
+    static random(size=new Vector2d(3, 3), range=5) {
+        const game = new PathMathGame(Array.from({length: size.y}).map(_ => Array.from({length: size.x}).map(_ => {
+            return Math.floor((Math.random() * range * 2 + 2) - range - 1)
+        })))
 
         const countMap = game.computeAllPossibleSolutions()
         
