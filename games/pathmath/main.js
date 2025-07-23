@@ -1,8 +1,3 @@
-const pathMathGlobal = document.getElementById("pathmath-global")
-const pathMathGrid = document.getElementById("pathmath-grid")
-const pathMathGoalContainer = document.getElementById("pathmath-goal-container")
-const goalOutput = document.getElementById("goal-output")
-
 class PathMathGame {
 
     constructor(numberMatrix, goalNumber) {
@@ -144,6 +139,8 @@ class PathMathGame {
                 const v = currPath[0]
                 this.cellGrid[v.y][v.x].classList.add("pathstart")
             }
+
+            drawPathOnBackground(this.cellGrid, currPath)
         }
 
         addEventListener("mouseup", globalMouseup)
