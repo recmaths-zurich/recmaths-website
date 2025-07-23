@@ -1,19 +1,57 @@
 const urlParams = new URLSearchParams(location.search)
-
 let trainingModeActive = urlParams.has("training")
-if (trainingModeActive) {
-    revealElements("trainingmode")
-    enableTrainingModeButton.style.display = "none"
-    
-    secretFunctionString = functionGenerator.generate()
-} else {
-    disableTrainingModeButton.style.display = "none"
+let oldWurzleActive = urlParams.has("w") && !isNaN(urlParams.get("w"))
+let oldWurzleId = parseInt(urlParams.get("w"))
+
+if (trainingModeActive && oldWurzleActive) {
+    location.search = `w=${encodeURIComponent(oldWurzleId)}`
 }
 
-const f = new WurzleFunction(secretFunctionString)
-const wurzleGame = new WurzleGame(wurzleGridContainer, f)
+let f = null
+let wurzleGame = null
+let secretFunctionString = null
+let wurzleNumero = -1
 
-fillDataElements("secret-function", "#".repeat(f.termString.length))
+async function init() {
+    if (trainingModeActive) {
+        revealElements("trainingmode")
+        enableTrainingModeButton.style.display = "none"
+        secretFunctionString = functionGenerator.generate()
+    } else {
+        let wurzle = null
+        revealElements("loading")
+
+        try {
+            if (oldWurzleActive) {
+                wurzle = await WurzleLoader.getWurzleNumero(oldWurzleId)
+                if (!wurzle) {
+                    location.search = ""
+                } else {
+                    revealElements("oldwurzle")
+                }
+            } else {
+                wurzle = await WurzleLoader.getLatestWurzle()
+            }
+        } catch(e) {
+            revealElements("failedtoload")
+            hideElements("loading")
+            throw e
+        }
+
+        hideElements("loading")
+
+        secretFunctionString = wurzle.termString
+        wurzleNumero = wurzle.numero
+        disableTrainingModeButton.style.display = "none"
+        fillDataElements("wurzle-date", wurzle.dateString)
+    }
+
+    f = new WurzleFunction(secretFunctionString)
+    wurzleGame = new WurzleGame(wurzleGridContainer, f)
+
+    fillDataElements("secret-function", "#".repeat(f.termString.length))
+    fillDataElements("wurzle-numero", wurzleNumero)
+}
 
 wurzleInput.addEventListener("input", () => {
     if (wurzleInput.value.length > 18) {
@@ -123,3 +161,5 @@ showResultsButton.addEventListener("click", () => {
 
     showPopup()
 })
+
+init()

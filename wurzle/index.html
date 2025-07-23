@@ -109,11 +109,26 @@
             }
         </script>
         <!-- END -->
-        
+
         <main>
+            <h1 data-revealwhen="failedtoload">
+                <span lang="en">Error 502: Couldn't load!</span>
+                <span lang="de">Error 502: Konnte nicht geladen werden!</span>
+            </h1>
+
+            <h1 data-revealwhen="loading">
+                <span lang="en">Loading...</span>
+                <span lang="de">Wird geladen...</span>
+            </h1>
+
             <h1 data-revealwhen="trainingmode">
                 <span lang="en">Training Mode Active</span>
                 <span lang="de">Übungsmodus Aktiv</span>
+            </h1>
+            
+            <h1 data-revealwhen="oldwurzle">
+                Wurzle #<output data-fill="wurzle-numero"></output>
+                (<output data-fill="wurzle-date"></output>)
             </h1>
 
             <div class="wurzle-global-container" id="wurzle-global-container">
@@ -158,6 +173,12 @@
                     Anleitung
                 </span>
             </h1>
+
+            <button data-revealwhen="oldwurzle" onclick="location.search=''">
+                <span lang="en">Play Today's Wurzle</span>
+                <span lang="de">Heutiges Wurzle Spielen</span>
+            </button>
+
             <p>
                 <span lang="en">
                     There is a secret function behind the scenes and you need to find a root (i.e. an x where f(x)=0).
@@ -246,11 +267,20 @@
                 <span lang="en">Generate new Function</span>
                 <span lang="de">Neue Funktion generieren</span>
             </button>
-            
+
             <button id="disable-training-mode-button">
                 <span lang="en">Leave Training Mode</span>
                 <span lang="de">Übungsmodus Beenden</span>
             </button>
+
+            <h2>
+                <span lang="en">Past Wurzles</span>
+                <span lang="de">Alte Wurzles</span>
+            </h2>
+
+            <div class="calendar-container" id="wurzle-calendar-container">
+
+            </div>
         </main>
 
         <div class="wurzle-popup-background" id="wurzle-popup-background"></div>
@@ -345,15 +375,17 @@
         <!-- SET js_minify=true -->
 
         <!-- JS_IMPORT wurzle/js/constants.js -->
+        <!-- JS_IMPORT wurzle/js/calendarwidget.js -->
         <!-- JS_IMPORT wurzle/js/wurzlefunction.js -->
         <!-- JS_IMPORT wurzle/js/vector2d.js -->
         <!-- JS_IMPORT wurzle/js/functionplotter.js -->
         <!-- JS_IMPORT wurzle/js/functiongenerator.js -->
         <!-- JS_IMPORT wurzle/js/wurzlegame.js -->
+        <!-- JS_IMPORT wurzle/js/wurzleloader.js -->
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/je5c539925203ec58.min.js?v1"></script>
+        <script src="../js/minified/jbfda9ae5bce9b649.min.js?v1"></script>
         <!-- END -->
 
         <style>
@@ -536,6 +568,70 @@
 
             .wurzle-results-popup .close-popup-button::before {
                 content: "✖";
+            }
+            
+            .calendar-container {
+                display: grid;
+                grid-template-columns: 1fr;
+                width: min(100%, 350px);
+
+                font-family: var(--header-font);
+                border: 3px solid black;
+            }
+
+            .calendar-container .calendar-button {
+                cursor: pointer;
+            }
+
+            .calendar-container .calendar-header {
+                padding: 10px;
+                display: grid;
+                grid-template-columns: 2em auto 2em;
+                border-bottom: 3px solid black;
+                background-color: #fdff89;
+                color: black;
+            }
+
+            .calendar-container .calendar-header .calendar-button:nth-child(1) {
+                text-align: left;
+            }
+            
+            .calendar-container .calendar-header .calendar-button:nth-child(3) {
+                text-align: right;
+            }
+
+            .calendar-container .calendar-header span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                font-weight: bold;
+            }
+
+            .calendar-container .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 3px;
+                padding: 5px;
+            }
+
+            .calendar-container .calendar-cell {
+                aspect-ratio: 1 / 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.1em;
+                border-radius: 50%;
+            }
+
+            .calendar-container .calendar-cell.clickable {
+                background-color: #fdff89;
+                cursor: pointer;
+                color: black;
+            }
+
+            .calendar-container .calendar-cell.today {
+                outline: 1px solid var(--card-text-color);
             }
         </style>
 

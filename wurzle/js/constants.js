@@ -1,6 +1,3 @@
-let secretFunctionString = "2*(x-42)"
-let wurzleNumero = 4
-
 const wurzleGameContainer = document.getElementById("wurzle-game-container")
 const wurzleGridContainer = document.getElementById("wurzle-grid-container")
 const wurzleGlobalContainer = document.getElementById("wurzle-global-container")
@@ -22,6 +19,8 @@ const showResultsButton = document.getElementById("show-results-button")
 
 const enableTrainingModeButton = document.getElementById("enable-training-mode-button")
 const disableTrainingModeButton = document.getElementById("disable-training-mode-button")
+
+const calendarContainer = document.getElementById("wurzle-calendar-container")
 
 const NUM_CELLS_PER_ROW = 6
 const NUM_MAX_GUESSES = 12
@@ -45,6 +44,12 @@ function fillDataElements(key, value) {
 function revealElements(revealKey) {
     for (const element of document.querySelectorAll(`[data-revealwhen='${revealKey}']`)) {
         element.style.display = "block"
+    }
+}
+
+function hideElements(revealKey) {
+    for (const element of document.querySelectorAll(`[data-revealwhen='${revealKey}']`)) {
+        element.style.display = "none"
     }
 }
 
