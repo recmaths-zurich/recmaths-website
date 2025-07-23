@@ -278,8 +278,8 @@
                 <span lang="de">Alte Wurzles</span>
             </h2>
 
-            <div class="calendar-container" id="wurzle-calendar-container">
-
+            <div class="calendar-global">
+                <div class="calendar-container" id="wurzle-calendar-container"></div>
             </div>
         </main>
 
@@ -632,6 +632,12 @@
 
             .calendar-container .calendar-cell.today {
                 outline: 1px solid var(--card-text-color);
+            }
+
+            .calendar-global {
+                width: 100%;
+                display: flex;
+                justify-content: center;
             }
         </style>
 
