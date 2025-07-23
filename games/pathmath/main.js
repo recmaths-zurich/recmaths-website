@@ -298,8 +298,18 @@ class PathMathGame {
     }
 
     static random(size=new Vector2d(3, 3), range=5) {
-        const game = new PathMathGame(Array.from({length: size.y}).map(_ => Array.from({length: size.x}).map(_ => {
-            return Math.floor((Math.random() * range * 2 + 2) - range - 1)
+        const numbers = []
+        while (numbers.length < size.x * size.y) {
+            const num = Math.floor((Math.random() * range * 2 + 2) - range - 1)
+            if (!numbers.includes(num)) {
+                numbers.push(num)
+            }
+        }
+
+        console.log(numbers)
+
+        const game = new PathMathGame(Array.from({length: size.y}).map((_, i) => Array.from({length: size.x}).map((_, j) => {
+            return numbers[i * size.x + j]
         })))
 
         const countMap = game.computeAllPossibleSolutions()
