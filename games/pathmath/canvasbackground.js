@@ -20,6 +20,8 @@ function drawPathOnBackground(cellGrid, pathVectors) {
     context.textBaseline = "middle"
     context.textAlign = "center"
 
+    context.fillStyle = "green"
+
     for (let i = 1; i < pathVectors.length; i++) {
         const cell1 = cellGrid[pathVectors[i - 1].y][pathVectors[i - 1].x]
         const cell2 = cellGrid[pathVectors[i].y][pathVectors[i].x]
