@@ -202,13 +202,124 @@ class PathMathGame {
         }
     }
 
+    _copyMatrix(m) {
+        return m.map(r => r.slice())
+    }
+
+    computeAllPossibleSolutions() {
+        let recursionCount = 0
+
+        const allPossibleValues = new Set()
+        const allPossibleStrs = new Set()
+        const numMaps = new Map()
+        const numCountMap = new Map()
+
+        const recurse = (currValue, currX, currY, matrixLeft, str) => {
+            recursionCount++
+
+            allPossibleValues.add(currValue)
+            numMaps.set(currValue, str)
+
+            if (numCountMap.has(currValue)) {
+                numCountMap.set(currValue, numCountMap.get(currValue) + 1)
+            } else {
+                numCountMap.set(currValue, 1)
+            }
+
+            for (let x = 0; x < this.size.x; x++) {
+                for (let y = 0; y < this.size.y; y++) {
+                    const val = matrixLeft[y][x]
+                    if (val === null) {
+                        continue
+                    }
+
+                    const maxDistance = Math.max(Math.abs(currX - x), Math.abs(currY - y))
+                    if (maxDistance > 1) {
+                        continue
+                    }
+
+                    const manhattanDistance = Math.abs(currX - x) + Math.abs(currY - y)
+
+                    if (manhattanDistance == 1) {
+                        // addition / subtraction
+                        const newMatrix1 = this._copyMatrix(matrixLeft)
+                        const newMatrix2 = this._copyMatrix(matrixLeft)
+
+                        newMatrix1[y][x] = null
+                        newMatrix2[y][x] = null
+
+                        recurse(currValue + val, x, y, newMatrix1, `(${str}+${val})`)
+                        recurse(currValue - val, x, y, newMatrix2, `(${str}-${val})`)
+                    } else {
+                        // multiplication
+                        const newMatrix = this._copyMatrix(matrixLeft)
+                        newMatrix[y][x] = null
+                        recurse(currValue * val, x, y, newMatrix, `(${str}*${val})`)
+                    }
+                }
+            }
+        }
+
+        for (let x = 0; x < this.size.x; x++) {
+            for (let y = 0; y < this.size.y; y++) {
+                const num = this.numberMatrix[y][x]
+                const matrix = this._copyMatrix(this.numberMatrix)
+                matrix[y][x] = null
+                recurse(num, x, y, matrix, `${num}`)
+            }
+        }
+
+        const sortedPossibleValues = Array.from(allPossibleValues).sort((a, b) => a - b)
+        window.sortedPossibleValues = sortedPossibleValues
+        window.allPossibleStrs = allPossibleStrs
+
+        console.log(`recursionCount=${recursionCount}`)
+        console.log(`min value: ${sortedPossibleValues[0]} (${numCountMap.get(sortedPossibleValues[0])} ways)`)
+        console.log(`min path: ${numMaps.get(sortedPossibleValues[0])}`)
+
+        console.log(`max value: ${sortedPossibleValues[sortedPossibleValues.length - 1]} (${numCountMap.get(sortedPossibleValues[sortedPossibleValues.length - 1])} ways)`)
+        console.log(`max path: ${numMaps.get(sortedPossibleValues[sortedPossibleValues.length - 1])}`)
+
+        console.log(`goal number ways: ${numCountMap.get(this.goalNumber)}`)
+
+        let mostCommonNumber = null
+        let mostCommonNumberWays = 0
+        for (const num of allPossibleValues) {
+            const numWays = numCountMap.get(num)
+            if (numWays > mostCommonNumberWays) {
+                mostCommonNumber = num
+                mostCommonNumberWays = numWays
+            }
+        }
+
+        console.log(`most common number: ${mostCommonNumber} (${mostCommonNumberWays} ways)`)
+
+        return numCountMap
+    }
+
+    static random(size=new Vector2d(3, 3), range=10) {
+        const game = new PathMathGame(Array.from({length: size.y})
+            .map(_ => Array.from({length: size.x}).map(_ => Math.floor((Math.random() * range * 2 + 1) - range - 1))))
+
+        const countMap = game.computeAllPossibleSolutions()
+        
+        const allPossibleGoals = Array.from(countMap.keys())
+        const goalNumber = weightedRandomChoice(allPossibleGoals, allPossibleGoals.map(g => countMap.get(g)))
+        game.goalNumber = goalNumber
+
+        console.log(`possible ways: ${countMap.get(goalNumber)}`)
+        return game
+    }
+
 }
 
-const game = new PathMathGame([
-    [2, 3, 8],
-    [6, 1, 10],
-    [1, 7, 3]
-], 36)
+// const game = new PathMathGame([
+//     [2, 3, 8],
+//     [6, 1, 10],
+//     [1, 7, 3]
+// ], 36)
+
+const game = PathMathGame.random()
 
 document.body.onload = () => {
     game.initHtml()

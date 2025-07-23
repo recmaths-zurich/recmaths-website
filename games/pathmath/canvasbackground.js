@@ -17,7 +17,7 @@ function drawPathOnBackground(cellGrid, pathVectors) {
 
     const fontSize = cellGrid[0][0].clientWidth * 0.2
     context.font = `${fontSize}px Arial`
-    context.textBaseline = "center"
+    context.textBaseline = "middle"
     context.textAlign = "center"
 
     for (let i = 1; i < pathVectors.length; i++) {
@@ -37,7 +37,7 @@ function drawPathOnBackground(cellGrid, pathVectors) {
         const operationStr = isMultiplication ? "×" : "±"
 
         const averagePos = p1.lerp(p2, 0.5)
-        context.fillText(operationStr, averagePos.x, averagePos.y + fontSize * 0.3)
+        context.fillText(operationStr, averagePos.x, averagePos.y)
     }
 }
 
