@@ -92,10 +92,13 @@ class PathMathGame {
                 return true
             }
 
+            let i = 0
             for (const other of currPath) {
                 if (other.x == v.x && other.y == v.y) {
+                    currPath.splice(i + 1, currPath.length)
                     return false
                 }
+                i++
             }
 
             const lastPathVector = currPath[currPath.length - 1]
@@ -160,6 +163,7 @@ class PathMathGame {
 
                     isDragging = true
                     if (!canAddToPath(position)) {
+                        redrawPath()
                         return
                     }
 
@@ -173,6 +177,7 @@ class PathMathGame {
                     event.preventDefault()
 
                     if (!isDragging || !canAddToPath(position)) {
+                        redrawPath()
                         return
                     }
 
@@ -305,8 +310,6 @@ class PathMathGame {
                 numbers.push(num)
             }
         }
-
-        console.log(numbers)
 
         const game = new PathMathGame(Array.from({length: size.y}).map((_, i) => Array.from({length: size.x}).map((_, j) => {
             return numbers[i * size.x + j]
