@@ -281,6 +281,17 @@
             <div class="calendar-global">
                 <div class="calendar-container" id="wurzle-calendar-container"></div>
             </div>
+
+            <p>
+                <span lang="en">
+                    Click on marked days to play the past Wurzles.
+                    The first Wurzle was released on the 20th of July 2025.
+                </span>
+                <span lang="de">
+                    Klicke auf markierte vergangene Tage um vergangene Wurzles zu spielen.
+                    Das erste Wurzle wurde am 20. Juli 2025 veröffentlicht.
+                </span>
+            </p>
         </main>
 
         <div class="wurzle-popup-background" id="wurzle-popup-background"></div>
@@ -385,7 +396,7 @@
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/j1eb5c00bd947622e.min.js?v1"></script>
+        <script src="../js/minified/j5dbcbb353ca54a60.min.js?v1"></script>
         <!-- END -->
 
         <style>
@@ -439,7 +450,7 @@
             .wurzle-grid-row-cells {
                 display: grid;
                 grid-template-columns: repeat(var(--num-cells-per-row), 1fr);
-                gap: calc(var(--cell-size-px) * 0.05);
+                gap: max(calc(var(--cell-size-px) * 0.05), 5px);
             }
 
             .wurzle-grid-cell {
@@ -451,7 +462,7 @@
                 color: var(--cell-foreground-color);
                 background-color: var(--cell-background-color);
                 font-size: calc(var(--cell-size-px) * 0.5);
-                border: calc(var(--cell-size-px) * 0.03) solid var(--cell-border-color);
+                border: max(calc(var(--cell-size-px) * 0.03), 2px) solid var(--cell-border-color);
                 font-weight: bold;
             }
 
@@ -462,7 +473,7 @@
 
             .wurzle-input-container > * {
                 font-size: calc(var(--cell-size-px) * 0.4);
-                border: calc(var(--cell-size-px) * 0.03) solid var(--cell-border-color);
+                border: max(calc(var(--cell-size-px) * 0.03), 2px) solid var(--cell-border-color);
                 padding: calc(var(--cell-size-px) * 0.1);
                 border-radius: 0;
                 font-family: var(--header-font);
@@ -576,7 +587,7 @@
                 width: min(100%, 350px);
 
                 font-family: var(--header-font);
-                border: 3px solid black;
+                border: 2px solid black;
             }
 
             .calendar-container .calendar-button {
@@ -587,8 +598,8 @@
                 padding: 10px;
                 display: grid;
                 grid-template-columns: 2em auto 2em;
-                border-bottom: 3px solid black;
-                background-color: #fdff89;
+                border-bottom: 2px solid black;
+                background-color: #91ff89;
                 color: black;
             }
 
@@ -625,7 +636,7 @@
             }
 
             .calendar-container .calendar-cell.clickable {
-                background-color: #fdff89;
+                background-color: #91ff89;
                 cursor: pointer;
                 color: black;
             }

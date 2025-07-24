@@ -49,7 +49,7 @@ class CalendarWidget {
     addClickableDay(day, month, year, {
         title="",
         func=() => {},
-        color="#fdff89"
+        color=null
     }={}) {
         this.events.push({day, month, year, title, func, color})
     }
@@ -141,7 +141,10 @@ class CalendarWidget {
                     cellElement.title = event.title
                     cellElement.classList.add("clickable")
                     cellElement.addEventListener("click", event.func)
-                    cellElement.style.backgroundColor = event.color
+
+                    if (event.color) {
+                        cellElement.style.backgroundColor = event.color 
+                    }
                 }
 
                 if (today.getFullYear() == year && today.getMonth() + 1 == month && today.getDate() == gridCell) {
