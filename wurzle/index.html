@@ -174,7 +174,7 @@
                 </span>
             </h1>
 
-            <button data-revealwhen="oldwurzle" onclick="location.search=''">
+            <button data-revealwhen="oldwurzle" onclick="location.search=''" class="wurzle-style-button">
                 <span lang="en">Play Today's Wurzle</span>
                 <span lang="de">Heutiges Wurzle Spielen</span>
             </button>
@@ -258,17 +258,17 @@
                     täglichen, da diese von Hand ausgewählt werden, um Spaß zu machen (sie können super schwer sein!).
                 </span>
             </p>
-            <button id="enable-training-mode-button">
+            <button id="enable-training-mode-button" class="wurzle-style-button">
                 <span lang="en">Activate Training Mode</span>
                 <span lang="de">Übungsmodus Starten</span>
             </button>
             
-            <button data-revealwhen="trainingmode" onclick="location.reload()">
+            <button data-revealwhen="trainingmode" onclick="location.reload()" class="wurzle-style-button">
                 <span lang="en">Generate new Function</span>
                 <span lang="de">Neue Funktion generieren</span>
             </button>
 
-            <button id="disable-training-mode-button">
+            <button id="disable-training-mode-button" class="wurzle-style-button">
                 <span lang="en">Leave Training Mode</span>
                 <span lang="de">Übungsmodus Beenden</span>
             </button>
@@ -396,10 +396,15 @@
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/j5dbcbb353ca54a60.min.js?v1"></script>
+        <script src="../js/minified/j8f5780f37450cd73.min.js?v1"></script>
         <!-- END -->
 
         <style>
+            body {
+                --wurzle-green: #6aba65;
+                --on-wurzle-green: white;
+            }
+
             [data-revealwhen] {
                 display: none;
             }
@@ -599,8 +604,8 @@
                 display: grid;
                 grid-template-columns: 2em auto 2em;
                 border-bottom: 2px solid black;
-                background-color: #91ff89;
-                color: black;
+                background-color: var(--wurzle-green);
+                color: var(--on-wurzle-green);
             }
 
             .calendar-container .calendar-header .calendar-button:nth-child(1) {
@@ -636,9 +641,15 @@
             }
 
             .calendar-container .calendar-cell.clickable {
-                background-color: #91ff89;
+                background-color: var(--wurzle-green);
                 cursor: pointer;
-                color: black;
+                color: var(--on-wurzle-green);
+                transition: 200ms;
+            }
+            
+            .calendar-container .calendar-cell.clickable:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             }
 
             .calendar-container .calendar-cell.today {
@@ -649,6 +660,18 @@
                 width: 100%;
                 display: flex;
                 justify-content: center;
+            }
+
+            .wurzle-style-button {
+                border: 3px solid black;
+                border-radius: 0;
+                font-family: var(--header-font);
+                transition: 200ms;
+            }
+
+            .wurzle-style-button:hover {
+                box-shadow: none !important;
+                transform: scale(1.02);
             }
         </style>
 

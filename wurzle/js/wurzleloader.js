@@ -32,7 +32,7 @@ class WurzleLoader {
             }
 
             calendarWidget.addClickableDay(day, month, year, {
-                title: `Wurzle#${wurzle.numero}`,
+                title: `Play Wurzle#${wurzle.numero}`,
                 func: () => location.search = `w=${wurzle.numero}`
             })
         }
