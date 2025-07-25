@@ -96,6 +96,7 @@ class PathMathGame {
             for (const other of currPath) {
                 if (other.x == v.x && other.y == v.y) {
                     currPath.splice(i + 1, currPath.length)
+                    currNumbers.splice(i + 1, currNumbers.length)
                     return false
                 }
                 i++
