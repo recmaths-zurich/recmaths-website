@@ -2,9 +2,11 @@ const urlParams = new URLSearchParams(location.search)
 let trainingModeActive = urlParams.has("training")
 let oldWurzleActive = urlParams.has("w") && !isNaN(urlParams.get("w"))
 let oldWurzleId = parseInt(urlParams.get("w"))
+let testWurzleActive = urlParams.has("t")
+let testWurzleFunctionString = urlParams.get("t")
 
-if (trainingModeActive && oldWurzleActive) {
-    location.search = `w=${encodeURIComponent(oldWurzleId)}`
+if (trainingModeActive + oldWurzleActive + testWurzleActive > 1) {
+    location.search = ""
 }
 
 let f = null
@@ -18,6 +20,21 @@ async function init() {
         enableTrainingModeButton.style.display = "none"
         secretFunctionString = functionGenerator.generate()
         WurzleLoader.loadWurzles()
+        revealElements("playtodayswurzle")
+    } else if (testWurzleActive) {
+        try {
+            secretFunctionString = atob(testWurzleFunctionString)
+            revealElements("testmode")
+        } catch (e) {
+            if (e instanceof NumberParserError) {
+                alert("Invalid Function String. Aborting.")
+            } else {
+                alert(e.message)
+            }
+            location.search = ""
+        }
+        revealElements("playtodayswurzle")
+        disableTrainingModeButton.style.display = "none"
     } else {
         let wurzle = null
         revealElements("loading")
@@ -29,6 +46,7 @@ async function init() {
                     location.search = ""
                 } else {
                     revealElements("oldwurzle")
+                    revealElements("playtodayswurzle")
                 }
             } else {
                 wurzle = await WurzleLoader.getLatestWurzle()

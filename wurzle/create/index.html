@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Wurzle | RecMaths Zürich -->
-    <!-- SET description=Play a daily game of guessing functions on recmaths.ch -->
+    <!-- SET title=Create a Wurzle | RecMaths Zürich -->
+    <!-- SET description=Create and test a function for Wurzle recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Wurzle | RecMaths Zürich</title>
-        <meta name="description" content="Play a daily game of guessing functions on recmaths.ch">
-        <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
-        <link rel="stylesheet" href="../default_style.css">
+        <title>Create a Wurzle | RecMaths Zürich</title>
+        <meta name="description" content="Create and test a function for Wurzle recmaths.ch">
+        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
+        <link rel="stylesheet" href="../../default_style.css">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,9 @@
         <!-- BEGIN default_header -->
         <header class="at-top">
             <div class="header-content">
-                <a href="../" class="logo-container">
-                    <img src="../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
-                    <div class="logo-text" href="../">RecMaths</div>
+                <a href="../../" class="logo-container">
+                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <div class="logo-text" href="../../">RecMaths</div>
                 </a>
                 <div class="link-island">
                     <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
@@ -111,284 +111,28 @@
         <!-- END -->
 
         <main>
-            <h1 data-revealwhen="testmode">
-                <span lang="en">Custom Wurzle</span>
-                <span lang="de">Custom Wurzle</span>
-            </h1>
-
-            <h1 data-revealwhen="failedtoload">
-                <span lang="en">Error 502: Couldn't load!</span>
-                <span lang="de">Error 502: Konnte nicht geladen werden!</span>
-            </h1>
-
-            <h1 data-revealwhen="loading">
-                <span lang="en">Loading...</span>
-                <span lang="de">Wird geladen...</span>
-            </h1>
-
-            <h1 data-revealwhen="trainingmode">
-                <span lang="en">Training Mode Active</span>
-                <span lang="de">Übungsmodus Aktiv</span>
-            </h1>
-            
-            <h1 data-revealwhen="oldwurzle">
-                Wurzle #<output data-fill="wurzle-numero"></output>
-                (<output data-fill="wurzle-date"></output>)
-            </h1>
-
-            <div class="wurzle-global-container" id="wurzle-global-container">
-                <div class="wurzle-game-container" id="wurzle-game-container">
-                    <div class="wurzle-grid-container" id="wurzle-grid-container">
-                        <div class="wurzle-grid-row">
-                            <div class="wurzle-grid-row-cells">
-                                <div class="wurzle-grid-cell">W</div>
-                                <div class="wurzle-grid-cell">u</div>
-                                <div class="wurzle-grid-cell">r</div>
-                                <div class="wurzle-grid-cell">z</div>
-                                <div class="wurzle-grid-cell">l</div>
-                                <div class="wurzle-grid-cell">e</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="wurzle-input-container" class="wurzle-input-container">
-                        <input type="text" class="wurzle-text-input" id="wurzle-input" placeholder="x" />
-                        <button class="wurzle-submit-button" id="wurzle-submit-button">
-                            Send
-                        </button>
-                    </div>
-                    
-                    <div style="display: none" id="wurzle-share-container" class="wurzle-input-container">
-                        <button id="show-results-button">
-                            <span lang="en">
-                                Show Results
-                            </span>
-                            <span lang="de">
-                                Ergebnis anzeigen
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <h1>
-                <span lang="en">
-                    How to Play
-                </span>
-                <span lang="de">
-                    Anleitung
-                </span>
+                <span lang="en">Create a Function</span>
+                <span lang="de">Funktion Erstellen</span>
             </h1>
 
-            <button data-revealwhen="playtodayswurzle" onclick="location.search=''" class="wurzle-style-button">
-                <span lang="en">Play Today's Wurzle</span>
-                <span lang="de">Heutiges Wurzle Spielen</span>
+            <input type="text" value="sin(x)" id="function-input">
+            <canvas id="function-canvas"></canvas>
+            <button id="function-show-button">
+                <span lang="en">Try Function on Wurzle</span>
+                <span lang="de">Ausprobieren bei Wurzle</span>
             </button>
-
-            <p>
-                <span lang="en">
-                    There is a secret function behind the scenes and you need to find a root (i.e. an x where f(x)=0).
-                    You can input x values and you will be shown corresponding outputs. If the response is (approximately)
-                    zero, you win! The fewer values you need, the better your score.
-                </span>
-                <span lang="de">
-                    Es gibt eine geheime Funktion im Hintergrund und du musst eine Nullstelle finden (also einen Wert x, bei dem f(x)=0).
-                    Du kannst x-Werte eingeben und dir werden die entsprechenden Ausgaben angezeigt. Wenn das Ergebnis (annähernd) null ist, hast du gewonnen! Je weniger Eingaben du dazu brauchst, desto besser ist dein Ergebnis.
-                </span>
-            </p>
-            <p>
-                <span lang="en">
-                    There is a new Wurzle every day. Come back tomorrow and share your results with the world!
-                </span>
-                <span lang="de">
-                    Es gibt jeden Tag ein neues Wurzle. Komm morgen wieder und teile deine Ergebnisse mit der Welt!
-                </span>
-            </p>
-
-            <h2>Pro Tips</h2>
-            <ul>
-                <li>
-                    <span lang="en">
-                        The functions are made up of elementary operations like +-*/, trigonometric functions, sqrt, exponentials and polynomials.
-                        Consider inputting very large or small numbers to get an idea of how the function grows.
-                    </span>
-                    <span lang="de">
-                        Die Funktionen bestehen aus elementaren Operationen wie +, -, *, /,
-                        trigonometrischen Funktionen, sqrt, Exponential- und Polynomfunktionen.
-                        Überlege, sehr große oder sehr kleine Zahlen einzugeben, um eine Vorstellung davon zu bekommen, wie die Funktion wächst.
-                    </span>
-                </li>
-                <li>
-                    <span lang="en">
-                        You only have a maximum of <output data-fill="max-num-guesses"></output> guesses, so try to use them wisely!
-                    </span>
-                    <span lang="de">
-                        Du hast höchstens <output data-fill="max-num-guesses"></output> Versuche, also nutze sie weise!
-                    </span>
-                </li>
-                <li>
-                    <span lang="en">
-                        Sometimes, the root might not be rational. You can also input numbers like "pi" or "e*sqrt(2)".
-                    </span>
-                    <span lang="de">
-                        Manchmal ist die Nullstelle möglicherweise nicht rational. Du kannst auch Zahlen wie „pi“ oder „e*sqrt(2)“ eingeben.
-                    </span>
-                </li>
-                <li>
-                    <span lang="en">
-                        A new Wurzle gets released every day at UTC+01:00. Professional Wurzlers wurzle as soon
-                        as possible to brag to their friends as soon as possible.
-                    </span>
-                    <span lang="de">
-                        Ein neues Wurzle wird jeden Morgen um UTC+01:00 (00:00 Uhr, Zentraleuropäische Zeit) veröffentlicht.
-                        Professionelle Wurzler wurzlen so früh wie möglich, um so früh wie möglich vor ihren Freunden angeben zu können.
-                    </span>
-                </li>
-            </ul>
-
-            <h2>
-                <span lang="en">Training Mode</span>
-                <span lang="de">Übungsmodus</span>
-            </h2>
-            <p>
-                <span lang="en">
-                    There is only one Wurzle per day. However, you can also activate Training Mode by clicking the button below!
-                    Training Mode will generate a random function for you to practice with. Be aware that these functions
-                    may not be as exciting as the daily ones, since those are hand-picked to be fun (they can be super hard!).
-                </span>
-                <span lang="de">
-                    Es gibt nur ein Wurzle pro Tag. Du kannst jedoch auch den Trainingsmodus aktivieren,
-                    indem du auf die Schaltfläche unten klickst!
-                    Der Trainingsmodus generiert eine zufällige Funktion, mit der du üben kannst.
-                    Beachte, dass diese Funktionen möglicherweise nicht so spannend sind wie die
-                    täglichen, da diese von Hand ausgewählt werden, um Spaß zu machen (sie können super schwer sein!).
-                </span>
-            </p>
-            <button id="enable-training-mode-button" class="wurzle-style-button">
-                <span lang="en">Activate Training Mode</span>
-                <span lang="de">Übungsmodus Starten</span>
-            </button>
-            
-            <button data-revealwhen="trainingmode" onclick="location.reload()" class="wurzle-style-button">
-                <span lang="en">Generate new Function</span>
-                <span lang="de">Neue Funktion generieren</span>
-            </button>
-
-            <button id="disable-training-mode-button" class="wurzle-style-button">
-                <span lang="en">Leave Training Mode</span>
-                <span lang="de">Übungsmodus Beenden</span>
-            </button>
-
-            <h2>
-                <span lang="en">Past Wurzles</span>
-                <span lang="de">Alte Wurzles</span>
-            </h2>
-
-            <div class="calendar-global">
-                <div class="calendar-container" id="wurzle-calendar-container"></div>
-            </div>
-
-            <p>
-                <span lang="en">
-                    Click on marked days to play the past Wurzles.
-                    The first Wurzle was released on the 20th of July 2025.
-                </span>
-                <span lang="de">
-                    Klicke auf markierte vergangene Tage um vergangene Wurzles zu spielen.
-                    Das erste Wurzle wurde am 20. Juli 2025 veröffentlicht.
-                </span>
-            </p>
         </main>
 
-        <div class="wurzle-popup-background" id="wurzle-popup-background"></div>
-
-        <div id="wurzle-results-popup" class="wurzle-results-popup">
-            <div class="wurzle-results-container wurzle-good-results-container" id="wurzle-good-results-container">
-                <h2 lang="en">You won!</h2>
-                <h2 lang="de">Du hast gewonnen!</h2>
-
-                <span lang="en">
-                    <b>You successfully found a root of the secret function in
-                    <output data-fill="num-guesses"></output> guesses!</b>
-                    Did you manage to find the function? Click the button below to reveal the function. See you tomorrow!
-                </span>
-
-                <span lang="de">
-                    <b>Du hast erfolgreich eine Nullstelle der geheimen Funktion in
-                    <output data-fill="num-guesses"></output> Versuchen gefunden!</b>
-                    Hast du es geschafft, die Funktion zu finden? Klicke auf die Schaltfläche unten, um die Funktion zu enthüllen. Bis morgen!
-                </span>
-
-                <div class="function-result-container">
-                    <span>
-                        f(x) =&nbsp;<output data-fill="secret-function"></output>
-                    </span>
-                </div>
-
-                <button class="function-reveal-button">
-                    <span lang="en">
-                        Reveal Secret Function
-                    </span>
-                    <span lang="de">
-                        Geheime Funktion anzeigen
-                    </span>
-                </button>
-
-                <button class="share-results-button">
-                    <span lang="en">
-                        Share Results
-                    </span>
-                    <span lang="de">
-                        Ergebnis teilen
-                    </span>
-                </button>
-            </div>
-            <div class="wurzle-results-container wurzle-bad-results-container" id="wurzle-bad-results-container">
-                <h2 lang="en">You lost!</h2>
-                <h2 lang="de">Du hast verloren!</h2>
-
-                <span lang="en">
-                    Unfortunately, you couldn't find a root of the function in 
-                    <output data-fill="num-guesses"></output> guesses. That's sad!
-                    Don't be sad, just come back tomorrow for your next Wurzle!
-                    Click the button below to reveal the function.
-                </span>
-
-                <span lang="de">
-                    Leider konntest du in <output data-fill="num-guesses"></output>
-                    Versuchen keine Nullstelle der Funktion finden. Das ist schade!
-                    Sei nicht traurig, komm einfach morgen wieder für das nächste
-                    Wurzle! Klicke auf die Schaltfläche unten, um die Funktion zu enthüllen.
-                </span>
-
-                <div class="function-result-container">
-                    <span>
-                        f(x) =&nbsp;<output data-fill="secret-function"></output>
-                    </span>
-                </div>
-                
-                <button class="function-reveal-button">
-                    <span lang="en">
-                        Reveal Secret Function
-                    </span>
-                    <span lang="de">
-                        Geheime Funktion anzeigen
-                    </span>
-                </button>
-
-                <button class="share-results-button">
-                    <span lang="en">
-                        Share Results
-                    </span>
-                    <span lang="de">
-                        Ergebnis teilen
-                    </span>
-                </button>
-            </div>
-            <button class="close-popup-button" id="close-popup-button"></button>
-        </div>
-
+        <style>
+            #function-canvas {
+                width: 100%;
+                aspect-ratio: 16 / 9;
+            }
+        </style>
+        
         <!-- SET js_version=1 -->
-        <!-- SET js_minify=true -->
+        <!-- SET js_minify=false -->
 
         <!-- JS_IMPORT wurzle/js/constants.js -->
         <!-- JS_IMPORT wurzle/js/calendarwidget.js -->
@@ -398,10 +142,18 @@
         <!-- JS_IMPORT wurzle/js/functiongenerator.js -->
         <!-- JS_IMPORT wurzle/js/wurzlegame.js -->
         <!-- JS_IMPORT wurzle/js/wurzleloader.js -->
-        <!-- JS_IMPORT wurzle/js/main.js -->
+        <!-- JS_IMPORT wurzle/create/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/j18a6191f01f76859.min.js?v1"></script>
+        <script src="../../wurzle/js/constants.js?v1"></script>
+        <script src="../../wurzle/js/calendarwidget.js?v1"></script>
+        <script src="../../wurzle/js/wurzlefunction.js?v1"></script>
+        <script src="../../wurzle/js/vector2d.js?v1"></script>
+        <script src="../../wurzle/js/functionplotter.js?v1"></script>
+        <script src="../../wurzle/js/functiongenerator.js?v1"></script>
+        <script src="../../wurzle/js/wurzlegame.js?v1"></script>
+        <script src="../../wurzle/js/wurzleloader.js?v1"></script>
+        <script src="../../wurzle/create/main.js?v1"></script>
         <!-- END -->
 
         <style>
@@ -688,15 +440,15 @@
                         <span lang="en">Sitemap</span>
                         <span lang="de">Unterseiten</span>
                     </div>
-                    <a class="group-item" href="../problems">
+                    <a class="group-item" href="../../problems">
                         <span lang="en">Projects</span>
                         <span lang="de">Projekte</span>
                     </a>
-                    <a class="group-item" href="../games">
+                    <a class="group-item" href="../../games">
                         <span lang="en">Games</span>
                         <span lang="de">Spiele</span>
                     </a>
-                    <a class="group-item" href="../about-us">
+                    <a class="group-item" href="../../about-us">
                         <span lang="en">About us</span>
                         <span lang="de">Über uns</span>
                     </a>
@@ -738,15 +490,15 @@
                         <span lang="en">Legal</span>
                         <span lang="de">Legales</span>
                     </div>
-                    <a class="group-item" href="../impressum">
+                    <a class="group-item" href="../../impressum">
                         <span lang="en">Imprint</span>
                         <span lang="de">Impressum</span>
                     </a>
-                    <a class="group-item" href="../data-privacy">
+                    <a class="group-item" href="../../data-privacy">
                         <span lang="en">Data-Privacy</span>
                         <span lang="de">Datenschutz</span>
                     </a>
-                    <a class="group-item" href="../assets/statuten.pdf">
+                    <a class="group-item" href="../../assets/statuten.pdf">
                         <span lang="en">Statutes</span>
                         <span lang="de">Statuten</span>
                     </a>
@@ -958,7 +710,7 @@
         
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = "../"
+            const URL_BASE_PATH = "../../"
         
             {
                 // update theme

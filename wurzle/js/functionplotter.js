@@ -11,6 +11,10 @@ class FunctionPlotter {
         this.guessedPoints = []
     }
 
+    removeAllFunctions() {
+        this.wurzleFunctions = []
+    }
+
     get defaultForegroundColor() {
         return getComputedStyle(document.body).getPropertyValue("--card-text-color")
     }
@@ -243,6 +247,8 @@ class FunctionPlotter {
         window.addEventListener("resize", redraw)
 
         redraw()
+
+        return {redraw}
     }
 
 }
