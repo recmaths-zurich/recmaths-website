@@ -21,6 +21,7 @@ async function init() {
         secretFunctionString = functionGenerator.generate()
         WurzleLoader.loadWurzles()
         revealElements("playtodayswurzle")
+        fillDataElements("wurzle-author", "Random Generator")
     } else if (testWurzleActive) {
         try {
             secretFunctionString = atob(testWurzleFunctionString)
@@ -35,6 +36,7 @@ async function init() {
         }
         revealElements("playtodayswurzle")
         disableTrainingModeButton.style.display = "none"
+        fillDataElements("wurzle-author", "Anonymous Creator")
     } else {
         let wurzle = null
         revealElements("loading")
@@ -62,7 +64,9 @@ async function init() {
         secretFunctionString = wurzle.termString
         wurzleNumero = wurzle.numero
         disableTrainingModeButton.style.display = "none"
+        
         fillDataElements("wurzle-date", wurzle.dateString)
+        fillDataElements("wurzle-author", wurzle.author)
     }
 
     f = new WurzleFunction(secretFunctionString)

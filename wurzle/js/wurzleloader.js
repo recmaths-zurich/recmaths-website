@@ -12,11 +12,12 @@ class WurzleLoader {
         const response = await fetch(this.wurzleApi)
         const jsonData = await response.json()
 
-        this.wurzles = Array.from(Object.entries(jsonData))
-            .map(([dateString, termString]) => ({
-                dateString, termString,
-                date: this.dateStringToDate(dateString)
-            }))
+        this.wurzles = jsonData.map(o => ({
+            dateString: o.date,
+            termString: o.term,
+            author: o.author,
+            date: this.dateStringToDate(o.date)
+        }))
 
         this.wurzles.sort((a, b) => a.date - b.date)
         for (let i = 0; i < this.wurzles.length; i++) {
