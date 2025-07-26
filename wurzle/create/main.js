@@ -7,7 +7,9 @@ const { redraw } = plotter.makeInteractive()
 
 functionInput.addEventListener("input", () => {
     try {
-        drawFunction()
+        if (!drawFunction()) {
+            throw new Error()
+        }
         functionInput.style.color = "var(--input-color)"
     } catch {
         functionInput.style.color = "red"
@@ -18,7 +20,7 @@ function drawFunction() {
     const func = new WurzleFunction(functionInput.value)
     plotter.removeAllFunctions()
     plotter.addFunction(func)
-    redraw()
+    return redraw()
 }
 
 functionShowButton.addEventListener("click", () => {

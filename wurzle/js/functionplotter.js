@@ -162,6 +162,7 @@ class FunctionPlotter {
         // that we've hit an asymptote. We do not want to connect asymptote ends!
         const maxDelta = 10
 
+        let drewAtLeastOnePoint = false
         for (let i = 1; i < points.length; i++) {
             const [p1, p2] = [points[i - 1], points[i]]
 
@@ -171,8 +172,11 @@ class FunctionPlotter {
 
             if (p1.distance(p2) < maxDelta) { 
                 this.connectPoints([p1, p2], {color})
+                drewAtLeastOnePoint = true
             }
         }
+
+        return drewAtLeastOnePoint
     }
 
     addFunction(wurzleFunction) {
@@ -191,13 +195,18 @@ class FunctionPlotter {
             this.clear()
 
             this.drawAxes()
+            let drewAtLeastOnePoint = false
             for (const func of this.wurzleFunctions) {
-                this.plot(func)
+                if (this.plot(func)) {
+                    drewAtLeastOnePoint = true
+                }
             }
 
             for (let i = 0; i < this.guessedPoints.length; i++) {
                 this.drawPoint(this.guessedPoints[i])
             }
+
+            return drewAtLeastOnePoint
         }
 
         this.canvas.addEventListener("wheel", event => {
