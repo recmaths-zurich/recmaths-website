@@ -30,3 +30,4 @@ functionShowButton.addEventListener("click", () => {
 })
 
 drawFunction()
+setTimeout(() => drawFunction(), 100)
