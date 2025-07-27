@@ -355,7 +355,7 @@
 
                 <div class="function-result-container">
                     <span>
-                        f(x) =&nbsp;<output data-fill="secret-function"></output>
+                        <output data-fill="secret-function"></output>
                     </span>
                 </div>
 
@@ -436,7 +436,7 @@
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/jc06f8bb4430b8591.min.js?v1"></script>
+        <script src="../js/minified/jd6674c9258ab19c6.min.js?v1"></script>
         <!-- END -->
 
         <style>
@@ -546,11 +546,12 @@
                 justify-content: center;
                 align-items: center;
                 padding: 1em;
-                padding-left: none;
-                padding-right: none;
+                padding-left: 0;
+                padding-right: 0;
                 font-size: 2em;
                 font-family: var(--header-font);
                 font-weight: bold;
+                word-break: break-all;
             }
 
             .wurzle-popup-background {
@@ -578,6 +579,10 @@
                 display: none;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                 border-radius: 10px;
+
+                max-height: 100%;
+                overflow-y: auto;
+                backdrop-filter: blur(10px);
             }
 
             .wurzle-results-popup h2 {
@@ -605,21 +610,14 @@
                 position: absolute;
                 top: 0;
                 right: 0;
-                width: 2em;
-                height: 2em;
-                border: none;
-                background: transparent;
-            }
-
-            .wurzle-results-popup .close-popup-button {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 2em;
-                height: 2em;
+                width: 2.5em;
+                height: 2.5em;
                 border: none;
                 background: transparent;
                 padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .wurzle-results-popup .close-popup-button::before {

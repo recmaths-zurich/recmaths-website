@@ -72,7 +72,7 @@ async function init() {
     f = new WurzleFunction(secretFunctionString)
     wurzleGame = new WurzleGame(wurzleGridContainer, f)
 
-    fillDataElements("secret-function", "#".repeat(f.termString.length))
+    fillDataElements("secret-function", "f(x) = " + "#".repeat(6))
     fillDataElements("wurzle-numero", wurzleNumero)
 }
 
@@ -114,7 +114,7 @@ wurzleInput.addEventListener("keydown", event => {
 
 for (const button of revealFunctionButtons) {
     button.addEventListener("click", () => {
-        fillDataElements("secret-function", " " + f.termString)
+        fillDataElements("secret-function", "f(x) = " + f.termString)
 
         const canvas = document.createElement("canvas")
         canvas.style.width = "100%"
@@ -142,10 +142,7 @@ for (const button of revealFunctionButtons) {
     })
 }
 
-wurzleClosePopupButton.addEventListener("click", () => {
-    wurzlePopupBackground.style.display = "none"
-    wurzleResultsPopup.style.display = "none"
-})
+wurzleClosePopupButton.addEventListener("click", hidePopup)
 
 for (const button of shareResultsButtons) {
     button.addEventListener("click", async () => {

@@ -25,6 +25,10 @@ const calendarContainer = document.getElementById("wurzle-calendar-container")
 const NUM_CELLS_PER_ROW = 6
 const NUM_MAX_GUESSES = 12
 
+const POPUP_ANIMATION_MS = 300
+const POPUP_ANIMATION_EASING_IN = "ease-out"
+const POPUP_ANIMATION_EASING_OUT = "ease-in"
+
 wurzleGameContainer.style.setProperty("--num-cells-per-row", NUM_CELLS_PER_ROW)
 
 function updateCSSCellSize() {
@@ -68,4 +72,30 @@ function showPopup() {
     wurzleResultsPopup.style.display = "block"
     wurzleInputContainer.style.display = "none"
     wurzleShareContainer.style.display = "block"
+
+    wurzlePopupBackground.animate([
+        { opacity: 0 },
+        { opacity: 1 }
+    ], {duration: POPUP_ANIMATION_MS, easing: POPUP_ANIMATION_EASING_IN})
+
+    wurzleResultsPopup.animate([
+        { transform: "translate(-50%, -200vh)" },
+        { transform: "translate(-50%, -50%)" }
+    ], {duration: POPUP_ANIMATION_MS, easing: POPUP_ANIMATION_EASING_IN})
+}
+
+function hidePopup() {
+    wurzlePopupBackground.animate([
+        { opacity: 1 },
+        { opacity: 0 }
+    ], {duration: POPUP_ANIMATION_MS, easing: POPUP_ANIMATION_EASING_OUT}).finished.then(() => {
+        wurzlePopupBackground.style.display = "none"
+    })
+
+    wurzleResultsPopup.animate([
+        { transform: "translate(-50%, -50%)" },
+        { transform: "translate(-50%, -200vh)" }
+    ], {duration: POPUP_ANIMATION_MS, easing: POPUP_ANIMATION_EASING_OUT}).finished.then(() => {
+        wurzleResultsPopup.style.display = "none"
+    })
 }
