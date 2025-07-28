@@ -124,6 +124,10 @@ for (const button of revealFunctionButtons) {
         button.replaceWith(canvas)
 
         const plotter = new FunctionPlotter(canvas)
+
+        plotter.viewCentre = new Vector2d(parseFloat(wurzleGame.guesses.slice(-1)[0].input), 0)
+        plotter.viewHeight = 12
+
         plotter.addFunction(f)
 
         plotter.guessedPoints = wurzleGame.guesses.map(({input}) => {
