@@ -69,7 +69,9 @@ class WurzleGame {
                 || (i < NUM_CELLS_PER_ROW - 1 && stringOutput[i] == "≈" && stringOutput[i + 1] == "0")
                 || (i < NUM_CELLS_PER_ROW - 1 && stringOutput[i] == "-" && stringOutput[i + 1] == "0")
                 || (i == NUM_CELLS_PER_ROW - 1 && stringOutput[i] == ".")
-            ) ? CELL_GOOD_BACKGROUND_COLOR : CELL_CARD_BACKGROUND_COLOR
+            ) ? CELL_GOOD_BACKGROUND_COLOR : CELL_BAD_BACKGROUND_COLOR
+
+            const cellForegroundColor = cellColor == CELL_GOOD_BACKGROUND_COLOR ? CELL_GOOD_FOREGROUND_COLOR : CELL_BAD_FOREGROUND_COLOR
 
             if (cellColor != CELL_GOOD_BACKGROUND_COLOR) {
                 won = false
@@ -78,8 +80,8 @@ class WurzleGame {
             setTimeout(() => {
                 cell.animate([
                     {transform: "scaleY(-1)", backgroundColor: CELL_HIDDEN_BACKGROUND_COLOR, color: CELL_HIDDEN_BACKGROUND_COLOR},
-                    {transform: "scaleY(0)", backgroundColor: cellColor, color: CELL_FOREGROUND_COLOR},
-                    {transform: "scaleY(1)", backgroundColor: cellColor, color: CELL_FOREGROUND_COLOR}
+                    {transform: "scaleY(0)", backgroundColor: cellColor, color: cellForegroundColor},
+                    {transform: "scaleY(1)", backgroundColor: cellColor, color: cellForegroundColor}
                 ], {
                     duration: 500,
                     fill: "forwards",

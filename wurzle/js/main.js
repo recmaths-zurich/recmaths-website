@@ -77,6 +77,8 @@ async function init() {
 }
 
 wurzleInput.addEventListener("input", () => {
+    wurzleInput.value = wurzleInput.value.toLowerCase()
+
     if (wurzleInput.value.length > 18) {
         wurzleInput.value = wurzleInput.value.slice(0, 18)
     }
@@ -85,9 +87,9 @@ wurzleInput.addEventListener("input", () => {
         if (wurzleInput.value.length > 0) {
             evaluateNumberString(wurzleInput.value)
         }
-        wurzleInput.style.color = "var(--input-color)"
+        wurzleInput.style.color = "var(--cell-foreground-color)"
     } catch {
-        wurzleInput.style.color = "red"
+        wurzleInput.style.color = "var(--error-color)"
     }
 })
 

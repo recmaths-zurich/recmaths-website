@@ -794,6 +794,7 @@ footer .footer-text {
     position: relative;
     margin-bottom: 1rem;
     display: flex;
+    gap: 10px;
 }
 
 footer .footer-text .theme-changer {

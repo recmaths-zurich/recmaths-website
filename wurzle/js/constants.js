@@ -31,11 +31,15 @@ const POPUP_ANIMATION_EASING_OUT = "ease-in"
 
 wurzleGameContainer.style.setProperty("--num-cells-per-row", NUM_CELLS_PER_ROW)
 
-function updateCSSCellSize() {
+function updateCSSCellSize(recurse=true) {
     const cell = wurzleGridContainer.querySelector(".wurzle-grid-cell")
     if (cell) {
-        const cellSize = cell.clientWidth
-        wurzleGameContainer.style.setProperty("--cell-size-px", `${cellSize}px`)
+        const cellSize = cell.offsetWidth ?? cell.clientWidth
+        wurzleGlobalContainer.style.setProperty("--cell-size-px", `${cellSize}px`)
+    }
+
+    if (recurse) {
+        setTimeout(updateCSSCellSize.bind(null, false), 0)
     }
 }
 
@@ -62,10 +66,11 @@ fillDataElements("max-num-guesses", NUM_MAX_GUESSES)
 window.addEventListener("resize", updateCSSCellSize)
 window.addEventListener("DOMContentLoaded", updateCSSCellSize)
 
-const CELL_HIDDEN_BACKGROUND_COLOR = "var(--background)"
-const CELL_CARD_BACKGROUND_COLOR = "grey"
-const CELL_FOREGROUND_COLOR = "white"
-const CELL_GOOD_BACKGROUND_COLOR = "#6aba65"
+const CELL_HIDDEN_BACKGROUND_COLOR = "var(--cell-hidden-color)"
+const CELL_BAD_BACKGROUND_COLOR = "var(--result-cell-bad-background-color)"
+const CELL_BAD_FOREGROUND_COLOR = "var(--result-cell-bad-foreground-color)"
+const CELL_GOOD_FOREGROUND_COLOR = "var(--result-cell-good-foreground-color)"
+const CELL_GOOD_BACKGROUND_COLOR = "var(--result-cell-good-background-color)"
 
 function showPopup() {
     wurzlePopupBackground.style.display = "block"

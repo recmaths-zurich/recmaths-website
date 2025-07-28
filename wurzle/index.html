@@ -153,7 +153,19 @@
                     <div id="wurzle-input-container" class="wurzle-input-container">
                         <input type="text" class="wurzle-text-input" id="wurzle-input" placeholder="x" />
                         <button class="wurzle-submit-button" id="wurzle-submit-button">
-                            Send
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                            <path d="M12 19V5M5 12l7-7 7 7" />
+                            </svg>
                         </button>
                     </div>
                     
@@ -436,12 +448,13 @@
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/jd6674c9258ab19c6.min.js?v1"></script>
+        <script src="../js/minified/ja25f4abb7de51fbd.min.js?v1"></script>
         <!-- END -->
 
         <style>
             body {
                 --wurzle-green: #6aba65;
+                --error-color: red;
                 --on-wurzle-green: white;
             }
 
@@ -460,10 +473,32 @@
                 align-items: center;
 
                 --num-cells-per-row: 5;
-                --cell-border-color: #000;
+                --cell-border-color: black;
                 --cell-foreground-color: black;
                 --cell-background-color: #f0f0f0;
+                --cell-hidden-color: #f0f0f0;
+                --cell-border: max(calc(var(--cell-size-px) * 0.03), 2px) solid var(--cell-border-color);
+                /* --cell-border: 1px solid var(--cell-border-color); */
+                --gap-between-cells: max(calc(var(--cell-size-px) * 0.05), 5px);
+
+                --result-cell-bad-background-color: rgb(74, 74, 74);
+                --result-cell-bad-foreground-color: white;
+                --result-cell-good-foreground-color: white;
+                --result-cell-good-background-color: var(--wurzle-green);
+
                 font-family: var(--header-font);
+            }
+
+            body[data-style="dark"] .wurzle-global-container {
+                --cell-border-color: none;
+                --cell-foreground-color: black;
+                --cell-background-color: white;
+                
+                --result-cell-bad-background-color: white;
+                --result-cell-bad-foreground-color: black;
+                --result-cell-good-foreground-color: white;
+                --result-cell-good-background-color: var(--wurzle-green);
+                --cell-hidden-color: var(--result-cell-bad-background-color);
             }
 
             #secret-function-canvas {
@@ -473,13 +508,36 @@
             .wurzle-game-container {
                 --wurzle-max-width: min(500px, 100%);
                 width: var(--wurzle-max-width);
+                
+                --game-container-border-radius: calc(var(--cell-size-px) * 0.2);
+                border-radius: var(--game-container-border-radius);
+                /* padding: calc(var(--cell-size-px) * 0.2);
+                border-radius: calc(var(--game-container-border-radius) * 1.9); */
             }
+
+            /* body[data-style="dark"] .wurzle-game-container {
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid #6a6a6a;
+            }
+
+            body[data-style="light"] .wurzle-game-container {
+                background-color: none;
+                border: 1px solid #ccc;
+            } */
 
             .wurzle-grid-container {
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: 5px;
-                margin-bottom: 20px;
+                margin-bottom: 0.7em;
+            }
+
+            .wurzle-grid-row:first-child .wurzle-grid-cell:first-child {
+                border-top-left-radius: var(--game-container-border-radius);
+            }
+            
+            .wurzle-grid-row:first-child .wurzle-grid-cell:last-child {
+                border-top-right-radius: var(--game-container-border-radius);
             }
 
             .wurzle-grid-row {
@@ -495,7 +553,7 @@
             .wurzle-grid-row-cells {
                 display: grid;
                 grid-template-columns: repeat(var(--num-cells-per-row), 1fr);
-                gap: max(calc(var(--cell-size-px) * 0.05), 5px);
+                gap: var(--gap-between-cells);
             }
 
             .wurzle-grid-cell {
@@ -507,32 +565,59 @@
                 color: var(--cell-foreground-color);
                 background-color: var(--cell-background-color);
                 font-size: max(calc(var(--cell-size-px) * 0.5), 1.2em);
-                border: max(calc(var(--cell-size-px) * 0.03), 2px) solid var(--cell-border-color);
+                border: var(--cell-border);
                 font-weight: bold;
+            }
+
+            .wurzle-grid-row-cells:first-child .wurzle-grid-cell {
+                background-color: var(--cell-background-color);
+                color: var(--cell-foreground-color);
             }
 
             .wurzle-input-container {
                 display: grid;
-                grid-template-columns: 1fr auto;
+                grid-template-columns: 1fr calc(var(--cell-size-px));
+                gap: var(--gap-between-cells);
+            }
+
+            body[data-style="dark"] {
+                grid-template-columns: 1fr calc(var(--cell-size-px));
             }
 
             .wurzle-input-container > * {
                 font-size: max(calc(var(--cell-size-px) * 0.5), 1.2em);
-                border: max(calc(var(--cell-size-px) * 0.03), 2px) solid var(--cell-border-color);
+                border: var(--cell-border);
                 padding: calc(var(--cell-size-px) * 0.1);
                 border-radius: 0;
                 font-family: var(--header-font);
                 font-weight: bold;
                 height: var(--cell-size-px);
+                background-color: var(--cell-background-color);
+                color: var(--cell-foreground-color);
+
+                border-bottom-left-radius: var(--game-container-border-radius);
+            }
+            
+            .wurzle-input-container > input:focus {
+                outline: none;
             }
 
             .wurzle-input-container > *:not(:first-child) {
-                border-left: none;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: var(--game-container-border-radius);
             }
 
             .wurzle-submit-button {
-                padding-left: .7em;
-                padding-right: .7em;
+                aspect-ratio: 1 / 1;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .wurzle-submit-button svg {
+                width: 100%;
+                height: 50%;
             }
 
             .wurzle-results-container > button {
@@ -630,7 +715,11 @@
                 width: min(100%, 350px);
 
                 font-family: var(--header-font);
-                border: 2px solid black;
+                border: 2px solid var(--card-text-color);
+            }
+
+            body[data-style="dark"] .calendar-container {
+                border: none;
             }
 
             .calendar-container .calendar-button {
@@ -641,9 +730,13 @@
                 padding: 10px;
                 display: grid;
                 grid-template-columns: 2em auto 2em;
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid var(--card-text-color);
                 background-color: var(--wurzle-green);
                 color: var(--on-wurzle-green);
+            }
+            
+            body[data-style="dark"] .calendar-container .calendar-header {
+                border: none;
             }
 
             .calendar-container .calendar-header .calendar-button:nth-child(1) {
