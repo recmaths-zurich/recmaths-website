@@ -72,6 +72,8 @@ const CELL_BAD_FOREGROUND_COLOR = "var(--result-cell-bad-foreground-color)"
 const CELL_GOOD_FOREGROUND_COLOR = "var(--result-cell-good-foreground-color)"
 const CELL_GOOD_BACKGROUND_COLOR = "var(--result-cell-good-background-color)"
 
+let redrawActivePlot = null
+
 function showPopup() {
     wurzlePopupBackground.style.display = "block"
     wurzleResultsPopup.style.display = "block"
@@ -87,6 +89,10 @@ function showPopup() {
         { transform: "translate(-50%, -200vh)" },
         { transform: "translate(-50%, -50%)" }
     ], {duration: POPUP_ANIMATION_MS, easing: POPUP_ANIMATION_EASING_IN})
+
+    if (redrawActivePlot !== null) {
+        redrawActivePlot()
+    }
 }
 
 function hidePopup() {

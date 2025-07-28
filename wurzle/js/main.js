@@ -136,7 +136,8 @@ for (const button of revealFunctionButtons) {
             }
         }).filter(g => g !== null)
 
-        plotter.makeInteractive()
+        const { redraw } = plotter.makeInteractive()
+        redrawActivePlot = redraw
     
         for (const btn of revealFunctionButtons) {
             btn.remove()

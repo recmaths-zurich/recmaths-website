@@ -169,7 +169,7 @@
                         </button>
                     </div>
                     
-                    <div style="display: none" id="wurzle-share-container" class="wurzle-input-container">
+                    <div style="display: none" id="wurzle-share-container" class="wurzle-input-container only-one-child">
                         <button id="show-results-button">
                             <span lang="en">
                                 Show Results
@@ -448,7 +448,7 @@
         <!-- JS_IMPORT wurzle/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../js/minified/ja25f4abb7de51fbd.min.js?v1"></script>
+        <script src="../js/minified/jc635ad7b4b3dbb6e.min.js?v1"></script>
         <!-- END -->
 
         <style>
@@ -594,16 +594,17 @@
                 height: var(--cell-size-px);
                 background-color: var(--cell-background-color);
                 color: var(--cell-foreground-color);
-
-                border-bottom-left-radius: var(--game-container-border-radius);
             }
             
             .wurzle-input-container > input:focus {
                 outline: none;
             }
 
-            .wurzle-input-container > *:not(:first-child) {
-                border-bottom-left-radius: 0;
+            .wurzle-input-container > :first-child {
+                border-bottom-left-radius: var(--game-container-border-radius);
+            }
+
+            .wurzle-input-container > :last-child {
                 border-bottom-right-radius: var(--game-container-border-radius);
             }
 
