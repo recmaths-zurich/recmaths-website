@@ -24,6 +24,53 @@ class Maze {
         // Each element of cellGrid is a row.
         this.cellGrid = cellGrid ?? []
         this.size = new Vector2d(this.cellGrid[0].length, this.cellGrid.length)
+
+        this.startPosition = new Vector2d(0, 0)
+        this.endPosition = this.size.sub(Vector2d.unit11)
+
+        this.bestPath = null
+    }
+
+    solve() {
+        // simple djikstra
+        const stack = [[this.startPosition]]
+        const visitedGrid = this.cellGrid.map(r => r.map(_ => false))
+
+        const directionTop = new Vector2d(0, -1)
+        const directionBottom = new Vector2d(0, 1)
+        const directionLeft = new Vector2d(-1, 0)
+        const directionRight = new Vector2d(1, 0)
+
+        while (stack.length > 0) {
+            const path = stack.shift()
+            const pos = path[path.length - 1]
+            
+            if (pos.x == this.endPosition.x && pos.y == this.endPosition.y) {
+                return this.bestPath = path
+            }
+
+            if (visitedGrid[pos.y][pos.x]) {
+                continue
+            }
+
+            visitedGrid[pos.y][pos.x] = true
+
+            if (pos.y > 0 && !this.cellGrid[pos.y - 1][pos.x].hasWallAtBottom) {
+                stack.push(path.map(p => p.copy()).concat([pos.add(directionTop)]))
+            }
+
+            if (pos.y < this.size.y - 1 && !this.cellGrid[pos.y][pos.x].hasWallAtBottom) {
+                stack.push(path.map(p => p.copy()).concat([pos.add(directionBottom)]))
+            }
+
+            if (pos.x > 0 && !this.cellGrid[pos.y][pos.x - 1].hasWallAtRight) {
+                stack.push(path.map(p => p.copy()).concat([pos.add(directionLeft)]))
+            }
+
+            if (pos.x < this.size.x - 1 && !this.cellGrid[pos.y][pos.x].hasWallAtRight) {
+                stack.push(path.map(p => p.copy()).concat([pos.add(directionRight)]))
+            }
+        }
     }
 
     static* generateRandomly(size) {
@@ -122,6 +169,8 @@ class Maze {
             context2d.stroke()
         }
 
+        context2d.fillStyle = "rgba(0, 0, 255, 0.3)"
+
         for (let y = 0; y < this.size.y; y++) {
             for (let x = 0; x < this.size.x; x++) {
                 const cell = this.cellGrid[y][x]
@@ -142,28 +191,51 @@ class Maze {
                 }
             }
         }
+
+        if (!this.bestPath) {
+            return
+        }
+
+        context2d.beginPath()
+        let i = 0
+        for (const pos of this.bestPath) {
+            const canvasPos = pos.add(Vector2d.unit11.scale(0.5)).mul(cellSize)
+            i++
+
+            if (i == 1) {
+                context2d.moveTo(canvasPos.x, canvasPos.y)
+            } else {
+                context2d.lineTo(canvasPos.x, canvasPos.y)
+            }
+        }
+
+        context2d.strokeStyle = "blue"
+        context2d.stroke()
     }
 
 }
 
 let maze = null
-let running = false
-let stopSignal = false
-let timeoutIndex = null
+let isCurrentlyGenerating = false
+let generatingStopSignal = false
+let generatingTimeoutIndex = null
+
+const urlParams = new URLSearchParams(location.search)
+let animateMode = urlParams.has("animate")
 
 async function regen() {
-    if (running) {
-        stopSignal = true
+    if (isCurrentlyGenerating) {
+        generatingStopSignal = true
 
-        if (timeoutIndex !== null) {
-            clearTimeout(timeoutIndex)
+        if (generatingTimeoutIndex !== null) {
+            clearTimeout(generatingTimeoutIndex)
         }
 
-        timeoutIndex = setTimeout(regen, 10)
+        generatingTimeoutIndex = setTimeout(regen, 10)
         return
     }
 
-    running = true
+    isCurrentlyGenerating = true
 
     const sizeDivisor = Math.round((1 - labyrinthSizeInput.value / 100) ** 2 * 85 + 15)
     const mazeSize = new Vector2d(window.innerWidth, window.innerHeight)
@@ -173,14 +245,22 @@ async function regen() {
     for (const m of Maze.generateRandomly(mazeSize)) {
         maze = m
 
-        if (Math.random() < 0.1) {
+        if (animateMode && Math.random() < 0.1) {
             await new Promise(resolve => setTimeout(resolve, 0))
+            maze.drawTo(labyrinthContext2d)
         }
 
-        maze.drawTo(labyrinthContext2d)
+        if (generatingStopSignal) {
+            isCurrentlyGenerating = false
+            generatingStopSignal = false
+            return
+        }
     }
+    
+    maze.solve()
+    maze.drawTo(labyrinthContext2d)
 
-    running = false
+    isCurrentlyGenerating = false
 }
 
 window.addEventListener("resize", regen)
