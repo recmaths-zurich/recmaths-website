@@ -73,6 +73,12 @@ class Maze {
         }
     }
 
+    static generatedRandomly(size) {
+        let maze = null
+        for (maze of this.generateRandomly(size)) {}
+        return maze
+    }
+
     static* generateRandomly(size) {
         const cellGrid = Array.from({length: size.y})
             .map(() => Array.from({length: size.x})
