@@ -4,6 +4,7 @@ class PathMathGame {
         this.numberMatrix = numberMatrix
         this.goalNumber = goalNumber
         this.cellGrid = []
+        this.onFinishCallbacks = []
     }
 
     get size() {
@@ -36,9 +37,25 @@ class PathMathGame {
         goalOutput.textContent = this.goalNumber
 
         const updateGridSize = () => pathMathGlobal.style.setProperty("--grid-cell-size-px", `${lastCell.clientWidth}px`)
-        
         addEventListener("resize", updateGridSize)
+
         updateGridSize()
+    }
+
+    setNew(numberMatrix, goalNumber) {
+        this.numberMatrix = numberMatrix
+        this.goalNumber = goalNumber
+
+        pathMathGrid.style.setProperty("--grid-size-x", this.size.x)
+        pathMathGrid.style.setProperty("--grid-size-y", this.size.y)
+
+        for (let i = 0; i < this.numberMatrix.length; i++) {
+            for (let j = 0; j < this.numberMatrix[i].length; j++) {
+                this.cellGrid[i][j].textContent = this.numberMatrix[i][j]
+            }
+        }
+        
+        goalOutput.textContent = this.goalNumber
     }
 
     submitNumberPath(numbers, positionDeltas) {
@@ -77,8 +94,18 @@ class PathMathGame {
         recurse(numbers[0], numbers.slice(1), movements)
 
         if (possibleResults.has(this.goalNumber)) {
-            alert("You won!")
+            this.win(numbers, positionDeltas)
         }
+    }
+
+    win(numbers, positionDeltas) {
+        for (const finishCallback of this.onFinishCallbacks) {
+            finishCallback(numbers, positionDeltas)
+        }
+    }
+
+    onFinish(callback) {
+        this.onFinishCallbacks.push(callback)
     }
 
     makeInteractive() {
@@ -157,7 +184,6 @@ class PathMathGame {
             for (let y = 0; y < this.size.y; y++) {
                 const position = new Vector2d(x, y)
                 const cell = this.cellGrid[y][x]
-                const num = this.numberMatrix[y][x]
 
                 const mousedown = event => {
                     event.preventDefault()
@@ -169,7 +195,7 @@ class PathMathGame {
                     }
 
                     currPath.push(position)
-                    currNumbers.push(num)
+                    currNumbers.push(this.numberMatrix[y][x])
                     
                     redrawPath()
                 }
@@ -183,7 +209,7 @@ class PathMathGame {
                     }
 
                     currPath.push(position)
-                    currNumbers.push(num)
+                    currNumbers.push(this.numberMatrix[y][x])
 
                     redrawPath()
                 }
@@ -319,6 +345,10 @@ class PathMathGame {
         const countMap = game.computeAllPossibleSolutions()
         
         const allPossibleGoals = Array.from(countMap.keys())
+            .filter(g => countMap.get(g) >= MIN_WAYS && countMap.get(g) <= MAX_WAYS)
+
+        console.assert(allPossibleGoals.length > 0)
+
         const goalNumber = weightedRandomChoice(allPossibleGoals, allPossibleGoals.map(g => countMap.get(g)))
         game.goalNumber = goalNumber
 
@@ -334,9 +364,14 @@ class PathMathGame {
 //     [1, 7, 3]
 // ], 36)
 
-const game = PathMathGame.random()
+let game = PathMathGame.random()
 
 document.body.onload = () => {
     game.initHtml()
     game.makeInteractive()
 }
+
+game.onFinish(() => {
+    const g = PathMathGame.random()
+    game.setNew(g.numberMatrix, g.goalNumber)
+})

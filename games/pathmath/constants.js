@@ -6,6 +6,9 @@ const goalOutput = document.getElementById("goal-output")
 const pathMathGridBackground = document.getElementById("pathmath-grid-background")
 const context = pathMathGridBackground.getContext("2d")
 
+const MIN_WAYS = 100
+const MAX_WAYS = 2000
+
 function weightedRandomChoice(items, weights) {
     console.assert(items.length == weights.length)
 
