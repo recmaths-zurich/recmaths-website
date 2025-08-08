@@ -434,23 +434,6 @@
             <button class="close-popup-button" id="close-popup-button"></button>
         </div>
 
-        <!-- SET js_version=1 -->
-        <!-- SET js_minify=true -->
-
-        <!-- JS_IMPORT wurzle/js/constants.js -->
-        <!-- JS_IMPORT wurzle/js/calendarwidget.js -->
-        <!-- JS_IMPORT wurzle/js/wurzlefunction.js -->
-        <!-- JS_IMPORT wurzle/js/vector2d.js -->
-        <!-- JS_IMPORT wurzle/js/functionplotter.js -->
-        <!-- JS_IMPORT wurzle/js/functiongenerator.js -->
-        <!-- JS_IMPORT wurzle/js/wurzlegame.js -->
-        <!-- JS_IMPORT wurzle/js/wurzleloader.js -->
-        <!-- JS_IMPORT wurzle/js/main.js -->
-
-        <!-- BEGIN js_imports -->
-        <script src="../js/minified/j583692ba2ba4fe41.min.js?v1"></script>
-        <!-- END -->
-
         <style>
             body {
                 --wurzle-green: #6aba65;
@@ -485,6 +468,9 @@
                 --result-cell-bad-foreground-color: white;
                 --result-cell-good-foreground-color: white;
                 --result-cell-good-background-color: var(--wurzle-green);
+
+                /* will be replaced with appropriate real size using js on pageload */
+                --cell-size-px: 48px;
 
                 font-family: var(--header-font);
             }
@@ -806,6 +792,23 @@
                 transform: scale(1.02);
             }
         </style>
+
+        <!-- SET js_version=2 -->
+        <!-- SET js_minify=true -->
+
+        <!-- JS_IMPORT wurzle/js/constants.js -->
+        <!-- JS_IMPORT wurzle/js/calendarwidget.js -->
+        <!-- JS_IMPORT wurzle/js/wurzlefunction.js -->
+        <!-- JS_IMPORT wurzle/js/vector2d.js -->
+        <!-- JS_IMPORT wurzle/js/functionplotter.js -->
+        <!-- JS_IMPORT wurzle/js/functiongenerator.js -->
+        <!-- JS_IMPORT wurzle/js/wurzlegame.js -->
+        <!-- JS_IMPORT wurzle/js/wurzleloader.js -->
+        <!-- JS_IMPORT wurzle/js/main.js -->
+
+        <!-- BEGIN js_imports -->
+        <script src="../js/minified/j2c6942609e2871fd.min.js?v2"></script>
+        <!-- END -->
 
         <!-- BEGIN default_footer -->
         <footer>

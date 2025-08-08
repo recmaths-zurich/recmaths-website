@@ -31,15 +31,11 @@ const POPUP_ANIMATION_EASING_OUT = "ease-in"
 
 wurzleGameContainer.style.setProperty("--num-cells-per-row", NUM_CELLS_PER_ROW)
 
-function updateCSSCellSize(recurse=true) {
+function updateCSSCellSize() {
     const cell = wurzleGridContainer.querySelector(".wurzle-grid-cell")
     if (cell) {
         const cellSize = cell.offsetWidth ?? cell.clientWidth
         wurzleGlobalContainer.style.setProperty("--cell-size-px", `${cellSize}px`)
-    }
-
-    if (recurse) {
-        setTimeout(updateCSSCellSize.bind(null, false), 0)
     }
 }
 
@@ -64,7 +60,7 @@ function hideElements(revealKey) {
 fillDataElements("max-num-guesses", NUM_MAX_GUESSES)
 
 window.addEventListener("resize", updateCSSCellSize)
-window.addEventListener("DOMContentLoaded", updateCSSCellSize)
+window.addEventListener("load", updateCSSCellSize)
 
 const CELL_HIDDEN_BACKGROUND_COLOR = "var(--cell-hidden-color)"
 const CELL_BAD_BACKGROUND_COLOR = "var(--result-cell-bad-background-color)"
