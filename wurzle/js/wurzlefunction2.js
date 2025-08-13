@@ -285,6 +285,7 @@ function evaluateNumberString(numberString) {
         "arcsinh": {compute: n => ComplexNumber.asComplexNumber(n).arcsinh()},
         "arccosh": {compute: n => ComplexNumber.asComplexNumber(n).arccosh()},
         "arctanh": {compute: n => ComplexNumber.asComplexNumber(n).arctanh()},
+        "log":     {compute: n => ComplexNumber.asComplexNumber(n).ln()},
         "ln":      {compute: n => ComplexNumber.asComplexNumber(n).ln()},
         "log10":   {compute: n => ComplexNumber.asComplexNumber(n).log10()},
         "log2":    {compute: n => ComplexNumber.asComplexNumber(n).log2()},
