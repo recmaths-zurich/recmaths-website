@@ -1,12 +1,16 @@
 const test = new PersonalityTest(TestQuestions)
 test.initHtml()
 
+let showingResults = false
+
 finishQuestionsButton.addEventListener("click", () => {
     const unfinishedQuestionIndex = test.getUnfinishedQuestionIndex()
     if (unfinishedQuestionIndex !== null) {
-        test.questionContainers[unfinishedQuestionIndex].scrollIntoView({ behavior: "smooth" })
+        test.questionContainers[unfinishedQuestionIndex].scrollIntoView({ behavior: "smooth", block: "center" })
         return
     }
+
+    showingResults = true
 
     resultsContainer.style.display = "block"
     const personality = test.computePersonality()
@@ -22,7 +26,7 @@ finishQuestionsButton.addEventListener("click", () => {
     }
 
     setTimeout(() => {
-        resultsContainer.scrollIntoView({ behavior: "smooth" })
+        resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" })
     }, 100)
 
     finishQuestionsButton.remove()

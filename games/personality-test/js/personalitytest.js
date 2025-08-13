@@ -14,9 +14,9 @@ class PersonalityTest {
         this.questionContainers = []
         questionsContainer.innerHTML = ""
 
-        let i = 0
+        let nextQuestionIndex = 0
         for (const question of this.questions) {
-            i++
+            nextQuestionIndex++
             const questionContainer = document.createElement("div")
             questionContainer.classList.add("question-container")
 
@@ -26,7 +26,7 @@ class PersonalityTest {
             for (const [langKey, langValue] of Object.entries(question.statement)) {
                 const questionHeaderText = document.createElement("div")
                 questionHeaderText.classList.add("question-header-text")
-                questionHeaderText.textContent = `(${i}/${this.questions.length}) ${langValue}`
+                questionHeaderText.textContent = `(${nextQuestionIndex}/${this.questions.length}) ${langValue}`
                 questionHeaderText.setAttribute("lang", langKey)
                 questionHeader.appendChild(questionHeaderText)
             }
@@ -71,8 +71,25 @@ class PersonalityTest {
                 questionButtonsContainer.appendChild(questionButton)
 
                 questionButton.addEventListener("click", () => {
+                    if (showingResults) return
+
                     question.answerIndex = i
                     updateButtons()
+
+                    const smallestUnselectedIndex = this.getUnfinishedQuestionIndex()
+                    if (smallestUnselectedIndex !== null && this.questionContainers[smallestUnselectedIndex]) {
+
+                        // next question should be scrolled into view middle
+                        this.questionContainers[smallestUnselectedIndex].scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        })
+                    } else if (smallestUnselectedIndex === null) {
+                        finishQuestionsButton.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        })
+                    }
                 })
             }
 
