@@ -266,7 +266,7 @@ const TestResults = [
         }
     },
     {
-        termString: "x!",
+        termString: "factorial(x)",
         location: {
             Growth: 1,
             Chaotic: 0,
