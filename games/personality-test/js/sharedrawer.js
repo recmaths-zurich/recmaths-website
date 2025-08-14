@@ -11,19 +11,23 @@ async function generateShareImage(termString, {imageSize=new Vector2d(600, 600)}
     plotter.drawGridLines = true
 
     plotter.clear()
+
+    context.fillStyle = "white"
+    context.fillRect(0, 0, canvas.width, canvas.height)
+
     plotter.drawAxes()
     plotter.plot(f, "blue", 5)
 
     // load custom css font saved at --header-font
     const headerFont = getComputedStyle(document.body).getPropertyValue("--header-font").trim()
 
-    function drawCardWithText(text, position, {fontSize=50, padding=20, color=plotter.defaultForegroundColor}={}) {
+    function drawCardWithText(text, position, {fontSize=50, padding=20, color="black"}={}) {
         context.font = `${fontSize}px ${headerFont}`
         context.textAlign = "center"
         context.textBaseline = "middle"
 
         // draw a nice lookign and fitting card with the given text
-        context.fillStyle = plotter.defaultBackgroundColor
+        context.fillStyle = "white"
         const textDimensions = context.measureText(text)
         context.globalAlpha = 0.9
         context.fillRect(
