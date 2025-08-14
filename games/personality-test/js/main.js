@@ -34,8 +34,7 @@ finishQuestionsButton.addEventListener("click", () => {
     const f = new WurzleFunction(personality.termString)
     const plotter = new FunctionPlotter(resultFunctionCanvas, resultFunctionContext)
     plotter.viewCentre = new Vector2d(0, 0)
-    plotter.viewHeight = 12
-    plotter.drawGridLines = true
+    plotter.viewHeight = 8.5
     plotter.addFunction(f)
     plotter.makeInteractive()
 
