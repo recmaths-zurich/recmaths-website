@@ -6,6 +6,7 @@ class FunctionPlotter {
 
         this.viewCentre = viewCentre ?? new Vector2d(0, 0)
         this.viewHeight = viewHeight ?? 5
+        this.drawGridLines = false
 
         this.wurzleFunctions = []
         this.guessedPoints = []
@@ -114,18 +115,21 @@ class FunctionPlotter {
         ])
 
         const pinStyling = {color: this.defaultForegroundColor, radius: 3}
-
+        
+        let stepSize = 10 ** Math.ceil(Math.log10(Math.max(
+            Math.ceil(maxXY.x) - Math.floor(minXY.x),
+            Math.ceil(maxXY.y) - Math.floor(minXY.y)
+        )) + 1)
         let numTicksVisible = Math.max(
             Math.ceil(maxXY.x) - Math.floor(minXY.x),
             Math.ceil(maxXY.y) - Math.floor(minXY.y)
-        ) * 10
-        let stepSize = 0.1
+        ) / stepSize
 
         let i = 0
-        while (numTicksVisible > 20) {
+        while (numTicksVisible < 8) {
             const factor = (i % 2 == 0) ? 2 : 5
-            stepSize *= factor
-            numTicksVisible /= factor
+            stepSize /= factor
+            numTicksVisible *= factor
             i++
         }
 
@@ -140,6 +144,25 @@ class FunctionPlotter {
         startY -= startY % stepSize
         for (let y = startY; y <= Math.ceil(maxXY.y); y += stepSize) {
             this.drawPoint(new Vector2d(0, y), {label: Math.round(y * 10) / 10, ...pinStyling})
+        }
+
+        if (!this.drawGridLines) {
+            return
+        }
+
+        // draw grid lines
+        for (let x = startX; x <= Math.ceil(maxXY.x); x += stepSize) {
+            if (x == 0) continue
+            this.connectPoints([
+                new Vector2d(x, Math.floor(minXY.y)),
+                new Vector2d(x, Math.ceil(maxXY.y))
+            ], {color: this.defaultForegroundColor, width: 0.5})
+        }
+        for (let y = startY; y <= Math.ceil(maxXY.y); y += stepSize) {
+            this.connectPoints([
+                new Vector2d(Math.floor(minXY.x), y),
+                new Vector2d(Math.ceil(maxXY.x), y)
+            ], {color: this.defaultForegroundColor, width: 0.5})
         }
     }
 
@@ -162,6 +185,8 @@ class FunctionPlotter {
         // that we've hit an asymptote. We do not want to connect asymptote ends!
         const maxDelta = 10
 
+        const sign = x => x > 0 ? 1 : x < 0 ? -1 : 0
+
         let drewAtLeastOnePoint = false
         for (let i = 1; i < points.length; i++) {
             const [p1, p2] = [points[i - 1], points[i]]
@@ -170,7 +195,7 @@ class FunctionPlotter {
                 continue
             }
 
-            if (p1.distance(p2) < maxDelta) { 
+            if (p1.distance(p2) < maxDelta || sign(p1.y) == sign(p2.y)) { 
                 this.connectPoints([p1, p2], {color})
                 drewAtLeastOnePoint = true
             }
@@ -211,6 +236,7 @@ class FunctionPlotter {
 
         this.canvas.addEventListener("wheel", event => {
             this.viewHeight *= event.deltaY / 1000 + 1
+            this.viewHeight = Math.max(this.viewHeight, 0.1)
             event.preventDefault()
             redraw()
         })

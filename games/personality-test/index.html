@@ -134,7 +134,6 @@
             </button>
 
             <div class="results-container" id="results-container" style="display: none;">
-                <hr style="margin-bottom: 3em; margin-top: 3em;">
                 <h1 class="result-header">
                     <span lang="en">Your Result</span>
                     <span lang="de">Dein Ergebnis</span>
@@ -144,6 +143,11 @@
                 </div>
                 <canvas id="result-function-canvas"></canvas>
                 <div class="result-description" id="result-description"></div>
+
+                <button id="share-results-button" onclick="shareResult()" style="margin-top: 1em">
+                    <span lang="en">Share Result</span>
+                    <span lang="de">Ergebnis teilen</span>
+                </button>
 
                 <div class="results-table">
                     <table>
@@ -172,10 +176,11 @@
         <!-- JS_IMPORT games/personality-test/js/wurzlefunction2.js -->
         <!-- JS_IMPORT games/personality-test/js/functionplotter.js -->
         <!-- JS_IMPORT games/personality-test/js/personalitytest.js -->
+        <!-- JS_IMPORT games/personality-test/js/sharedrawer.js -->
         <!-- JS_IMPORT games/personality-test/js/main.js -->
 
         <!-- BEGIN js_imports -->
-        <script src="../../js/minified/jbced46a6c2ec8593.min.js?v1"></script>
+        <script src="../../js/minified/jb746fff8ddb26e32.min.js?v1"></script>
         <!-- END -->
 
         <style>

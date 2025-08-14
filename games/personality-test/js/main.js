@@ -26,7 +26,7 @@ finishQuestionsButton.addEventListener("click", () => {
     }
 
     setTimeout(() => {
-        resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" })
+        shareResultsButton.scrollIntoView({ behavior: "smooth", block: "end" })
     }, 100)
 
     finishQuestionsButton.remove()
@@ -35,6 +35,7 @@ finishQuestionsButton.addEventListener("click", () => {
     const plotter = new FunctionPlotter(resultFunctionCanvas, resultFunctionContext)
     plotter.viewCentre = new Vector2d(0, 0)
     plotter.viewHeight = 12
+    plotter.drawGridLines = true
     plotter.addFunction(f)
     plotter.makeInteractive()
 
@@ -50,3 +51,48 @@ finishQuestionsButton.addEventListener("click", () => {
         resultsTableBody.appendChild(row)
     }
 })
+
+async function shareResult() {
+    if (!showingResults) {
+        return
+    }
+
+    const personality = test.computePersonality()
+    const scores = test.computePersonalityScores()
+    const resultTerm = personality.termString
+    const resultScore = scores[0].score.toFixed(2)
+
+    let shareText = `📈 Personality Test 📉\nf(x) = ${resultTerm} (confidence=${resultScore}%)\nrecmaths.ch/games/personality-test`
+    if (document.documentElement.lang.startsWith("de")) {
+        shareText = `📈 Persönlichkeitstest 📉\nf(x) = ${resultTerm} (Sicherheit=${resultScore}%)\nrecmaths.ch/games/personality-test`
+    }
+
+    const fallBackShare = async () => {
+        // copy to clipboard instead and show a message
+        await navigator.clipboard.writeText(shareText)
+        if (document.documentElement.lang.startsWith("de")) {
+            alert("Ergebnis in die Zwischenablage kopiert")
+        } else {
+            alert("Result copied to clipboard")
+        }
+    }
+
+    const imageBlob = await generateShareImage(resultTerm)
+    if (!imageBlob || !window.navigator.share) {
+        await fallBackShare()
+        return
+    }
+
+    const shareData = {
+        title: "Personality Test Result",
+        text: shareText,
+        files: [new File([imageBlob], "result.png", { type: "image/png" })]
+    }
+
+    try {
+        await navigator.share(shareData)
+    } catch (error) {
+        console.error("Error sharing result:", error)
+        await fallBackShare()
+    }
+}

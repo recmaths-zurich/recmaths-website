@@ -19,6 +19,7 @@ functionInput.addEventListener("input", () => {
 function drawFunction() {
     const func = new WurzleFunction(functionInput.value)
     plotter.removeAllFunctions()
+    plotter.drawGridLines = true
     plotter.addFunction(func)
     return redraw()
 }

@@ -6,6 +6,7 @@ const resultDescription = document.getElementById("result-description")
 const resultFunctionCanvas = document.getElementById("result-function-canvas")
 const resultFunctionContext = resultFunctionCanvas.getContext("2d")
 const resultsTableBody = document.getElementById("results-table-body")
+const shareResultsButton = document.getElementById("share-results-button")
 
 const NUM_BUTTONS_PER_QUESTION = 7
 
