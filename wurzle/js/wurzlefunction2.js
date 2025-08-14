@@ -128,7 +128,7 @@ class ComplexNumber {
         const [c, d] = other.toArray()
 
         const r2 = this.magnitudeSquared()
-        if (r2 === 0) throw new RangeError("Base 0+0i is not defined for complex powers.")
+        if (r2 === 0) throw new NumberParserError("Base 0+0i is not defined for complex powers.")
 
         const theta = Math.atan2(b, a)
         const mag   = Math.pow(r2, c / 2) * Math.exp(-d * theta)
@@ -180,7 +180,7 @@ class ComplexNumber {
 
     ln() {
         const r2 = this.magnitudeSquared()
-        if (r2 === 0) throw new RangeError("Ln(0) undefined")
+        if (r2 === 0) throw new NumberParserError("Ln(0) undefined")
         return new ComplexNumber(0.5 * Math.log(r2), this.arg())
     }
 
@@ -238,7 +238,7 @@ class ComplexNumber {
     gamma() {
         // Poles at nonpositive integers (real)
         if (this.imaginaryPart === 0 && Number.isInteger(this.realPart) && this.realPart <= 0) {
-            throw new RangeError("Gamma pole at nonpositive integer")
+            throw new NumberParserError("Gamma pole at nonpositive integer")
         }
 
         // Real-fast path
@@ -279,7 +279,7 @@ class ComplexNumber {
     factorial() {
         if (this.imaginaryPart === 0 && Number.isInteger(this.realPart)) {
             const n = this.realPart;
-            if (n < 0) throw new RangeError("Factorial undefined for negative integers");
+            if (n < 0) throw new NumberParserError("Factorial undefined for negative integers");
             let acc = 1;
             for (let k = 2; k <= n; k++) acc *= k;      // fast exact product (to 170!)
             return new ComplexNumber(acc, 0);
