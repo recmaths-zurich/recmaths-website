@@ -313,8 +313,8 @@ const TestResults = [
             Oscillation: -1
         },
         description: {
-            en: "You are the constant pi. You are very stable and reliable, but you don't like to take risks. People can always count on you.",
-            de: "Du bist die Konstante pi. Du bist sehr stabil und zuverlässig, aber du gehst keine Risiken ein. Die Leute können sich immer auf dich verlassen."
+            en: "You look boring on the outside, but once people get to know you and your interesting features, they will appreciate you even more. You act irrationally and follow your emotions more than most, but that's what makes you a great companion: always there to help and making sure everything's coming full circle.",
+            de: "Du siehst langweilig aus, aber sobald die Leute dich und deine interessanten Eigenschaften kennenlernen, werden sie dich noch mehr schätzen. Du handelst irrational und folgst deinen Emotionen mehr als die meisten, aber das macht dich zu einem großartigen Begleiter: immer da, um zu helfen und sicherzustellen, dass alles wieder rund läuft."
         }
     },
     {
