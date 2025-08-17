@@ -95,3 +95,9 @@ async function shareResult() {
         await fallBackShare()
     }
 }
+
+function initTestServer() {
+    fetch("https://www.noel-friedrich.de/recmaths-api/init_test.php")    
+}
+
+setTimeout(initTestServer, 100)
