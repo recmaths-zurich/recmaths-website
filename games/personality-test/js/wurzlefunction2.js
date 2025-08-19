@@ -128,7 +128,9 @@ class ComplexNumber {
         const [c, d] = other.toArray()
 
         const r2 = this.magnitudeSquared()
-        if (r2 === 0) throw new NumberParserError("Base 0+0i is not defined for complex powers.")
+        if (r2 === 0) {
+            return new ComplexNumber(0, 0)
+        }
 
         const theta = Math.atan2(b, a)
         const mag   = Math.pow(r2, c / 2) * Math.exp(-d * theta)
