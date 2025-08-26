@@ -9,7 +9,9 @@ class WurzleLoader {
     }
 
     static async loadWurzles() {
-        const response = await fetch(this.wurzleApi)
+        // add search param to force reload (bugfix)
+        const apiParam = `?rt=${Math.random().toString().slice(2)}`
+        const response = await fetch(this.wurzleApi + apiParam)
         const jsonData = await response.json()
 
         this.wurzles = jsonData.map(o => ({
