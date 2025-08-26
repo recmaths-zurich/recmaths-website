@@ -103,7 +103,8 @@ wurzleSubmitButton.addEventListener("click", () => {
         if (!hasSentApiInitUpdate) {
             hasSentApiInitUpdate = true
             // for usage monitoring
-            fetch("https://www.noel-friedrich.de/wurzle-api/init.php")
+            const apiParam = `?rt=${Math.random().toString().slice(2)}`
+            fetch("https://www.noel-friedrich.de/wurzle-api/init.php" + apiParam)
         }
     } catch {}
 })

@@ -134,7 +134,8 @@ class WurzleGame {
 
         if (!hasSentApiFinishUpdate) {
             hasSentApiFinishUpdate = true
-            fetch("https://www.noel-friedrich.de/wurzle-api/success.php")
+            const apiParam = `?rt=${Math.random().toString().slice(2)}`
+            fetch("https://www.noel-friedrich.de/wurzle-api/success.php" + apiParam)
         }
         
         this.resultString = this.makeResultsString(true)
@@ -147,7 +148,8 @@ class WurzleGame {
         
         if (!hasSentApiFinishUpdate) {
             hasSentApiFinishUpdate = true
-            fetch("https://www.noel-friedrich.de/wurzle-api/finish.php")
+            const apiParam = `?rt=${Math.random().toString().slice(2)}`
+            fetch("https://www.noel-friedrich.de/wurzle-api/finish.php" + apiParam)
         }
         
         this.resultString = this.makeResultsString(false)
