@@ -201,16 +201,40 @@
                 </span>
             </p>
 
-            <img src="assets/gruendungsversammlung-groupfoto-cropped.png" alt="Group Foto of our inaugural meeting">
-
-            <h2>
+            <h3>
                 <span lang="en">
-                    Interests
+                    Supported by
                 </span>
                 <span lang="de">
-                    Interessen
+                    Unterstützt von
                 </span>
-            </h2>
+                ...
+            </h3>
+
+            <div class="sponsor-image-grid">
+                <a href="https://www.janestreet.com/">
+                    <img src="assets/sponsors/janestreet.svg" alt="Logo of Janestreet" title="Janestreet">
+                </a>
+                <a href="https://sph.ethz.ch/">
+                    <img src="assets/sponsors/sph.svg" alt="Logo of the ETH Student Project House" title="ETH Student Project House">
+                </a>
+            </div>
+
+            <style>
+                .sponsor-image-grid {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 1em;
+                    justify-content: center;
+                }
+
+                .sponsor-image-grid > a {
+                    flex-grow: 1;
+                    max-width: 200px;
+                }
+            </style>
+
+            <img src="assets/gruendungsversammlung-groupfoto-cropped.png" alt="Group Foto of our inaugural meeting">
             <p>
                 <span lang="en">
                     Our interests range from Tic-Tac-Toe strategies to minimal Sudoku layouts — and pretty much anything else that sparks our curiosity.
