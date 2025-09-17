@@ -118,7 +118,7 @@
                 </span>
             </h1>
 
-            <img src="assets/header-img.jpg" alt="Image of various recrational mathematics drawings" usemap="#headermap" id="header-img">
+            <img src="assets/header-img.jpg" alt="Image of various recrational mathematics drawings" usemap="#headermap" id="header-img" style="border-radius: 10px">
 
             <map name="headermap" id="headermap">
                 <area target="" alt="Mathematics of Sodoku" title="Mathematics of Sodoku" href="https://en.wikipedia.org/wiki/Mathematics_of_Sudoku" coords="1183,76,1720,537" shape="rect">
@@ -224,7 +224,7 @@
                 .sponsor-image-grid {
                     display: flex;
                     flex-direction: row;
-                    gap: 1em;
+                    gap: 10px;
                     justify-content: center;
                 }
                 
@@ -234,10 +234,27 @@
                     max-width: 200px;
                     display: flex;
                     align-items: center;
+                    background-color: white;
+                    padding: 10px;
+                    border-radius: 10px;
                 }
             </style>
 
-            <img src="assets/gruendungsversammlung-groupfoto-cropped.png" alt="Group Foto of our inaugural meeting">
+            <img src="assets/gruendungsversammlung-groupfoto-cropped.png" alt="Group Foto of our inaugural meeting" class="gruppenfoto">
+
+            <style>
+                .gruppenfoto {
+                    -webkit-filter: drop-shadow(-2px -2px 0 white)
+                                    drop-shadow(-2px 2px 0 white)
+                                    drop-shadow(2px -2px 0 white)
+                                    drop-shadow(2px 2px 0 white);
+                    filter: drop-shadow(-2px -2px 0 white)
+                            drop-shadow(-2px 2px 0 white)
+                            drop-shadow(2px -2px 0 white)
+                            drop-shadow(2px 2px 0 white);
+                }
+            </style>
+
             <p>
                 <span lang="en">
                     Our interests range from Tic-Tac-Toe strategies to minimal Sudoku layouts — and pretty much anything else that sparks our curiosity.
