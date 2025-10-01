@@ -1,7 +1,3 @@
-function darkenHexColor(color, amount) {
-    return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2))
-}
-
 function drawPathOnBackground(cellGrid, pathVectors) {
     const positionOfCell = cellElement => {
         const cellRect = cellElement.getBoundingClientRect()
@@ -16,7 +12,7 @@ function drawPathOnBackground(cellGrid, pathVectors) {
     pathMathGridBackground.height = pathMathGridBackground.clientHeight
     context.clearRect(0, 0, pathMathGridBackground.width, pathMathGridBackground.height)
 
-    context.strokeStyle = darkenHexColor(getComputedStyle(pathMathGlobal).getPropertyValue("--mark-color"), -20)
+    context.strokeStyle = getComputedStyle(pathMathGlobal).getPropertyValue("--mark-color")
     context.lineWidth = cellGrid[0][0].clientWidth * 0.3
 
     const fontSize = cellGrid[0][0].clientWidth * 0.2

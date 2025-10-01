@@ -305,14 +305,14 @@ class PathMathGame {
         window.sortedPossibleValues = sortedPossibleValues
         window.allPossibleStrs = allPossibleStrs
 
-        // console.log(`recursionCount=${recursionCount}`)
-        // console.log(`min value: ${sortedPossibleValues[0]} (${numCountMap.get(sortedPossibleValues[0])} ways)`)
-        // console.log(`min path: ${numMaps.get(sortedPossibleValues[0])}`)
+        console.log(`recursionCount=${recursionCount}`)
+        console.log(`min value: ${sortedPossibleValues[0]} (${numCountMap.get(sortedPossibleValues[0])} ways)`)
+        console.log(`min path: ${numMaps.get(sortedPossibleValues[0])}`)
 
-        // console.log(`max value: ${sortedPossibleValues[sortedPossibleValues.length - 1]} (${numCountMap.get(sortedPossibleValues[sortedPossibleValues.length - 1])} ways)`)
-        // console.log(`max path: ${numMaps.get(sortedPossibleValues[sortedPossibleValues.length - 1])}`)
+        console.log(`max value: ${sortedPossibleValues[sortedPossibleValues.length - 1]} (${numCountMap.get(sortedPossibleValues[sortedPossibleValues.length - 1])} ways)`)
+        console.log(`max path: ${numMaps.get(sortedPossibleValues[sortedPossibleValues.length - 1])}`)
 
-        // console.log(`goal number ways: ${numCountMap.get(this.goalNumber)}`)
+        console.log(`goal number ways: ${numCountMap.get(this.goalNumber)}`)
 
         let mostCommonNumber = null
         let mostCommonNumberWays = 0
@@ -324,7 +324,7 @@ class PathMathGame {
             }
         }
 
-        // console.log(`most common number: ${mostCommonNumber} (${mostCommonNumberWays} ways)`)
+        console.log(`most common number: ${mostCommonNumber} (${mostCommonNumberWays} ways)`)
 
         return numCountMap
     }
@@ -352,7 +352,7 @@ class PathMathGame {
         const goalNumber = weightedRandomChoice(allPossibleGoals, allPossibleGoals.map(g => countMap.get(g)))
         game.goalNumber = goalNumber
 
-        // console.log(`possible ways: ${countMap.get(goalNumber)}`)
+        console.log(`possible ways: ${countMap.get(goalNumber)}`)
         return game
     }
 
@@ -375,11 +375,3 @@ game.onFinish(() => {
     const g = PathMathGame.random()
     game.setNew(g.numberMatrix, g.goalNumber)
 })
-
-const startTime = Date.now()
-
-setInterval(() => {
-    const deltaTime = Date.now() - startTime
-    const progress = deltaTime / (60 * 1000)
-    setProgressbarProgress(progress)
-}, 100)

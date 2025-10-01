@@ -2,7 +2,6 @@ const pathMathGlobal = document.getElementById("pathmath-global")
 const pathMathGrid = document.getElementById("pathmath-grid")
 const pathMathGoalContainer = document.getElementById("pathmath-goal-container")
 const goalOutput = document.getElementById("goal-output")
-const progressbarElementInner = document.getElementById("pathmath-progressbar-inner")
 
 const pathMathGridBackground = document.getElementById("pathmath-grid-background")
 const context = pathMathGridBackground.getContext("2d")
@@ -22,9 +21,4 @@ function weightedRandomChoice(items, weights) {
             return items[i]
         }
     }
-}
-
-function setProgressbarProgress(progress) {
-    const cleanprogressPercent = Math.min(Math.max(Math.round(progress * 1e4) / 100, 0), 100)
-    progressbarElementInner.style.width = `${cleanprogressPercent}%`
 }
