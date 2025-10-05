@@ -129,6 +129,9 @@ class ComplexNumber {
 
         const r2 = this.magnitudeSquared()
         if (r2 === 0) {
+            if (c === 0 && d === 0) {
+                throw new NumberParserError("0^0 undefined")
+            }
             return new ComplexNumber(0, 0)
         }
 
@@ -312,6 +315,14 @@ class ComplexNumber {
 }
 
 function evaluateNumberString(numberString) {
+    // some lazy helper replacements
+    numberString = numberString.toLowerCase()
+        .replaceAll(")(", ")*(")                // 2 brackets next to each other means multiplication
+        .replaceAll(" ", "")                    // remove all spaces
+        .replaceAll("−", "-")                   // replace minus sign
+        .replaceAll("×", "*")                   // replace multiplication sign
+        .replaceAll("÷", "/")                   // replace division sign
+
     // GRAMMAR:
     // number: "-" number | decimal | number "/" number | "0x" hexint | "0x" hexdecimal |
     //         "0b" binint | "0b" bindecimal | "sqrt(" number ")" |
@@ -376,9 +387,9 @@ function evaluateNumberString(numberString) {
         "arctanh":   {compute: n => ComplexNumber.asComplexNumber(n).arctanh()},
         "log":       {compute: n => ComplexNumber.asComplexNumber(n).ln()},
         "ln":        {compute: n => ComplexNumber.asComplexNumber(n).ln()},
-        "log10":     {compute: n => ComplexNumber.asComplexNumber(n).log10()},
-        "log2":      {compute: n => ComplexNumber.asComplexNumber(n).log2()},
-        "log3":      {compute: n => ComplexNumber.asComplexNumber(n).log3()},
+        "logten":    {compute: n => ComplexNumber.asComplexNumber(n).log10()},
+        "logtwo":    {compute: n => ComplexNumber.asComplexNumber(n).log2()},
+        "logthree":  {compute: n => ComplexNumber.asComplexNumber(n).log3()},
         "factorial": {compute: n => ComplexNumber.asComplexNumber(n).factorial()},
         "gamma":     {compute: n => ComplexNumber.asComplexNumber(n).gamma()},
         "Γ":         {compute: n => ComplexNumber.asComplexNumber(n).gamma()},
