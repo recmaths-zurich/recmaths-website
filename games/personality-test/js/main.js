@@ -100,4 +100,4 @@ function initTestServer() {
     fetch("https://www.noel-friedrich.de/recmaths-api/init_test.php")    
 }
 
-setTimeout(initTestServer, 100)
+setTimeout(initTestServer, 101)

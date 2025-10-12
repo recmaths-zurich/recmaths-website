@@ -136,8 +136,8 @@ class ComplexNumber {
         }
 
         const theta = Math.atan2(b, a)
-        const mag   = Math.pow(r2, c / 2) * Math.exp(-d * theta)
-        const ang   = c * theta + (d / 2) * Math.log(r2)
+        const mag = Math.pow(r2, c / 2) * Math.exp(-d * theta)
+        const ang = c * theta + (d / 2) * Math.log(r2)
 
         return new ComplexNumber(
             mag * Math.cos(ang),
