@@ -493,7 +493,7 @@ body:not(.sticky-header) .header-placeholder {
 @media only screen and (min-width: 800px) {
 
     main {
-        margin-top: 1rem;
+        /* margin-top: 1rem; */
     }
 
 }
