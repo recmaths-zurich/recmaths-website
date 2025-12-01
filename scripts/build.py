@@ -76,7 +76,7 @@ def handle_file(file_path: str):
     insert_info = {"start_line": None, "name": None, "found": False}
     new_lines = []
 
-    directory_depth = file_path.count('\\')
+    directory_depth = file_path.count('\\') + file_path.count("/")
     file_dict["base-path"] = "../" * (directory_depth - 1)
     file_dict["logo_name"] = "RecMaths"
 
@@ -132,6 +132,10 @@ def handle_file(file_path: str):
             new_lines = lines  
         elif new_lines != lines:
             print(f"made changes in {file_path}")
+
+        # print(file_path)
+        # print(file_dict)
+        # print()
 
         with open(file_path, "w", encoding="utf-8") as file:
             file.write("\n".join(new_lines))
