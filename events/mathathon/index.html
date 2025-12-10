@@ -112,10 +112,14 @@
         
         <main>
             <h1>
-                Mathathon 2025
+                <output id="hours-left">?</output>h
+                <output id="minutes-left">?</output>m
+                <output id="seconds-left">?</output>s
+                left until
+                <span style="color: #c22ff1">M</span><span style="color: #62db3d">A</span><span style="color: #4273b5">T</span><span style="color: #90e979">H</span>ATHON
             </h1>
             <p>
-                During the event, participants will work with two different games that will be revealed at the start of the Mathathon. For each game, groups will be formed to develop, refine and code a strategy. At the end of each game session, the strategies (algorithms) created by all groups will be played against each other to crown the winning team!
+                During the <b>Mathathon</b>, participants will work with two different games that will be revealed at the start of the Mathathon. For each game, groups will be formed to develop, refine and code a strategy. At the end of each game session, the strategies (algorithms) created by all groups will be played against each other to crown the winning team!
             </p>
 
             <ul>
@@ -128,6 +132,31 @@
             <a class="linkbutton" href="https://forms.gle/6unU8JfgonMxD98n7">Sign up here!</a>
             
         </main>
+
+        <script>
+            const hoursOutput = document.getElementById("hours-left")
+            const minutesOutput = document.getElementById("minutes-left")
+            const secondsOutput = document.getElementById("seconds-left")
+
+            const eventDate = new Date(2025, 11, 13, 11, 30)
+
+            function updateTimeleft() {
+                const timeLeft = eventDate - Date.now()
+                const totalSeconds = timeLeft / 1000
+                
+                const hours = Math.floor(totalSeconds / 60 / 60)
+                const minutes = Math.floor(totalSeconds / 60) % 60
+                const seconds = Math.floor(totalSeconds) % 60
+
+                hoursOutput.textContent = hours
+                minutesOutput.textContent = minutes
+                secondsOutput.textContent = seconds
+
+                requestAnimationFrame(updateTimeleft)
+            }
+
+            updateTimeleft()
+        </script>
 
         <!-- BEGIN default_footer -->
         <footer>
