@@ -218,7 +218,7 @@ class PathMathGame {
                     const touch = event.touches[0]
                     const pageCoords = new Vector2d(touch.clientX, touch.clientY)
                     const target = document.elementFromPoint(pageCoords.x, pageCoords.y)
-                    if (target.classList.contains("pathmath-cell")) {
+                    if (target && target.classList.contains("pathmath-cell")) {
                         const v = new Vector2d(target.dataset.x, target.dataset.y)
                         infoGrid[v.y][v.x].mousemove(event)
                     }
@@ -305,12 +305,12 @@ class PathMathGame {
         window.sortedPossibleValues = sortedPossibleValues
         window.allPossibleStrs = allPossibleStrs
 
-        // console.log(`recursionCount=${recursionCount}`)
-        // console.log(`min value: ${sortedPossibleValues[0]} (${numCountMap.get(sortedPossibleValues[0])} ways)`)
-        // console.log(`min path: ${numMaps.get(sortedPossibleValues[0])}`)
+        console.log(`recursionCount=${recursionCount}`)
+        console.log(`min value: ${sortedPossibleValues[0]} (${numCountMap.get(sortedPossibleValues[0])} ways)`)
+        console.log(`min path: ${numMaps.get(sortedPossibleValues[0])}`)
 
-        // console.log(`max value: ${sortedPossibleValues[sortedPossibleValues.length - 1]} (${numCountMap.get(sortedPossibleValues[sortedPossibleValues.length - 1])} ways)`)
-        // console.log(`max path: ${numMaps.get(sortedPossibleValues[sortedPossibleValues.length - 1])}`)
+        console.log(`max value: ${sortedPossibleValues[sortedPossibleValues.length - 1]} (${numCountMap.get(sortedPossibleValues[sortedPossibleValues.length - 1])} ways)`)
+        console.log(`max path: ${numMaps.get(sortedPossibleValues[sortedPossibleValues.length - 1])}`)
 
         // console.log(`goal number ways: ${numCountMap.get(this.goalNumber)}`)
 
@@ -324,15 +324,22 @@ class PathMathGame {
             }
         }
 
-        // console.log(`most common number: ${mostCommonNumber} (${mostCommonNumberWays} ways)`)
+        console.log(`most common number: ${mostCommonNumber} (${mostCommonNumberWays} ways)`)
 
         return numCountMap
     }
 
     static random(size=new Vector2d(3, 3), range=5) {
         const numbers = []
+
+        const avoid0 = Math.random() < 0.7
+
         while (numbers.length < size.x * size.y) {
             const num = Math.floor((Math.random() * range * 2 + 2) - range - 1)
+            if (avoid0 && num == 0) {
+                continue
+            }
+
             if (!numbers.includes(num)) {
                 numbers.push(num)
             }
@@ -343,16 +350,18 @@ class PathMathGame {
         })))
 
         const countMap = game.computeAllPossibleSolutions()
-        
+        const allGridNumbers = new Set(game.numberMatrix.flat())
+
         const allPossibleGoals = Array.from(countMap.keys())
             .filter(g => countMap.get(g) >= MIN_WAYS && countMap.get(g) <= MAX_WAYS)
+            .filter(g => !allGridNumbers.has(g))
 
         console.assert(allPossibleGoals.length > 0)
 
         const goalNumber = weightedRandomChoice(allPossibleGoals, allPossibleGoals.map(g => countMap.get(g)))
         game.goalNumber = goalNumber
 
-        // console.log(`possible ways: ${countMap.get(goalNumber)}`)
+        console.log(`possible ways: ${countMap.get(goalNumber)}`)
         return game
     }
 
@@ -371,15 +380,34 @@ document.body.onload = () => {
     game.makeInteractive()
 }
 
-game.onFinish(() => {
+const gameStartTime = Date.now() + 999
+let score = 0
+let gameRunning = true
+
+game.onFinish(positionDeltas => {
+    score += positionDeltas.length
     const g = PathMathGame.random()
     game.setNew(g.numberMatrix, g.goalNumber)
 })
 
-const startTime = Date.now()
+function gameLoop() {
+    if (!gameRunning) {
+        return
+    }
 
-setInterval(() => {
-    const deltaTime = Date.now() - startTime
-    const progress = deltaTime / (60 * 1000)
-    setProgressbarProgress(progress)
-}, 100)
+    const elapsedTime = Date.now() - gameStartTime
+    const timeLeft = GAME_DURATION_MS - elapsedTime
+
+    updateTimeLeftDisplay(timeLeft)
+    updateScoreDisplay(score)
+
+    if (timeLeft <= 0) {
+        updateTimeLeftDisplay(0)
+        alert(`Time's up! Your final score is ${score}.`)
+        gameRunning = false
+        return
+    }
+}
+
+setInterval(gameLoop, 1000 / 30)
+gameLoop()

@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Function Personality Test | RecMaths Zürich -->
-    <!-- SET description=a fun functions personality test on recmaths.ch. What function are you? -->
+    <!-- SET title=Mathathon 2025 | RecMaths Zürich -->
+    <!-- SET description=Information about the 2025 Mathathon hosted by recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Function Personality Test | RecMaths Zürich</title>
-        <meta name="description" content="a fun functions personality test on recmaths.ch. What function are you?">
+        <title>Mathathon 2025 | RecMaths Zürich</title>
+        <meta name="description" content="Information about the 2025 Mathathon hosted by recmaths.ch">
         <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
         <link rel="stylesheet" href="../../default_style.css">
         
@@ -112,212 +112,51 @@
         
         <main>
             <h1>
-                <span lang="en">Function Personality Test</span>
-                <span lang="de">Funktionen-Persönlichkeits-Test</span>
+                <output id="hours-left">?</output>h
+                <output id="minutes-left">?</output>m
+                <output id="seconds-left">?</output>s
+                left until
+                <span style="color: #c22ff1">M</span><span style="color: #62db3d">A</span><span style="color: #4273b5">T</span><span style="color: #90e979">H</span>ATHON
             </h1>
-
             <p>
-                <span lang="en">
-                    This is a fun personality test to find out which function you are! Answer the questions below and find out your result.
-                    This test is anonymous and does not save any results or personal data permanently. Answer all questions to get your result.
-                </span>
-                <span lang="de">
-                    Ein Persönlichkeits-Test, um herauszufinden, welche mathematische Funktion du bist! Beantworte die Fragen unten und finde dein Ergebnis heraus.
-                    Dieser Test ist anonym und speichert keine Ergebnisse oder persönlichen Daten dauerhaft. Beantworte alle Fragen, um dein Ergebnis zu erhalten.
-                </span>
+                During the <b>Mathathon</b>, participants will work with two different games that will be revealed at the start of the Mathathon. For each game, groups will be formed to develop, refine and code a strategy. At the end of each game session, the strategies (algorithms) created by all groups will be played against each other to crown the winning team!
             </p>
 
-            <div id="questions-container" class="questions-container"></div>
-            <button id="finish-questions-button">
-                <span lang="en">Submit</span>
-                <span lang="de">Abschicken</span>
-            </button>
+            <ul>
+                <li>The event will take place at <b>ETH HG G5 from 11:30 to 16:30</b> on the <b>13th of December</b>. Please bring your own device (a laptop would be great).</li>
+                <li>At the hackathon, you will participate in teams to build algorithms to play easy-to-understand mathematical games. The teams of 3 to 4 people will be formed on the day itself.</li>
+                <li>You DO NOT need to know how to program. The games will be very easy to implement, the focus will be on the maths/game theory behind them.</li>
+                <li>Of course, there will be some free snacks 🍪🍫😋🥨</li>
+            </ul>
 
-            <div class="results-container" id="results-container" style="display: none;">
-                <h1 class="result-header">
-                    <span lang="en">Your Result</span>
-                    <span lang="de">Dein Ergebnis</span>
-                </h2>
-                <div class="result-text">
-                    <output id="result-function"></output>
-                </div>
-                <canvas id="result-function-canvas"></canvas>
-                <div class="result-description" id="result-description"></div>
-
-                <button id="share-results-button" onclick="shareResult()" style="margin-top: 1em">
-                    <span lang="en">Share Result</span>
-                    <span lang="de">Ergebnis teilen</span>
-                </button>
-
-                <div class="results-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th lang="en">Function</th>
-                                <th lang="de">Funktion</th>
-                                <th lang="en">Score</th>
-                                <th lang="de">Score</th>
-                            </tr>
-                        </thead>
-                        <tbody id="results-table-body">
-                            <!-- Results will be filled in here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <a class="linkbutton" href="https://forms.gle/6unU8JfgonMxD98n7">Sign up here!</a>
+            
         </main>
 
-        <!-- SET js_version=1 -->
-        <!-- SET js_minify=true -->
+        <script>
+            const hoursOutput = document.getElementById("hours-left")
+            const minutesOutput = document.getElementById("minutes-left")
+            const secondsOutput = document.getElementById("seconds-left")
 
-        <!-- JS_IMPORT games/personality-test/js/constants.js -->
-        <!-- JS_IMPORT games/personality-test/js/questions.js -->
-        <!-- JS_IMPORT games/personality-test/js/vector2d.js -->
-        <!-- JS_IMPORT games/personality-test/js/wurzlefunction2.js -->
-        <!-- JS_IMPORT games/personality-test/js/functionplotter.js -->
-        <!-- JS_IMPORT games/personality-test/js/personalitytest.js -->
-        <!-- JS_IMPORT games/personality-test/js/sharedrawer.js -->
-        <!-- JS_IMPORT games/personality-test/js/main.js -->
+            const eventDate = new Date(2025, 11, 13, 11, 30)
 
-        <!-- BEGIN js_imports -->
-        <script src="../../js/minified/j3adfd6b69735430a.min.js?v1"></script>
-        <!-- END -->
+            function updateTimeleft() {
+                const timeLeft = eventDate - Date.now()
+                const totalSeconds = timeLeft / 1000
+                
+                const hours = Math.floor(totalSeconds / 60 / 60)
+                const minutes = Math.floor(totalSeconds / 60) % 60
+                const seconds = Math.floor(totalSeconds) % 60
 
-        <style>
+                hoursOutput.textContent = hours
+                minutesOutput.textContent = minutes
+                secondsOutput.textContent = seconds
 
-            .results-container .result-text {
-                text-align: center;
-                font-family: var(--header-font);
-                margin-top: 1em;
-                margin-bottom: 1em;
-                font-size: 1.5em;
+                requestAnimationFrame(updateTimeleft)
             }
 
-            #result-function-canvas {
-                width: 100%;
-                aspect-ratio: 16 / 9;
-                border: var(--button-border);
-                margin-bottom: 1em;
-            }
-
-            .results-table {
-                width: 100%;
-                margin-top: 1em;
-                margin-bottom: 1em;
-            }
-
-            .results-table table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            .results-table th, .results-table td {
-                padding: 0.5em;
-                text-align: center;
-                border: var(--button-border);
-            }
-
-            .questions-container {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 2em;
-                margin-top: 2em;
-                margin-bottom: 2em;
-            }
-
-            .question-container {
-                font-family: var(--header-font);
-            }
-
-            .question-container.answered {
-                opacity: 1;
-            }
-
-            .question-container .question-header {
-                margin-bottom: 1em;
-                font-size: 1.2em;
-                display: flex;
-                justify-content: center;
-            }
-
-            .question-container .question-header-text {
-                width: min(100%, 600px);
-                text-align: center;
-            }
-
-            .question-container .question-body {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-            
-            /* .question-container .question-buttons-container::before {
-                content: "Agree";
-                display: flex;
-                align-items: center;
-                margin-right: .8em;
-                opacity: 0.5;
-            }
-
-            .question-container .question-buttons-container::after {
-                content: "Disagree";
-                display: flex;
-                align-items: center;
-                margin-left: .8em;
-                opacity: 0.5;
-            } */
-
-            .question-container .question-buttons-container {
-                display: grid;
-                width: min(100%, 350px);
-                grid-template-columns: repeat(7, 1fr);
-                gap: 5px;
-            }
-
-            .question-container .question-button {
-                border-radius: 50%;
-                border: var(--button-border);
-                aspect-ratio: 1 / 1;
-                padding: 0;
-                font-size: 1em;
-            }
-            
-            .question-container .question-button.noanswer:hover {
-                transform: scale(1.1);
-            }
-            
-            .question-container .question-button:not(.noanswer).selected {
-                background-color: var(--card-text-color);
-            }
-            
-            .question-container .question-button:not(.noanswer):not(.selected) {
-                background-color: transparent;
-            }
-
-            .question-container .question-button:hover {
-                box-shadow: none;
-            }
-
-            .question-container .question-explain-container {
-                margin-top: .3em;
-                display: grid;
-                width: min(100%, 350px);
-                grid-template-columns: 1fr 1fr;
-                opacity: 0.5;
-            }
-            
-            html[lang="en"] .question-container .question-explain-container .agree::after { content: "Agree"; }
-            html[lang="en"] .question-container .question-explain-container .disagree::after { content: "Disagree"; }
-            
-            html[lang="de"] .question-container .question-explain-container .agree::after { content: "Stimme zu"; }
-            html[lang="de"] .question-container .question-explain-container .disagree::after { content: "Stimme nicht zu"; }
-            
-            .question-container .question-explain-container .disagree {
-                text-align: right;
-            }
-
-        </style>
+            updateTimeleft()
+        </script>
 
         <!-- BEGIN default_footer -->
         <footer>

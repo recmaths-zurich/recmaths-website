@@ -2,13 +2,16 @@ const pathMathGlobal = document.getElementById("pathmath-global")
 const pathMathGrid = document.getElementById("pathmath-grid")
 const pathMathGoalContainer = document.getElementById("pathmath-goal-container")
 const goalOutput = document.getElementById("goal-output")
-const progressbarElementInner = document.getElementById("pathmath-progressbar-inner")
+
+const timeLeftOutput = document.getElementById("pathmath-time-left-output")
+const scoreOutput = document.getElementById("pathmath-score-output")
 
 const pathMathGridBackground = document.getElementById("pathmath-grid-background")
 const context = pathMathGridBackground.getContext("2d")
 
 const MIN_WAYS = 200
 const MAX_WAYS = Infinity
+const GAME_DURATION_MS = 1000 * 60 * 2
 
 function weightedRandomChoice(items, weights) {
     console.assert(items.length == weights.length)
@@ -24,7 +27,16 @@ function weightedRandomChoice(items, weights) {
     }
 }
 
-function setProgressbarProgress(progress) {
-    const cleanprogressPercent = Math.min(Math.max(Math.round(progress * 1e4) / 100, 0), 100)
-    progressbarElementInner.style.width = `${cleanprogressPercent}%`
+function updateScoreDisplay(score) {
+    scoreOutput.textContent = score.toString().padStart(2, '0')
+}
+
+function updateTimeLeftDisplay(timeLeftMs) {
+    const minutes = Math.floor(timeLeftMs / 60000)
+    const seconds = Math.floor((timeLeftMs % 60000) / 1000)
+
+    const minutesStr = minutes.toString().padStart(2, '0')
+    const secondsStr = seconds.toString().padStart(2, '0')
+
+    timeLeftOutput.textContent = `${minutesStr}:${secondsStr}`
 }
