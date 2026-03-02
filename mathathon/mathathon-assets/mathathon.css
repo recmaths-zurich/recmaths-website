@@ -1,0 +1,800 @@
+/* Mathathon shared styles built on top of default_style.css */
+body.mathathon-shell {
+    --main-max-width: 1400px;
+    --header-max-width: 1280px;
+    --footer-max-width: 1280px;
+    overflow-x: hidden;
+}
+
+body[data-page="overview"],
+body[data-page="leaderboard"] {
+    --header-max-width: 800px;
+    --footer-max-width: 800px;
+}
+
+#game-of-life-background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
+}
+
+body.mathathon-shell main,
+body.mathathon-shell footer {
+    position: relative;
+    z-index: 1;
+}
+
+body.mathathon-shell .top-nav,
+body.mathathon-shell .bottom-bar {
+    position: relative;
+    z-index: 2;
+}
+
+body.editor-app {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: var(--full-height);
+    min-height: var(--full-height);
+    overflow: hidden;
+}
+
+.top-nav {
+    width: 100%;
+    padding: 0.55rem 0.8rem;
+    border-bottom: var(--card-border);
+    background: color-mix(in srgb, var(--header-background) 90%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.top-nav .nav-inner {
+    width: min(100%, var(--main-max-width));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.top-nav .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--card-text-color);
+    text-decoration: none;
+}
+
+.top-nav .logo {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+.top-nav .logo-text {
+    font-family: var(--header-font);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.top-nav .nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.top-nav .nav-links a {
+    border: var(--button-border);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    background: color-mix(
+        in srgb,
+        var(--header-button-background) 86%,
+        transparent
+    );
+    color: var(--card-text-color);
+    text-decoration: none;
+    font-family: var(--header-font);
+    font-size: 1rem;
+}
+
+.top-nav .nav-links a.current,
+.top-nav .nav-links a:hover {
+    box-shadow: 0 0 0 2px
+        color-mix(in srgb, var(--primary-accent-color) 30%, transparent);
+}
+
+.top-nav .change-lang-button {
+    border: var(--button-border);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    background: color-mix(
+        in srgb,
+        var(--header-button-background) 86%,
+        transparent
+    );
+    color: var(--card-text-color);
+    font-family: var(--header-font);
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.bottom-bar {
+    width: 100%;
+    border-top: var(--card-border);
+    padding: 0.45rem 0.8rem;
+    background: color-mix(in srgb, var(--header-background) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.bottom-bar .bar-inner {
+    width: min(100%, var(--main-max-width));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--card-text-color);
+}
+
+.bottom-bar .small-text {
+    font-size: 0.92rem;
+    opacity: 0.9;
+}
+
+.bottom-bar .theme-changer {
+    border: var(--button-border);
+    border-radius: 0.55rem;
+    background: var(--button-background);
+    color: var(--button-color);
+    padding: 0.38rem 0.8rem;
+    font-family: var(--header-font);
+    cursor: pointer;
+}
+
+main.mathathon-main {
+    width: min(100%, var(--main-max-width));
+    margin-top: 0.6rem;
+    margin-bottom: 1.2rem;
+    gap: 1rem;
+    display: grid;
+}
+
+body[data-page="overview"] main.mathathon-main,
+body[data-page="leaderboard"] main.mathathon-main {
+    width: min(100%, 1000px);
+}
+
+body[data-page="overview"] main.mathathon-main,
+body[data-page="leaderboard"] main.mathathon-main {
+    gap: 1.15rem;
+}
+
+body[data-page="overview"] .mathathon-card,
+body[data-page="leaderboard"] .mathathon-card,
+body[data-page="leaderboard"] .feed-panel {
+    border-radius: 1.05rem;
+    border-color: color-mix(in srgb, var(--primary-accent-color) 30%, #a9a9a9);
+}
+
+body[data-page="overview"] .inline-link-list a:nth-child(1),
+body[data-page="leaderboard"] .inline-link-list a:nth-child(1) {
+    border-color: #90e979;
+}
+
+body[data-page="overview"] .inline-link-list a:nth-child(2),
+body[data-page="leaderboard"] .inline-link-list a:nth-child(2) {
+    border-color: #62db3d;
+}
+
+body[data-page="overview"] .inline-link-list a:nth-child(3),
+body[data-page="leaderboard"] .inline-link-list a:nth-child(3) {
+    border-color: #18556d;
+}
+
+body[data-page="overview"] .hero-card,
+body[data-page="leaderboard"] .hero-card {
+    background:
+        linear-gradient(
+            140deg,
+            color-mix(in srgb, var(--primary-accent-color) 10%, transparent),
+            color-mix(in srgb, var(--card-background) 94%, transparent) 30%
+        ),
+        color-mix(in srgb, var(--card-background) 90%, transparent);
+}
+
+body[data-page="overview"] .hero-card h1,
+body[data-page="leaderboard"] .hero-card h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+body[data-page="overview"] .hero-card p,
+body[data-page="leaderboard"] .hero-card p {
+    line-height: 1.5;
+}
+
+body[data-page="overview"] .stats-row .stat-pill {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.8rem;
+}
+
+body[data-page="overview"] .stats-row .stat-pill::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0.22rem;
+    background: var(--primary-accent-color);
+    opacity: 0.8;
+}
+
+body[data-page="overview"] .stats-row .stat-pill:nth-child(1)::before {
+    background: #90e979;
+}
+
+body[data-page="overview"] .stats-row .stat-pill:nth-child(2)::before {
+    background: #62db3d;
+}
+
+body[data-page="overview"] .stats-row .stat-pill:nth-child(3)::before {
+    background: #18556d;
+}
+
+body[data-page="overview"] .stats-row .stat-pill:nth-child(4)::before {
+    background: #c22ff1;
+}
+
+body[data-page="overview"] .grid-three .mathathon-card:nth-child(1) {
+    border-color: color-mix(in srgb, #90e979 60%, var(--card-text-color) 20%);
+    background:
+        linear-gradient(
+            160deg,
+            color-mix(in srgb, #90e979 14%, transparent),
+            transparent 55%
+        ),
+        color-mix(in srgb, var(--card-background) 90%, transparent);
+}
+
+body[data-page="overview"] .grid-three .mathathon-card:nth-child(2) {
+    border-color: color-mix(in srgb, #18556d 60%, var(--card-text-color) 20%);
+    background:
+        linear-gradient(
+            160deg,
+            color-mix(in srgb, #4273b5 14%, transparent),
+            transparent 55%
+        ),
+        color-mix(in srgb, var(--card-background) 90%, transparent);
+}
+
+body[data-page="overview"] .grid-three .mathathon-card:nth-child(3) {
+    border-color: color-mix(in srgb, #c22ff1 55%, var(--card-text-color) 20%);
+    background:
+        linear-gradient(
+            160deg,
+            color-mix(in srgb, #c22ff1 14%, transparent),
+            transparent 55%
+        ),
+        color-mix(in srgb, var(--card-background) 90%, transparent);
+}
+
+body[data-page="overview"] .grid-three .mathathon-card:nth-child(1) h3 {
+    color: #18556d;
+}
+
+body[data-page="overview"] .grid-three .mathathon-card:nth-child(2) h3 {
+    color: #223759;
+}
+
+body[data-page="overview"] .grid-three .mathathon-card:nth-child(3) h3 {
+    color: #c22ff1;
+}
+
+body[data-page="leaderboard"] .leaderboard-layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+}
+
+body[data-page="leaderboard"] .board-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+body[data-page="leaderboard"] .board-head .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+body[data-page="leaderboard"] #refresh-board {
+    width: auto;
+    min-width: 6.2rem;
+    font-size: 1rem;
+    padding: 0.48rem 0.8rem;
+    border-radius: 0.55rem;
+}
+
+body[data-page="leaderboard"] .updated-label {
+    font-size: 0.9rem;
+    opacity: 0.84;
+    color: #18556d;
+}
+
+body[data-page="leaderboard"] .leaderboard-table th {
+    font-family: var(--header-font);
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+}
+
+body[data-page="leaderboard"] .leaderboard-table thead {
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, #90e979 28%, transparent),
+        color-mix(in srgb, #62db3d 18%, transparent) 20%,
+        color-mix(in srgb, #18556d 22%, transparent) 52%,
+        color-mix(in srgb, #4273b5 20%, transparent) 76%,
+        color-mix(in srgb, #c22ff1 18%, transparent)
+    );
+}
+
+body[data-page="leaderboard"] .leaderboard-table tbody tr:hover {
+    background: color-mix(in srgb, var(--primary-accent-color) 8%, transparent);
+}
+
+body[data-page="leaderboard"] .leaderboard-table tbody td:first-child {
+    font-family: var(--header-font);
+    font-weight: 700;
+}
+
+body[data-page="leaderboard"]
+    .leaderboard-table
+    tbody
+    tr:nth-child(1)
+    td:first-child {
+    color: #62db3d;
+}
+
+body[data-page="leaderboard"]
+    .leaderboard-table
+    tbody
+    tr:nth-child(2)
+    td:first-child {
+    color: #4273b5;
+}
+
+body[data-page="leaderboard"]
+    .leaderboard-table
+    tbody
+    tr:nth-child(3)
+    td:first-child {
+    color: #c22ff1;
+}
+
+body[data-page="leaderboard"] .feed-panel h3 {
+    margin: 0;
+    color: #223759;
+}
+
+body[data-page="leaderboard"] .feed-panel {
+    border-color: color-mix(in srgb, #4273b5 55%, #909090);
+    background:
+        linear-gradient(
+            165deg,
+            color-mix(in srgb, #223759 11%, transparent),
+            color-mix(in srgb, var(--input-background) 94%, transparent) 42%
+        ),
+        var(--input-background);
+}
+
+body[data-page="leaderboard"] .feed-panel li:nth-child(odd) {
+    border-color: color-mix(in srgb, #18556d 50%, #a0a0a0);
+}
+
+body[data-page="leaderboard"] .feed-panel li:nth-child(even) {
+    border-color: color-mix(in srgb, #c22ff1 45%, #a0a0a0);
+}
+
+body[data-style="dark"][data-page="overview"] .grid-three .mathathon-card h3,
+body[data-style="dark"][data-page="leaderboard"] .feed-panel h3,
+body[data-style="dark"][data-page="leaderboard"] .updated-label {
+    color: #90e979;
+}
+
+.mathathon-main h1,
+.mathathon-main h2,
+.mathathon-main h3 {
+    margin: 0;
+}
+
+.mathathon-card {
+    border: var(--button-border);
+    background: color-mix(in srgb, var(--card-background) 88%, transparent);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.mathathon-card p {
+    margin: 0;
+}
+
+.grid-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.grid-three {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.stat-pill {
+    background: var(--input-background);
+    border: var(--button-border);
+    border-radius: 0.9rem;
+    padding: 0.8rem;
+}
+
+.stat-pill .value {
+    font-family: var(--header-font);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.stat-pill .label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.editor-main {
+    width: min(100%, var(--main-max-width));
+    height: calc(var(--full-height) - var(--header-height) - 0.8rem);
+    min-height: 720px;
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.4rem;
+    border: var(--card-border);
+    box-shadow: var(--card-shadow);
+    background: color-mix(in srgb, var(--card-background) 85%, transparent);
+}
+
+.editor-main.fullscreen {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: 340px minmax(0, 1fr);
+    align-self: stretch;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+.editor-main.fullscreen .editor-sidebar {
+    order: 1;
+    min-height: 0;
+    overflow: auto;
+    border-radius: 0;
+}
+
+.editor-main.fullscreen .editor-stage {
+    order: 2;
+    min-height: 0;
+}
+
+.editor-sidebar {
+    border: var(--button-border);
+    border-radius: 1rem;
+    padding: 0.9rem;
+    overflow: auto;
+    display: grid;
+    gap: 0.65rem;
+    align-content: start;
+    background: color-mix(in srgb, var(--input-background) 72%, transparent);
+}
+
+.editor-sidebar h2,
+.editor-sidebar h3 {
+    margin: 0;
+}
+
+.editor-sidebar label {
+    font-family: var(--header-font);
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.editor-sidebar input,
+.editor-sidebar select,
+.editor-sidebar textarea,
+.editor-sidebar button {
+    width: 100%;
+    border: var(--button-border);
+    border-radius: 0.7rem;
+    background: var(--input-background);
+    color: var(--input-color);
+    font-size: 0.92rem;
+    padding: 0.55rem 0.6rem;
+}
+
+.editor-sidebar textarea {
+    min-height: 96px;
+    resize: vertical;
+    font-family:
+        ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+        monospace;
+}
+
+.editor-sidebar button {
+    cursor: pointer;
+    font-family: var(--header-font);
+    font-weight: 700;
+}
+
+.editor-sidebar button.accent {
+    background: var(--primary-accent-color);
+    color: var(--on-primary-accent-color);
+}
+
+.editor-sidebar .button-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+}
+
+.runtime-status,
+.save-status {
+    border: var(--button-border);
+    border-radius: 0.65rem;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.87rem;
+    background: color-mix(in srgb, var(--input-background) 92%, transparent);
+}
+
+.editor-stage {
+    border: var(--button-border);
+    border-radius: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 0;
+    min-height: 0;
+    background: color-mix(in srgb, var(--input-background) 66%, transparent);
+}
+
+.editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--button-border);
+    background: color-mix(in srgb, var(--input-background) 74%, transparent);
+    padding: 0.55rem 0.8rem;
+    font-family: var(--header-font);
+}
+
+.editor-toolbar .meta {
+    font-size: 0.88rem;
+    opacity: 0.8;
+}
+
+.editor-root {
+    display: flex;
+    align-items: stretch;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.editor-root > .monaco-editor {
+    flex: 1 1 auto;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.editor-root .monaco-editor,
+.editor-root .monaco-editor .overflow-guard,
+.editor-root .monaco-editor .monaco-scrollable-element {
+    height: 100% !important;
+}
+
+.output-panel {
+    border-top: var(--button-border);
+    background: color-mix(in srgb, var(--input-background) 70%, transparent);
+}
+
+.output-panel .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.7rem;
+    font-family: var(--header-font);
+    border-bottom: var(--button-border);
+}
+
+.output-panel .run-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 0.35rem;
+    font-size: 0.82rem;
+    color: var(--primary-accent-color);
+}
+
+.output-panel .run-indicator[hidden] {
+    display: none !important;
+}
+
+.output-panel .run-indicator .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    animation: run-dot-pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes run-dot-pulse {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.output-panel .run-inline {
+    appearance: none;
+    width: auto;
+    min-width: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--card-text-color);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--header-font);
+    font-size: 0.72rem;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+.output-panel .run-inline:hover {
+    color: var(--primary-accent-color);
+    box-shadow: none;
+    background: transparent;
+}
+
+.output-panel .run-inline:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.output-panel .run-inline:focus,
+.output-panel .run-inline:focus-visible {
+    box-shadow: none;
+    outline: none;
+}
+
+.output-panel pre {
+    margin: 0;
+    min-height: 170px;
+    max-height: 240px;
+    overflow: auto;
+    padding: 0.7rem;
+    white-space: pre-wrap;
+    font-size: 0.89rem;
+    line-height: 1.45;
+    font-family:
+        ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+        monospace;
+}
+
+.leaderboard-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 1rem;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--button-border);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    background: var(--card-background);
+}
+
+.leaderboard-table thead {
+    background: color-mix(
+        in srgb,
+        var(--primary-accent-color) 18%,
+        transparent
+    );
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    text-align: left;
+    padding: 0.65rem;
+    border-bottom: var(--button-border);
+}
+
+.feed-panel {
+    border: var(--button-border);
+    border-radius: 0.8rem;
+    background: var(--input-background);
+    padding: 0.8rem;
+    display: grid;
+    gap: 0.6rem;
+    align-content: start;
+}
+
+.feed-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.feed-panel li {
+    border: var(--button-border);
+    border-radius: 0.55rem;
+    padding: 0.45rem 0.55rem;
+    background: color-mix(in srgb, var(--card-background) 90%, transparent);
+}
+
+.inline-link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.inline-link-list a {
+    border: var(--button-border);
+    border-radius: 999px;
+    padding: 0.4rem 0.7rem;
+    text-decoration: none;
+    background: var(--input-background);
+    color: var(--card-text-color);
+    font-family: var(--header-font);
+    font-size: 0.9rem;
+}
+
+.inline-link-list a:hover {
+    box-shadow: 0 0 0 2px
+        color-mix(in srgb, var(--primary-accent-color) 28%, transparent);
+}
+
+body[data-style="dark"] .editor-main,
+body[data-style="dark"] .mathathon-card,
+body[data-style="dark"] .leaderboard-table {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
+}
