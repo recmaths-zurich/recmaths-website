@@ -1,31 +1,42 @@
-
-<!DOCTYPE html>
-<html lang="en" style="overscroll-behavior: contain;">
-
+<!doctype html>
+<html lang="en" style="overscroll-behavior: contain">
     <!-- SET title=PathMath | RecMaths Zürich -->
     <!-- SET description=a number making game by recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
         <title>PathMath | RecMaths Zürich</title>
-        <meta name="description" content="a number making game by recmaths.ch">
-        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
-        <link rel="stylesheet" href="../../default_style.css">
-        
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+        <meta
+            name="description"
+            content="a number making game by recmaths.ch"
+        />
+        <link
+            rel="icon"
+            type="image/svg"
+            href="../../assets/logo/favicon.ico"
+        />
+        <link rel="stylesheet" href="../../default_style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <!-- END -->
 
     <body>
-
         <!-- BEGIN default_header -->
         <header class="at-top">
             <div class="header-content">
                 <a href="../../" class="logo-container">
-                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <img
+                        src="../../assets/logo/logo.svg"
+                        class="logo"
+                        alt="Recreational Math Zürich Logo"
+                    />
                     <div class="logo-text" href="../../">RecMaths</div>
                 </a>
                 <div class="link-island">
@@ -33,7 +44,7 @@
                         <span lang="en">Join</span>
                         <span lang="de">Beitreten</span>
                     </a>
-        
+
                     <a class="change-lang-button"></a>
                 </div>
                 <div class="hamburger-icon" tabindex="0">
@@ -43,89 +54,180 @@
                 </div>
             </div>
             <div class="header-drop-menu">
-                <a lang="en" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">Join Club</a>
-        
-                <a lang="de" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">Beitreten</a>
-        
+                <a
+                    lang="en"
+                    href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                    >Join Club</a
+                >
+
+                <a
+                    lang="de"
+                    href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                    >Beitreten</a
+                >
+
                 <a class="change-lang-button"></a>
             </div>
         </header>
         <div class="header-placeholder"></div>
-        
+
         <script>
             {
-                const changeLangButtons = document.querySelectorAll(".change-lang-button")
+                const changeLangButtons = document.querySelectorAll(
+                    ".change-lang-button",
+                );
                 for (const changeLangButton of changeLangButtons) {
-                    changeLangButton.onclick = event => {
-                        const languages = ["en", "de"]
-                        const currStyle = localStorage.getItem("lang") || languages[0]
-                        const nextIndex = (languages.indexOf(currStyle) + 1) % languages.length
-                        const nextNextIndex = (languages.indexOf(currStyle) + 2) % languages.length
-                        localStorage.setItem("lang", languages[nextIndex])
-                        document.documentElement.lang = localStorage.getItem("lang")
-        
-                        changeLangButton.animate([
-                            { transform: "rotateX(0deg)" },
-                            { transform: "rotateX(360deg)" }
-                        ], {
-                            easing: "ease-in-out",
-                            duration: 350,
-                            fill: "forwards"
-                        })
-        
-                        event.preventDefault()
-                    }
+                    changeLangButton.onclick = (event) => {
+                        const languages = ["en", "de"];
+                        const currStyle =
+                            localStorage.getItem("lang") || languages[0];
+                        const nextIndex =
+                            (languages.indexOf(currStyle) + 1) %
+                            languages.length;
+                        const nextNextIndex =
+                            (languages.indexOf(currStyle) + 2) %
+                            languages.length;
+                        localStorage.setItem("lang", languages[nextIndex]);
+                        document.documentElement.lang =
+                            localStorage.getItem("lang");
+
+                        changeLangButton.animate(
+                            [
+                                { transform: "rotateX(0deg)" },
+                                { transform: "rotateX(360deg)" },
+                            ],
+                            {
+                                easing: "ease-in-out",
+                                duration: 350,
+                                fill: "forwards",
+                            },
+                        );
+
+                        event.preventDefault();
+                    };
                 }
-        
-                const header = document.querySelector("header")
-                const hamburger = document.querySelector(".hamburger-icon")
-                const headerDropMenu = document.querySelector(".header-drop-menu")
-        
+
+                const header = document.querySelector("header");
+                const hamburger = document.querySelector(".hamburger-icon");
+                const headerDropMenu =
+                    document.querySelector(".header-drop-menu");
+
                 hamburger.onclick = () => {
-                    header.classList.toggle("expanded")
-                    hamburger.classList.toggle("x")
-                    headerDropMenu.classList.toggle("visible")
-                }
-        
-                const getLastUrlBit = href => href.split("/").filter(s => s).slice(-1)[0]
-                for (const a of document.querySelectorAll("header .link-island a")) {
+                    header.classList.toggle("expanded");
+                    hamburger.classList.toggle("x");
+                    headerDropMenu.classList.toggle("visible");
+                };
+
+                const getLastUrlBit = (href) =>
+                    href
+                        .split("/")
+                        .filter((s) => s)
+                        .slice(-1)[0];
+                for (const a of document.querySelectorAll(
+                    "header .link-island a",
+                )) {
                     if (getLastUrlBit(a.href) == getLastUrlBit(location.href)) {
-                        a.classList.add("current")
+                        a.classList.add("current");
                     }
                 }
-        
+
                 addEventListener("scroll", () => {
                     // on bouncy browser views (e.g. latest safari),
                     // window.scrollY can be negative during the bouncing animation!
-        
+
                     if (window.scrollY <= 0) {
-                        header.classList.add("at-top")
-                        headerDropMenu.classList.add("at-top")
+                        header.classList.add("at-top");
+                        headerDropMenu.classList.add("at-top");
                     } else {
-                        header.classList.remove("at-top")
-                        headerDropMenu.classList.remove("at-top")
+                        header.classList.remove("at-top");
+                        headerDropMenu.classList.remove("at-top");
                     }
-                })
+                });
             }
         </script>
         <!-- END -->
-        
+
         <main>
-            <h2 style="text-align: center; font-family: monospace;">
+            <h2 style="text-align: center; font-family: monospace">
                 <output id="pathmath-time-left-output"></output>
-                <div style="height: 1px; width: .3em; display: inline-block"></div>
+                <div
+                    style="height: 1px; width: 0.3em; display: inline-block"
+                ></div>
                 Score: <output id="pathmath-score-output"></output>
             </h2>
             <div class="pathmath-global" id="pathmath-global">
                 <div class="pathmath-container">
                     <div class="pathmath-grid" id="pathmath-grid">
-                        <canvas class="pathmath-grid-background" id="pathmath-grid-background"></canvas>
+                        <canvas
+                            class="pathmath-grid-background"
+                            id="pathmath-grid-background"
+                        ></canvas>
                     </div>
-                    <div class="pathmath-goal-container" id="pathmath-goal-container">
+                    <div
+                        class="pathmath-goal-container"
+                        id="pathmath-goal-container"
+                    >
                         <div class="pathmath-goal" id="goal-output"></div>
                     </div>
                 </div>
+                <div class="pathmath-overlay" id="pathmath-start-screen">
+                    <div class="pathmath-overlay-card">
+                        <h3>PathMath</h3>
+                        <p>
+                            Build a path to hit the target number. You have 3
+                            minutes.
+                        </p>
+                        <button
+                            class="pathmath-button"
+                            id="pathmath-start-button"
+                        >
+                            Start Game
+                        </button>
+                    </div>
+                </div>
+                <div class="pathmath-overlay hidden" id="pathmath-end-screen">
+                    <div class="pathmath-overlay-card">
+                        <h3>Time's Up</h3>
+                        <p>Your run is complete. Here's your breakdown:</p>
+                        <div
+                            class="pathmath-breakdown"
+                            id="pathmath-score-breakdown"
+                        ></div>
+                        <div class="pathmath-end-actions">
+                            <button
+                                class="pathmath-button"
+                                id="pathmath-restart-button"
+                            >
+                                Play Again
+                            </button>
+                            <button
+                                class="pathmath-button pathmath-button-secondary"
+                                id="pathmath-share-button"
+                            >
+                                Share Highscore
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr />
+            <h2>
+                <span lang="en">How To Play</span>
+                <span lang="de">So Spielst Du</span>
+            </h2>
+            <p>
+                <span lang="en"
+                    >Drag over neighboring numbers to make a path and hit the
+                    target. Straight moves mean + or -, diagonal moves multiply,
+                    and each cell can only be used once per path.</span
+                >
+                <span lang="de"
+                    >Ziehe ueber benachbarte Zahlen, um einen Pfad zu bilden und
+                    die Zielzahl zu treffen. Gerade Zuege bedeuten + oder -,
+                    diagonale Zuege multiplizieren, und jede Zelle darf pro Pfad
+                    nur einmal verwendet werden.</span
+                >
+            </p>
         </main>
 
         <!-- SET js_version=3 -->
@@ -144,13 +246,13 @@
         <!-- END -->
 
         <style>
-            
             .pathmath-global {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 font-family: var(--header-font);
-                
+                position: relative;
+
                 --grid-cell-size-px: 20px;
                 --mark-color: #73ff8c;
                 --mark-background-color: white;
@@ -158,6 +260,10 @@
                 --pathmath-border: none;
 
                 --pathmath-border-width: 3px;
+                --pm-color-1: #90e979;
+                --pm-color-2: #62db3d;
+                --pm-color-3: #c22ff1;
+                --pm-color-4: #4273b5;
             }
 
             body[data-style="dark"] .pathmath-global {
@@ -175,12 +281,131 @@
                 display: grid;
                 grid-template-columns: 2fr 1fr;
                 gap: 1em;
-                
+
                 /* padding: calc(var(--grid-cell-size-px) * 0.3);
                 padding-top: calc(var(--grid-cell-size-px) * 1.2); */
                 border-radius: calc(var(--grid-cell-size-px) * 0.3);
                 background: var(--pathmath-background);
                 border: var(--pathmath-border);
+            }
+
+            .pathmath-overlay {
+                position: absolute;
+                inset: 0;
+                z-index: 3000;
+                display: grid;
+                place-items: center;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(2px);
+            }
+
+            .pathmath-overlay.hidden {
+                display: none;
+            }
+
+            body[data-style="dark"] .pathmath-overlay {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            .pathmath-overlay-card {
+                width: min(480px, 100%);
+                border-radius: 16px;
+                padding: 1.2rem;
+                box-shadow: 0 18px 50px rgba(66, 115, 181, 0.25);
+                border: 2px solid var(--pm-color-4);
+                border-top: 6px solid var(--pm-color-3);
+                background: var(--card-background);
+                animation: pathmath-card-in 260ms ease-out;
+            }
+
+            .pathmath-overlay-card h3 {
+                margin: 0 0 0.6rem;
+                font-size: 1.5rem;
+            }
+
+            .pathmath-overlay-card p {
+                margin: 0 0 1rem;
+                opacity: 0.9;
+            }
+
+            .pathmath-button {
+                border: 0;
+                border-radius: 12px;
+                padding: 0.66rem 1rem;
+                font-weight: 700;
+                cursor: pointer;
+                background: var(--pm-color-2);
+                color: #101810;
+                transition:
+                    transform 120ms ease,
+                    filter 120ms ease;
+            }
+
+            .pathmath-button:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.04);
+            }
+
+            .pathmath-button:active {
+                transform: translateY(0);
+            }
+
+            .pathmath-button-secondary {
+                background: var(--pm-color-3);
+                color: white;
+            }
+
+            .pathmath-end-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+            }
+
+            .pathmath-breakdown {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 0.35rem 0.8rem;
+                margin-bottom: 1rem;
+                font-family: monospace;
+                font-size: 1rem;
+            }
+
+            .pathmath-breakdown .value {
+                font-weight: 700;
+                text-align: right;
+                color: var(--pm-color-4);
+            }
+
+            .pathmath-help-section {
+                max-width: min(500px, 100%);
+                margin: 0.9rem auto 0;
+            }
+
+            .pathmath-help-heading {
+                margin: 0 0 0.35rem;
+                text-align: center;
+                font-size: 1.1rem;
+                color: var(--pm-color-4);
+            }
+
+            .pathmath-help-paragraph {
+                margin: 0;
+                text-align: center;
+                font-size: 0.95rem;
+                line-height: 1.4;
+                color: var(--card-text-color);
+            }
+
+            @keyframes pathmath-card-in {
+                from {
+                    transform: translateY(8px) scale(0.98);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+                }
             }
 
             #pathmath-progressbar {
@@ -193,7 +418,7 @@
                 border-bottom: var(--pathmath-border);
                 background-color: var(--card-background);
             }
-            
+
             #pathmath-progressbar-inner {
                 position: absolute;
                 left: 0;
@@ -231,7 +456,8 @@
                 align-items: center;
                 background-color: var(--mark-background-color);
                 color: var(--card-text-color);
-                border: var(--pathmath-border-width) solid var(--card-text-color);
+                border: var(--pathmath-border-width) solid
+                    var(--card-text-color);
                 border-radius: 50%;
                 font-weight: normal;
 
@@ -263,15 +489,16 @@
                 align-items: center;
                 background-color: var(--mark-background-color);
                 color: var(--card-text-color);
-                border: var(--pathmath-border-width) solid var(--card-text-color);
+                border: var(--pathmath-border-width) solid
+                    var(--card-text-color);
                 font-weight: bold;
                 font-size: calc(var(--grid-cell-size-px) * 0.5);
                 background-color: var(--card-background);
                 color: var(--card-text-color);
             }
-            
+
             /* when displaying on mobile, switch to 1 column */
-            @media (max-width: 600px) {    
+            @media (max-width: 600px) {
                 .pathmath-container {
                     grid-template-columns: 1fr;
                 }
@@ -290,7 +517,6 @@
                     order: 2;
                 }
             }
-
         </style>
 
         <!-- BEGIN default_footer -->
@@ -319,15 +545,24 @@
                         <span lang="en">Socials</span>
                         <span lang="de">Medien</span>
                     </div>
-                    <a class="group-item" href="https://www.instagram.com/recmaths.zurich/">
+                    <a
+                        class="group-item"
+                        href="https://www.instagram.com/recmaths.zurich/"
+                    >
                         <span lang="en">Instagram</span>
                         <span lang="de">Instagram</span>
                     </a>
-                    <a class="group-item" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
+                    <a
+                        class="group-item"
+                        href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                    >
                         <span lang="en">WhatsApp</span>
                         <span lang="de">WhatsApp</span>
                     </a>
-                    <a class="group-item" href="https://github.com/recmaths-zurich/recmaths-website">
+                    <a
+                        class="group-item"
+                        href="https://github.com/recmaths-zurich/recmaths-website"
+                    >
                         <span lang="en">GitHub</span>
                         <span lang="de">GitHub</span>
                     </a>
@@ -337,7 +572,10 @@
                         <span lang="en">Contact</span>
                         <span lang="de">Kontakt</span>
                     </div>
-                    <a class="group-item" href="https://www.instagram.com/recmaths.zurich/">
+                    <a
+                        class="group-item"
+                        href="https://www.instagram.com/recmaths.zurich/"
+                    >
                         <span lang="en">Instagram Chat</span>
                         <span lang="de">Instagram Chat</span>
                     </a>
@@ -365,12 +603,26 @@
                     </a>
                 </div>
             </div>
-            <hr>
+            <hr />
             <div class="footer-text">
-                <span lang="en" class="text">Made with ❤️ for RecMaths Zurich (<output data-fill="footer-year"></output>)</span>
-                <span lang="de" class="text">Erstellt mit ❤️ für RecMaths Zürich (<output data-fill="footer-year"></output>)</span>
+                <span lang="en" class="text"
+                    >Made with ❤️ for RecMaths Zurich (<output
+                        data-fill="footer-year"
+                    ></output
+                    >)</span
+                >
+                <span lang="de" class="text"
+                    >Erstellt mit ❤️ für RecMaths Zürich (<output
+                        data-fill="footer-year"
+                    ></output
+                    >)</span
+                >
                 <script>
-                    Array.from(document.querySelectorAll('[data-fill="footer-year"]')).forEach(e => e.textContent = new Date().getFullYear())
+                    Array.from(
+                        document.querySelectorAll('[data-fill="footer-year"]'),
+                    ).forEach(
+                        (e) => (e.textContent = new Date().getFullYear()),
+                    );
                 </script>
                 <button class="theme-changer" id="change-style-a">
                     <span lang="en">Change Theme</span>
@@ -378,23 +630,25 @@
                 </button>
             </div>
         </footer>
-        
+
         <script>
-            document.getElementById("change-style-a").onclick = event => {
-                const styles = ["light", "dark"]
-                const currStyle = localStorage.getItem("style") || "light"
-                const nextIndex = (styles.indexOf(currStyle) + 1) % styles.length
-                localStorage.setItem("style", styles[nextIndex])
-                document.body.dataset.style = localStorage.getItem("style") || "light"
-        
-                event.preventDefault()
-            }
+            document.getElementById("change-style-a").onclick = (event) => {
+                const styles = ["light", "dark"];
+                const currStyle = localStorage.getItem("style") || "light";
+                const nextIndex =
+                    (styles.indexOf(currStyle) + 1) % styles.length;
+                localStorage.setItem("style", styles[nextIndex]);
+                document.body.dataset.style =
+                    localStorage.getItem("style") || "light";
+
+                event.preventDefault();
+            };
         </script>
         <!-- END -->
 
         <!-- BEGIN game_of_life_background -->
         <canvas id="game-of-life-background"></canvas>
-        
+
         <style>
             #game-of-life-background {
                 width: 100%;
@@ -403,237 +657,300 @@
                 z-index: 0;
             }
         </style>
-        
+
         <script>
-        {
-            const gridSize = {x: 40, y: 100}
-            const onColor = "rgba(0, 0, 0, 1)"
-            const offColor = "rgba(255, 255, 255, 0.9)"
-        
-            const TRANSPARENCY = 0.2
-        
-            const logoColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131", "#4273b5", "#223759", "#080d15", "#020305"]
-            const randomLogoOffset = Math.floor(Math.random() * logoColors.length)
-        
-            const greyScales = Array.from({length: gridSize.x * gridSize.y}).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`)
-        
-            function randomLogoColor() {
-                const randomIndex = Math.floor(Math.random() * logoColors.length)
-                return logoColors[randomIndex]
-            }
-        
-            let canvas = document.getElementById("game-of-life-background")
-            let context = canvas.getContext("2d")
-        
-            let grid = new Uint8Array(gridSize.x * gridSize.y)
-        
-            function setGrid(grid, x, y, on=true) {
-                const i = (y * gridSize.x) + x
-                grid[i] = on ? 1 : 0
-            }
-        
-            function getGrid(grid, x, y) {
-                if (x < 0 || y < 0 || x > gridSize.x - 1 || y > gridSize.y) {
-                    return false
+            {
+                const gridSize = { x: 40, y: 100 };
+                const onColor = "rgba(0, 0, 0, 1)";
+                const offColor = "rgba(255, 255, 255, 0.9)";
+
+                const TRANSPARENCY = 0.2;
+
+                const logoColors = [
+                    "#90e979",
+                    "#62db3d",
+                    "#18556d",
+                    "#c22ff1",
+                    "#201131",
+                    "#4273b5",
+                    "#223759",
+                    "#080d15",
+                    "#020305",
+                ];
+                const randomLogoOffset = Math.floor(
+                    Math.random() * logoColors.length,
+                );
+
+                const greyScales = Array.from({
+                    length: gridSize.x * gridSize.y,
+                }).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`);
+
+                function randomLogoColor() {
+                    const randomIndex = Math.floor(
+                        Math.random() * logoColors.length,
+                    );
+                    return logoColors[randomIndex];
                 }
-        
-                const i = (y * gridSize.x) + x
-                return grid[i] == 1
-            }
-        
-            const neighbourDirections = [
-                [1, 1], [1, 0], [1, -1], [0, -1],
-                [0, 1], [-1, 1], [-1, 0], [-1, -1]
-            ]
-        
-            function getSorroundingSum(grid, x, y) {
-                let sum = 0
-                for (const [dx, dy] of neighbourDirections) {
-                    sum += getGrid(grid, x + dx, y + dy)
+
+                let canvas = document.getElementById("game-of-life-background");
+                let context = canvas.getContext("2d");
+
+                let grid = new Uint8Array(gridSize.x * gridSize.y);
+
+                function setGrid(grid, x, y, on = true) {
+                    const i = y * gridSize.x + x;
+                    grid[i] = on ? 1 : 0;
                 }
-                return sum
-            }
-        
-            function applyGridRules() {
-                const newGrid = new Uint8Array(grid.length)
-                for (let x = 0; x < gridSize.x; x++) {
-                    for (let y = 0; y < gridSize.y; y++) {
-                        const sorroundingSum = getSorroundingSum(grid, x, y)
-                        if (getGrid(grid, x, y)) {
-                            if (sorroundingSum < 2) {
-                                // setGrid(newGrid, x, y, false)
-                            } else if (sorroundingSum > 3) {
-                                // setGrid(newGrid, x, y, false)
+
+                function getGrid(grid, x, y) {
+                    if (
+                        x < 0 ||
+                        y < 0 ||
+                        x > gridSize.x - 1 ||
+                        y > gridSize.y
+                    ) {
+                        return false;
+                    }
+
+                    const i = y * gridSize.x + x;
+                    return grid[i] == 1;
+                }
+
+                const neighbourDirections = [
+                    [1, 1],
+                    [1, 0],
+                    [1, -1],
+                    [0, -1],
+                    [0, 1],
+                    [-1, 1],
+                    [-1, 0],
+                    [-1, -1],
+                ];
+
+                function getSorroundingSum(grid, x, y) {
+                    let sum = 0;
+                    for (const [dx, dy] of neighbourDirections) {
+                        sum += getGrid(grid, x + dx, y + dy);
+                    }
+                    return sum;
+                }
+
+                function applyGridRules() {
+                    const newGrid = new Uint8Array(grid.length);
+                    for (let x = 0; x < gridSize.x; x++) {
+                        for (let y = 0; y < gridSize.y; y++) {
+                            const sorroundingSum = getSorroundingSum(
+                                grid,
+                                x,
+                                y,
+                            );
+                            if (getGrid(grid, x, y)) {
+                                if (sorroundingSum < 2) {
+                                    // setGrid(newGrid, x, y, false)
+                                } else if (sorroundingSum > 3) {
+                                    // setGrid(newGrid, x, y, false)
+                                } else {
+                                    setGrid(newGrid, x, y, true);
+                                }
                             } else {
-                                setGrid(newGrid, x, y, true)
-                            }
-                        } else {
-                            if (sorroundingSum == 3) {
-                                setGrid(newGrid, x, y, true)
+                                if (sorroundingSum == 3) {
+                                    setGrid(newGrid, x, y, true);
+                                }
                             }
                         }
                     }
+                    grid = newGrid;
                 }
-                grid = newGrid
-            }
-        
-            function updateCanvas() {
-                context.clearRect(0, 0, canvas.width, canvas.height)
-        
-                const cellWidth = canvas.width / gridSize.x
-                const cellHeight = cellWidth // canvas.height / gridSize.y
-        
-                context.globalAlpha = TRANSPARENCY
-                for (let x = 0; x < gridSize.x; x++) {
-                    for (let y = 0; y < gridSize.y; y++) {
-                        const value = getGrid(grid, x, y)
-                        if (value) {
-                            context.fillStyle = logoColors[(y * gridSize.x + x + randomLogoOffset) % logoColors.length]
-                        } else {
-                            context.fillStyle = greyScales[(y * gridSize.x + x) % greyScales.length]
+
+                function updateCanvas() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const cellWidth = canvas.width / gridSize.x;
+                    const cellHeight = cellWidth; // canvas.height / gridSize.y
+
+                    context.globalAlpha = TRANSPARENCY;
+                    for (let x = 0; x < gridSize.x; x++) {
+                        for (let y = 0; y < gridSize.y; y++) {
+                            const value = getGrid(grid, x, y);
+                            if (value) {
+                                context.fillStyle =
+                                    logoColors[
+                                        (y * gridSize.x +
+                                            x +
+                                            randomLogoOffset) %
+                                            logoColors.length
+                                    ];
+                            } else {
+                                context.fillStyle =
+                                    greyScales[
+                                        (y * gridSize.x + x) % greyScales.length
+                                    ];
+                            }
+
+                            context.fillRect(
+                                x * cellWidth,
+                                y * cellHeight,
+                                cellWidth,
+                                cellHeight,
+                            );
                         }
-        
-                        context.fillRect(
-                            x * cellWidth,
-                            y * cellHeight,
-                            cellWidth,
-                            cellHeight
-                        )
+                    }
+                    context.globalAlpha = 1;
+                }
+
+                const GUN =
+                    "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX";
+
+                const gunOffset = { x: 2, y: 2 };
+                const gunLines = GUN.split("/");
+
+                for (let i = 0; i < gunLines.length; i++) {
+                    for (let j = 0; j < gunLines[i].length; j++) {
+                        if (gunLines[i][j] == "X") {
+                            setGrid(
+                                grid,
+                                j + gunOffset.x,
+                                i + gunOffset.y,
+                                true,
+                            );
+                        }
                     }
                 }
-                context.globalAlpha = 1
-            }
-        
-            const GUN = "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX"
-        
-            const gunOffset = {x: 2, y: 2}
-            const gunLines = GUN.split("/")
-        
-            for (let i = 0; i < gunLines.length; i++) {
-                for (let j = 0; j < gunLines[i].length; j++) {
-                    if (gunLines[i][j] == "X") {
-                        setGrid(grid, j + gunOffset.x, i + gunOffset.y, true)
+
+                const urlParams = new URLSearchParams(location.search);
+                const highSpeedModeActive = urlParams.has("highspeed");
+
+                const updateIntervalMs = highSpeedModeActive ? 100 : 1000;
+
+                let loopTimeout = null;
+
+                function loop() {
+                    updateCanvas();
+                    applyGridRules();
+
+                    loopTimeout = setTimeout(loop, updateIntervalMs);
+                }
+
+                loop();
+
+                canvas.addEventListener("click", (event) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const clickPos = {
+                        x: event.clientX - rect.left,
+                        y: event.clientY - rect.top,
+                    };
+
+                    const gridPos = {
+                        x: Math.floor(clickPos.x / (canvas.width / gridSize.x)),
+                        y: Math.floor(clickPos.y / (canvas.width / gridSize.x)),
+                    };
+
+                    const value = getGrid(grid, gridSize.x, gridSize.y);
+                    setGrid(grid, gridPos.x, gridPos.y, !value);
+
+                    if (loopTimeout !== null) {
+                        clearTimeout(loopTimeout);
                     }
+
+                    loopTimeout = setTimeout(loop, updateIntervalMs);
+
+                    updateCanvas();
+                });
+
+                function resizeCanvas() {
+                    canvas.width = canvas.clientWidth;
+                    canvas.height = canvas.clientHeight;
+                    updateCanvas();
                 }
+
+                resizeCanvas();
+                window.addEventListener("resize", resizeCanvas);
             }
-        
-            const urlParams = new URLSearchParams(location.search)
-            const highSpeedModeActive = urlParams.has("highspeed")
-        
-            const updateIntervalMs = highSpeedModeActive ? 100 : 1000
-        
-            let loopTimeout = null
-        
-            function loop() {
-                updateCanvas()
-                applyGridRules()
-        
-                loopTimeout = setTimeout(loop, updateIntervalMs)
-            }
-        
-            loop()
-        
-            canvas.addEventListener("click", event => {
-                const rect = canvas.getBoundingClientRect()
-                const clickPos = {
-                    x: event.clientX - rect.left,
-                    y: event.clientY - rect.top
-                }
-        
-                const gridPos = {
-                    x: Math.floor(clickPos.x / (canvas.width / gridSize.x)),
-                    y: Math.floor(clickPos.y / (canvas.width / gridSize.x)),
-                }
-        
-                const value = getGrid(grid, gridSize.x, gridSize.y)
-                setGrid(grid, gridPos.x, gridPos.y, !value)
-                
-                if (loopTimeout !== null) {
-                    clearTimeout(loopTimeout)
-                }
-        
-                loopTimeout = setTimeout(loop, updateIntervalMs)
-        
-                updateCanvas()
-            })
-            
-            function resizeCanvas() {
-                canvas.width = canvas.clientWidth
-                canvas.height = canvas.clientHeight
-                updateCanvas()
-            }
-        
-            resizeCanvas()
-            window.addEventListener("resize", resizeCanvas)
-        }
         </script>
         <!-- END -->
-        
+
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = "../../"
-        
+            const URL_BASE_PATH = "../../";
+
             {
                 // update theme
                 if (localStorage.getItem("style") == null) {
-                    const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-                    localStorage.setItem("style", prefersDarkMode ? "dark" : "light")
+                    const prefersDarkMode =
+                        window.matchMedia &&
+                        window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches;
+                    localStorage.setItem(
+                        "style",
+                        prefersDarkMode ? "dark" : "light",
+                    );
                 }
-                document.body.dataset.style = localStorage.getItem("style")
-        
+                document.body.dataset.style = localStorage.getItem("style");
+
                 // update language
                 if (localStorage.getItem("lang") == null) {
-                    const userDefaultLang = navigator.language || navigator.userLanguage
+                    const userDefaultLang =
+                        navigator.language || navigator.userLanguage;
                     if (userDefaultLang.startsWith("de")) {
-                        localStorage.setItem("lang", "de")
+                        localStorage.setItem("lang", "de");
                     } else {
-                        localStorage.setItem("lang", "en")
+                        localStorage.setItem("lang", "en");
                     }
                 }
-                document.documentElement.lang = localStorage.getItem("lang")
-        
-        
+                document.documentElement.lang = localStorage.getItem("lang");
+
                 // replace CSS "100vh" with actual inner height in px
                 // (-1 to prevent inaccuracies in some browsers)
                 const updateInnerHeight = () => {
-                    const height = window.screen?.availHeight || window.innerHeight
-                    document.body.style.setProperty("--full-height", `${height - 1}px`)
-                }
-                updateInnerHeight()
-                addEventListener("resize", updateInnerHeight)
-        
+                    const height =
+                        window.screen?.availHeight || window.innerHeight;
+                    document.body.style.setProperty(
+                        "--full-height",
+                        `${height - 1}px`,
+                    );
+                };
+                updateInnerHeight();
+                addEventListener("resize", updateInnerHeight);
+
                 // make smooth jump links work
-                for (const element of document.querySelectorAll(".smooth-jump")) {
-                    console.log(element)
-                    if (!element.dataset.jumpTo) continue
-                    const target = document.querySelector(element.dataset.jumpTo)
-                    if (!target) continue
+                for (const element of document.querySelectorAll(
+                    ".smooth-jump",
+                )) {
+                    console.log(element);
+                    if (!element.dataset.jumpTo) continue;
+                    const target = document.querySelector(
+                        element.dataset.jumpTo,
+                    );
+                    if (!target) continue;
                     element.addEventListener("click", () => {
                         target.scrollIntoView({
-                            behavior: "smooth"
-                        })
-                    })
+                            behavior: "smooth",
+                        });
+                    });
                 }
-        
+
                 // enable mobile debugging
-                const urlParams = new URLSearchParams(window.location.href)
+                const urlParams = new URLSearchParams(window.location.href);
                 if (urlParams.has("show_errors")) {
                     function log(msg) {
-                        const textNode = document.createElement("div")
-                        textNode.textContent = msg
-                        document.body.appendChild(textNode)
+                        const textNode = document.createElement("div");
+                        textNode.textContent = msg;
+                        document.body.appendChild(textNode);
                     }
-        
-                    log("Activated Alert Debug Mode")
-                    addEventListener("error", event => {
-                        log(`[L${event.lineno} C${event.colno}] ${event.message} (${event.filename})`)
-                    })
+
+                    log("Activated Alert Debug Mode");
+                    addEventListener("error", (event) => {
+                        log(
+                            `[L${event.lineno} C${event.colno}] ${event.message} (${event.filename})`,
+                        );
+                    });
                 }
             }
-        
-        console.log("Hi there! If you know how to open this console, why not join our next meetup?")
+
+            console.log(
+                "Hi there! If you know how to open this console, why not join our next meetup?",
+            );
         </script>
         <!-- END -->
     </body>
-
 </html>

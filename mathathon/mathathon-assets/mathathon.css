@@ -3,7 +3,12 @@ body.mathathon-shell {
     --main-max-width: 1400px;
     --header-max-width: 1280px;
     --footer-max-width: 1280px;
+    --terminal-error-color: #b42318;
     overflow-x: hidden;
+}
+
+body.mathathon-shell[data-style="dark"] {
+    --terminal-error-color: #ff7b72;
 }
 
 body[data-page="overview"],
@@ -713,6 +718,10 @@ body[data-style="dark"][data-page="leaderboard"] .updated-label {
     font-family:
         ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
         monospace;
+}
+
+.output-panel pre .stream-error {
+    color: var(--terminal-error-color);
 }
 
 .leaderboard-layout {

@@ -1,14 +1,10 @@
 ﻿(function () {
   const TEMPLATE = [
-    "def solve():",
-    "    n = int(input().strip())",
-    "    ans = 1",
-    "    for i in range(2, n + 1):",
-    "        ans *= i",
-    "    print(ans)",
-    "",
-    "if __name__ == '__main__':",
-    "    solve()",
+    "n = int(input().strip())",
+    "ans = 1",
+    "for i in range(2, n + 1):",
+    "    ans *= i",
+    "print(ans)",
   ].join("\n");
 
   const PYODIDE_INDEX = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/";
@@ -41,6 +37,29 @@
   function setOutput(text) {
     const el = document.getElementById("python-output");
     if (el) el.textContent = text;
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
+
+  function setOutputSegments(segments) {
+    const el = document.getElementById("python-output");
+    if (!el) return;
+
+    const html = segments
+      .filter((segment) => segment && segment.text)
+      .map((segment) =>
+        segment.isError
+          ? `<span class="stream-error">${escapeHtml(segment.text)}</span>`
+          : `<span>${escapeHtml(segment.text)}</span>`,
+      )
+      .join("\n\n");
+
+    el.innerHTML = html;
   }
 
   function setRunState(isRunning) {
@@ -295,22 +314,22 @@ _EXEC_STDERR = _stderr.getvalue()
       );
       const durationMs = Math.max(1, Math.round(performance.now() - startTime));
 
-      const chunks = [];
-      chunks.push(
-        result.stdout
-          ? "STDOUT\n" + result.stdout
-          : tr("STDOUT\n<empty>", "STDOUT\n<leer>"),
-      );
+      const segments = [];
+      segments.push({
+        text: result.stdout || tr("<empty>", "<leer>"),
+        isError: false,
+      });
       if (result.stderr) {
-        chunks.push("STDERR\n" + result.stderr);
+        segments.push({ text: result.stderr, isError: true });
       }
-      chunks.push(
-        tr(
+      segments.push({
+        text: tr(
           `Completed in ${durationMs} ms.`,
           `Abgeschlossen in ${durationMs} ms.`,
         ),
-      );
-      setOutput(chunks.join("\n\n"));
+        isError: false,
+      });
+      setOutputSegments(segments);
       setStatus(
         result.success
           ? tr(
@@ -324,12 +343,19 @@ _EXEC_STDERR = _stderr.getvalue()
       );
     } catch (error) {
       const durationMs = Math.max(1, Math.round(performance.now() - startTime));
-      setOutput(
-        `${String(error && error.message ? error.message : error)}\n\n${tr(
-          `Stopped after ${durationMs} ms.`,
-          `Nach ${durationMs} ms gestoppt.`,
-        )}`,
-      );
+      setOutputSegments([
+        {
+          text: String(error && error.message ? error.message : error),
+          isError: true,
+        },
+        {
+          text: tr(
+            `Stopped after ${durationMs} ms.`,
+            `Nach ${durationMs} ms gestoppt.`,
+          ),
+          isError: false,
+        },
+      ]);
       setStatus(
         tr(
           "Run stopped (timeout or runtime error)",
