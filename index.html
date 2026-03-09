@@ -340,17 +340,19 @@
                             const factor = sortedFactorObjs[i]
 
                             const textElement = document.createElement("span")
-                            textElement.textContent = factor.num
+                            textElement.textContent = factor.num.toString()
                             titleContainer.appendChild(textElement)
                             
                             if (factor.power != 1) {
                                 const powerElement = document.createElement("sup")
-                                powerElement.textContent = factor.power
+                                powerElement.textContent = factor.power.toString()
                                 titleContainer.appendChild(powerElement)
                             }
                             
                             if (i < sortedFactorObjs.length - 1) {
-                                titleContainer.textContent += "⋅"
+                                const dotElement = document.createElement("span")
+                                dotElement.textContent = "⋅"
+                                titleContainer.appendChild(dotElement)
                             }
                         }
                     }
