@@ -10,7 +10,7 @@
         <title>Recreational Maths Zürich</title>
         <meta name="description" content="Homepage of Recreational Math Zürich">
         <link rel="icon" type="image/svg" href="assets/logo/favicon.ico">
-        <link rel="stylesheet" href="default_style.css">
+        <link rel="stylesheet" href="default_style.css?t=1">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,6 +210,106 @@
                     Unser nächstes Event: <a href="events/mathathon/">Mathathon</a> (13.12.2025). <a href="events/mathathon/">Klick hier</a> um dabei zu sein.
                 </span>
             </p> -->
+
+            <h3>
+                <span lang="en">
+                    Upcoming Events
+                </span>
+                <span lang="de">
+                    Nächste Events
+                </span>
+            </h3>
+
+            <div class="next-events-grid" id="next-events-grid"></div>
+
+            <script>
+                const events = [
+                    ["Maths Meetup #24", "05.03.2026", "18:15-21:00", "ETH ML F 39", ""],
+                    ["Maths Meetup #25", "12.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Maths Meetup #26", "18.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Maths Meetup #27", "26.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Maths Meetup #28", "01.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
+                    ["Maths Meetup #29", "15.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
+                    ["Maths Meetup #30", "23.04.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Maths Meetup #31", "29.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
+                    ["Maths Meetup #32", "07.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Maths Meetup #33", "13.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Maths Meetup #34", "21.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                ].map(e => ({title: e[0], date: e[1], time: e[2], location: e[3], locationUrl: e[4]}))
+
+                const randomEventColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131"]
+
+                const nextEventsGrid = document.getElementById("next-events-grid")
+                for (const event of events) {
+                    const [day, month, year] = event.date.split(".").map(n => parseInt(n))
+                    const dateObj = new Date(year, month - 1, day)
+                    const weekDay = dateObj.getDay()
+
+                    const today = new Date()
+                    if ((+today) > (+dateObj + 24 * 60 * 60 * 1000)) {
+                        continue
+                    }
+
+                    const dayNames = [
+                        '<span lang="en">Mon</span><span lang="de">Mo</span>',
+                        '<span lang="en">Tue</span><span lang="de">Di</span>',
+                        '<span lang="en">Wed</span><span lang="de">Mi</span>',
+                        '<span lang="en">Thu</span><span lang="de">Do</span>',
+                        '<span lang="en">Fri</span><span lang="de">Fr</span>',
+                        '<span lang="en">Sat</span><span lang="de">Sa</span>',
+                        '<span lang="en">Sun</span><span lang="de">So</span>',
+                    ]
+
+                    const eventContainer = document.createElement("div")
+                    const titleContainer = document.createElement("div")
+                    const timeContainer = document.createElement("div")
+                    const dateContainer = document.createElement("div")
+                    const locationContainer = document.createElement("a")
+
+                    eventContainer.classList.add("event")
+                    titleContainer.classList.add("title")
+                    timeContainer.classList.add("time")
+                    dateContainer.classList.add("date")
+                    locationContainer.classList.add("location")
+
+                    titleContainer.textContent = event.title
+                    timeContainer.textContent = event.time
+                    dateContainer.innerHTML = `${dayNames[weekDay - 1]} ${event.date}`
+                    locationContainer.textContent = event.location
+                    locationContainer.href = event.locationUrl
+
+                    eventContainer.appendChild(titleContainer)
+                    eventContainer.appendChild(timeContainer)
+                    eventContainer.appendChild(dateContainer)
+                    eventContainer.appendChild(locationContainer)
+
+                    nextEventsGrid.appendChild(eventContainer)
+
+                    const eventColor = randomEventColors[Math.floor(Math.random() * randomEventColors.length)]
+                    eventContainer.style.border = `2px solid ${eventColor}`
+                }
+            </script>
+
+            <style>
+
+                .next-events-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
+                    gap: .5rem;
+                }
+
+                .next-events-grid .event {
+                    border: var(--button-border);
+                    padding: 1rem;
+                    border-radius: 1rem;
+                    background: var(--button-background);
+                }
+
+                .next-events-grid .event .title {
+                    font-weight: bold;
+                }
+
+            </style>
 
             <h3>
                 <span lang="en">
