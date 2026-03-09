@@ -224,30 +224,52 @@
 
             <script>
                 const events = [
-                    ["Maths Meetup #24", "05.03.2026", "18:15-21:00", "ETH ML F 39", ""],
-                    ["Maths Meetup #25", "12.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Maths Meetup #26", "18.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Maths Meetup #27", "26.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Maths Meetup #28", "01.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
-                    ["Maths Meetup #29", "15.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
-                    ["Maths Meetup #30", "23.04.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Maths Meetup #31", "29.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
-                    ["Maths Meetup #32", "07.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Maths Meetup #33", "13.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Maths Meetup #34", "21.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #24", "05.03.2026", "18:15-21:00", "ETH ML F 39", ""],
+                    ["Meetup #25", "12.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #26", "18.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #27", "26.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #28", "01.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
+                    ["Meetup #29", "15.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
+                    ["Meetup #30", "23.04.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #31", "29.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
+                    ["Meetup #32", "07.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #33", "13.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
+                    ["Meetup #34", "21.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
                 ].map(e => ({title: e[0], date: e[1], time: e[2], location: e[3], locationUrl: e[4]}))
 
-                const randomEventColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131"]
+                const purpleColorRGB = [194, 47, 241]
+                const greenColorRGB = [144, 233, 121]
 
-                const getColor = (lookup => str => {
-                    if (!lookup.get(str)) {
-                        const randomIndex = Math.floor(Math.random() * randomEventColors.length);
-                        const randomColor = randomEventColors[randomIndex];
-                        lookup.set(str, randomColor);
+                function isPrime(n) {
+                    if (n < 2)
+                        return false
+                    if (n === 2)
+                        return true
+                    if (n % 2 === 0)
+                        return false
+                    for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                        if (n % i === 0)
+                            return false
                     }
+                    return true
+                }
 
-                    return lookup.get(str);
-                })(new Map());
+                function primeFactors(n) {
+                    let i = 2
+                    let factors = []
+                    while (i * i <= n) {
+                        if (n % i) {
+                            i++
+                        } else {
+                            n /= i
+                            factors.push(i)
+                        }
+                    }
+                    if (n > 1) {
+                        factors.push(n)
+                    }
+                    return factors
+                }
 
                 const nextEventsGrid = document.getElementById("next-events-grid")
                 for (const event of events) {
@@ -295,8 +317,47 @@
 
                     nextEventsGrid.appendChild(eventContainer)
 
-                    const eventColor = getColor(`${event.location}#${weekDay}#${month}`);
-                    eventContainer.style.border = `2px solid ${eventColor}`
+                    const meetupNumRegexMatch = event.title.match(/#([0-9]+)/)
+                    const meetupNum = meetupNumRegexMatch ? parseInt(meetupNumRegexMatch[1]) : 0
+
+                    if (meetupNum > 0) {
+                        const factors = primeFactors(meetupNum)
+                        const sortedFactorObjs = factors.reduce((p, c) => {
+                            const foundObj = p.find(v => v.num == c)
+                            if (!foundObj) {
+                                p.push({num: c, power: 1})
+                            } else {
+                                foundObj.power++
+                            }
+                            return p
+                        }, [])
+    
+                        // remove meeting num from title
+                        titleContainer.textContent = event.title.slice(0, meetupNumRegexMatch.index).trim() + " #"
+
+                        // replace with prime factors
+                        for (let i = 0; i < sortedFactorObjs.length; i++) {
+                            const factor = sortedFactorObjs[i]
+
+                            const textElement = document.createElement("span")
+                            textElement.textContent = factor.num
+                            titleContainer.appendChild(textElement)
+                            
+                            if (factor.power != 1) {
+                                const powerElement = document.createElement("sup")
+                                powerElement.textContent = factor.power
+                                titleContainer.appendChild(powerElement)
+                            }
+                            
+                            if (i < sortedFactorObjs.length - 1) {
+                                titleContainer.textContent += "⋅"
+                            }
+                        }
+                    }
+
+                    const c = isPrime(meetupNum) ? purpleColorRGB : greenColorRGB
+                    eventContainer.style.setProperty("--event-color", `rgb(${c[0]}, ${c[1]}, ${c[2]})`)
+                    eventContainer.style.setProperty("--event-color-background", `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.2)`)
                 }
             </script>
 
@@ -305,18 +366,49 @@
                 .next-events-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
-                    gap: .5rem;
+                    gap: 1rem;
                 }
 
                 .next-events-grid .event {
                     border: var(--button-border);
                     padding: 1rem;
                     border-radius: 1rem;
-                    background: var(--button-background);
+                    /* background: var(--button-background); */
+                    border-color: var(--event-color);
+                    border-width: 2px;
                 }
 
                 .next-events-grid .event .title {
                     font-weight: bold;
+                    border-bottom: var(--button-border);
+                    border-color: var(--event-color);
+                    border-width: 2px;
+                    margin-left: -1rem;
+                    margin-right: -1rem;
+                    text-align: center;
+                    margin-top: -1rem;
+                    background: var(--event-color-background);
+                    border-top-left-radius: 1rem;
+                    border-top-right-radius: 1rem;
+                    padding: .5rem;
+                    font-family: var(--header-font);
+                }
+
+                .next-events-grid .event :nth-child(2) {
+                    margin-top: .5rem;
+                }
+
+                .next-events-grid .event .location::before {
+                    content: "📍";
+                    text-decoration: none;
+                }
+                
+                .next-events-grid .event .time::before {
+                    content: "🕕";
+                }
+                
+                .next-events-grid .event .date::before {
+                    content: "📅";
                 }
 
             </style>
