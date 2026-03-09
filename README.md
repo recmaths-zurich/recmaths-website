@@ -16,5 +16,6 @@ Each page is it's own `index.html`. The files use an additional custom build syn
 - Use `<!-- BEGIN js_imports -->` (followed by an END of course) to include the js files.
   - If the `js_version` key is set, that's appended to the imports to force a reload on all browsers.
   - If the `js_minify` key is set to `true`, the javascript files will be bundled, minified and put under `js/minified/<hash>.js` and included automatically.
+  - If the `js_module` key is set to `true`, the javascript import will use the `type=module` mode.
 
 This custom build system is used because it makes it easy to work with the html files directly.
