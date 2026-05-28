@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
     <!-- SET title=Recreational Maths Zürich -->
     <!-- SET description=Homepage of Recreational Math Zürich -->
     <!-- BEGIN default_head -->
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
         <title>Recreational Maths Zürich</title>
-        <meta name="description" content="Homepage of Recreational Math Zürich">
-        <link rel="icon" type="image/svg" href="assets/logo/favicon.ico">
-        <link rel="stylesheet" href="default_style.css?t=2">
-        
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+        <meta
+            name="description"
+            content="Homepage of Recreational Math Zürich"
+        />
+        <link rel="icon" type="image/svg" href="assets/logo/favicon.ico" />
+        <link rel="stylesheet" href="default_style.css?t=2" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <!-- END -->
 
@@ -23,7 +28,11 @@
         <header class="at-top">
             <div class="header-content">
                 <a href="" class="logo-container">
-                    <img src="assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <img
+                        src="assets/logo/logo.svg"
+                        class="logo"
+                        alt="Recreational Math Zürich Logo"
+                    />
                     <div class="logo-text" href="">RecMaths</div>
                 </a>
                 <div class="link-island">
@@ -31,7 +40,7 @@
                         <span lang="en">Join</span>
                         <span lang="de">Beitreten</span>
                     </a>
-        
+
                     <a class="change-lang-button"></a>
                 </div>
                 <div class="hamburger-icon" tabindex="0">
@@ -41,69 +50,95 @@
                 </div>
             </div>
             <div class="header-drop-menu">
-                <a lang="en" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">Join Club</a>
-        
-                <a lang="de" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">Beitreten</a>
-        
+                <a
+                    lang="en"
+                    href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                    >Join Club</a
+                >
+
+                <a
+                    lang="de"
+                    href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                    >Beitreten</a
+                >
+
                 <a class="change-lang-button"></a>
             </div>
         </header>
         <div class="header-placeholder"></div>
-        
+
         <script>
             {
-                const changeLangButtons = document.querySelectorAll(".change-lang-button")
+                const changeLangButtons = document.querySelectorAll(
+                    ".change-lang-button",
+                );
                 for (const changeLangButton of changeLangButtons) {
-                    changeLangButton.onclick = event => {
-                        const languages = ["en", "de"]
-                        const currStyle = localStorage.getItem("lang") || languages[0]
-                        const nextIndex = (languages.indexOf(currStyle) + 1) % languages.length
-                        const nextNextIndex = (languages.indexOf(currStyle) + 2) % languages.length
-                        localStorage.setItem("lang", languages[nextIndex])
-                        document.documentElement.lang = localStorage.getItem("lang")
-        
-                        changeLangButton.animate([
-                            { transform: "rotateX(0deg)" },
-                            { transform: "rotateX(360deg)" }
-                        ], {
-                            easing: "ease-in-out",
-                            duration: 350,
-                            fill: "forwards"
-                        })
-        
-                        event.preventDefault()
-                    }
+                    changeLangButton.onclick = (event) => {
+                        const languages = ["en", "de"];
+                        const currStyle =
+                            localStorage.getItem("lang") || languages[0];
+                        const nextIndex =
+                            (languages.indexOf(currStyle) + 1) %
+                            languages.length;
+                        const nextNextIndex =
+                            (languages.indexOf(currStyle) + 2) %
+                            languages.length;
+                        localStorage.setItem("lang", languages[nextIndex]);
+                        document.documentElement.lang =
+                            localStorage.getItem("lang");
+
+                        changeLangButton.animate(
+                            [
+                                { transform: "rotateX(0deg)" },
+                                { transform: "rotateX(360deg)" },
+                            ],
+                            {
+                                easing: "ease-in-out",
+                                duration: 350,
+                                fill: "forwards",
+                            },
+                        );
+
+                        event.preventDefault();
+                    };
                 }
-        
-                const header = document.querySelector("header")
-                const hamburger = document.querySelector(".hamburger-icon")
-                const headerDropMenu = document.querySelector(".header-drop-menu")
-        
+
+                const header = document.querySelector("header");
+                const hamburger = document.querySelector(".hamburger-icon");
+                const headerDropMenu =
+                    document.querySelector(".header-drop-menu");
+
                 hamburger.onclick = () => {
-                    header.classList.toggle("expanded")
-                    hamburger.classList.toggle("x")
-                    headerDropMenu.classList.toggle("visible")
-                }
-        
-                const getLastUrlBit = href => href.split("/").filter(s => s).slice(-1)[0]
-                for (const a of document.querySelectorAll("header .link-island a")) {
+                    header.classList.toggle("expanded");
+                    hamburger.classList.toggle("x");
+                    headerDropMenu.classList.toggle("visible");
+                };
+
+                const getLastUrlBit = (href) =>
+                    href
+                        .split("/")
+                        .filter((s) => s)
+                        .slice(-1)[0];
+                for (const a of document.querySelectorAll(
+                    "header .link-island a",
+                )) {
                     if (getLastUrlBit(a.href) == getLastUrlBit(location.href)) {
-                        a.classList.add("current")
+                        a.classList.add("current");
                     }
                 }
-        
+
                 addEventListener("scroll", () => {
                     // on bouncy browser views (e.g. latest safari),
                     // window.scrollY can be negative during the bouncing animation!
-        
+
                     if (window.scrollY <= 0) {
-                        header.classList.add("at-top")
-                        headerDropMenu.classList.add("at-top")
+                        header.classList.add("at-top");
+                        headerDropMenu.classList.add("at-top");
                     } else {
-                        header.classList.remove("at-top")
-                        headerDropMenu.classList.remove("at-top")
+                        header.classList.remove("at-top");
+                        headerDropMenu.classList.remove("at-top");
                     }
-                })
+                });
             }
         </script>
         <!-- END -->
@@ -118,86 +153,312 @@
                 </span>
             </h1>
 
-            <img src="assets/header-img.jpg" alt="Image of various recrational mathematics drawings" usemap="#headermap" id="header-img" style="border-radius: 10px">
+            <img
+                src="assets/header-img.jpg"
+                alt="Image of various recrational mathematics drawings"
+                usemap="#headermap"
+                id="header-img"
+                style="border-radius: 10px"
+            />
 
             <map name="headermap" id="headermap">
-                <area target="" alt="Mathematics of Sodoku" title="Mathematics of Sodoku" href="https://en.wikipedia.org/wiki/Mathematics_of_Sudoku" coords="1183,76,1720,537" shape="rect">
-                <area target="" alt="4x4 Sodoku" title="4x4 Sodoku" href="https://www.sudokuweb.org/sudoku-4x4/" coords="655,209,633,489,1011,502,1065,222" shape="poly">
-                <area target="" alt="Travelling Salesperson Problem Video" title="Travelling Salesperson Problem Video" href="https://www.youtube.com/watch?v=0s1ngTQ1O3o" coords="78,522,8,931,140,940,181,748,482,743,472,648,828,638,841,535" shape="poly">
-                <area target="" alt="Sierpinski Triangle" title="Sierpinski Triangle" href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle" coords="836,915,957,557,1194,775" shape="poly">
-                <area target="" alt="Proof Assistant Software" title="Proof Assistant Software" href="https://en.wikipedia.org/wiki/Proof_assistant" coords="170,416,170,489,601,459,601,405" shape="poly">
-                <area target="" alt="Unique Sodokus" title="Unique Sodokus" href="https://homepages.cwi.nl/~aeb/games/sudoku/solving18.html" coords="62,413,526,383,509,216,925,162,906,32,86,59" shape="poly">
-                <area target="" alt="Graph Coloring" title="Graph Coloring" href="https://en.wikipedia.org/wiki/Graph_coloring" coords="2390,472,2484,534,2603,335,2810,434,2899,593,2967,607,2951,539,2872,432,2875,340,2897,192,2951,154,2926,78,2864,57,2845,132,2786,208,2735,224,2724,254,2762,299,2727,335,2651,291,2627,256,2562,262,2546,324,2544,359,2487,399,2433,410" shape="poly">
-                <area target="" alt="Perfect Pangrams" title="Perfect Pangrams" href="https://www.youtube.com/watch?v=EFcvl_IG03k" coords="558,666,601,970,725,968,822,647" shape="poly">
-                <area target="" alt="Orthogonal Matrices" title="Orthogonal Matrices" href="https://en.wikipedia.org/wiki/Orthogonal_matrix" coords="1253,723,1248,812,1577,837,1580,745" shape="poly">
-                <area target="" alt="Howdy!" title="Howdy!" href="https://en.wikipedia.org/wiki/Howdy" coords="229,770,181,829,175,878,221,915,334,940,420,931,472,913,561,813,496,767,388,748" shape="poly">
-                <area target="" alt="Q(H)R Code" title="Q(H)R Code" href="https://en.wikipedia.org/wiki/QR_code" coords="1822,493,1736,765,2035,884,2146,585" shape="poly">
-                <area target="" alt="Origami!" title="Origami!" href="https://www.instructables.com/Origami-For-Everyone/" coords="1485,44,1270,52,1259,1,1493,1" shape="poly">
-                <area target="" alt="Symmetry" title="Symmetry" href="https://mathworld.wolfram.com/Symmetry.html" coords="1253,548,1253,621,1633,670,1628,567" shape="poly">
-                <area target="" alt="Contradiction" title="Contradiction" href="https://en.wikipedia.org/wiki/Contradiction" coords="981,39,978,163,1086,157,1086,12" shape="poly">
-                <area target="" alt="Equivalence Relation" title="Equivalence Relation" href="https://mathworld.wolfram.com/EquivalenceRelation.html" coords="1086,265,1070,384,1159,378,1148,260" shape="poly">
-                <area target="" alt="Graph Coloring" title="Graph Coloring" href="https://en.wikipedia.org/wiki/Graph_coloring" coords="1763,213,1755,300,2367,332,2394,235" shape="poly">
-                <area target="" alt="Graph Coloring NP Hard" title="Graph Coloring NP Hard" href="https://math.stackexchange.com/questions/125136/how-is-the-graph-coloring-problem-np-complete" coords="1776,378,1757,456,2127,470,2138,386" shape="poly">
-                <area target="" alt="Game Theory" title="Game Theory" href="https://en.wikipedia.org/wiki/Game_theory" coords="1199,852,1199,916,1849,938,1849,862" shape="poly">
-                <area target="" alt="Set Theory" title="Set Theory" href="https://plato.stanford.edu/entries/set-theory/" coords="1776,50,1766,155,2706,155,2701,71" shape="poly">
-                <area target="" alt="Rubiks" title="Rubiks" href="https://www.rubiks.com/" coords="2162,443,2143,529,2224,529,2288,500,2299,427,2216,408" shape="poly">
-                <area target="" alt="Tic Tac Toe" title="Tic Tac Toe" href="https://www.youtube.com/watch?v=_3MtmD9EyM0" coords="2264,640,2197,745,2353,804,2404,699" shape="poly">
-                <area target="" alt="YouTube" title="YouTube" href="https://www.youtube.com/" coords="2121,817,2121,927,2332,930,2334,814" shape="poly">
-                <area target="" alt="Crowd" title="Crowd" href="https://en.wikipedia.org/wiki/Crowd" coords="2391,820,2615,820,2620,939,2396,944" shape="poly">
-                <area target="" alt="Zero Knowledge Sodoku Proof Video" title="Zero Knowledge Sodoku Proof Video" href="https://www.youtube.com/watch?v=Otvcbw6k4eo" coords="2294,557,3008,875,3038,768,2329,503" shape="poly">
-                <area target="" alt="Knots" title="Knots" href="https://en.wikipedia.org/wiki/Knot_theory" coords="2520,548,2879,696,2900,653,2798,594,2833,505,2779,467,2625,395" shape="poly">
-                <area target="" alt="Jane Street Puzzles" title="Jane Street Puzzles" href="https://www.janestreet.com/puzzles/" coords="2922,230,2911,395,3008,432,3011,230" shape="poly">
-                <area target="" alt="Optimal Play" title="Optimal Play" href="https://en.wikipedia.org/wiki/Solved_game" coords="2431,762,2779,905,2806,851,2450,703" shape="poly">
+                <area
+                    target=""
+                    alt="Mathematics of Sodoku"
+                    title="Mathematics of Sodoku"
+                    href="https://en.wikipedia.org/wiki/Mathematics_of_Sudoku"
+                    coords="1183,76,1720,537"
+                    shape="rect"
+                />
+                <area
+                    target=""
+                    alt="4x4 Sodoku"
+                    title="4x4 Sodoku"
+                    href="https://www.sudokuweb.org/sudoku-4x4/"
+                    coords="655,209,633,489,1011,502,1065,222"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Travelling Salesperson Problem Video"
+                    title="Travelling Salesperson Problem Video"
+                    href="https://www.youtube.com/watch?v=0s1ngTQ1O3o"
+                    coords="78,522,8,931,140,940,181,748,482,743,472,648,828,638,841,535"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Sierpinski Triangle"
+                    title="Sierpinski Triangle"
+                    href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle"
+                    coords="836,915,957,557,1194,775"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Proof Assistant Software"
+                    title="Proof Assistant Software"
+                    href="https://en.wikipedia.org/wiki/Proof_assistant"
+                    coords="170,416,170,489,601,459,601,405"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Unique Sodokus"
+                    title="Unique Sodokus"
+                    href="https://homepages.cwi.nl/~aeb/games/sudoku/solving18.html"
+                    coords="62,413,526,383,509,216,925,162,906,32,86,59"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Graph Coloring"
+                    title="Graph Coloring"
+                    href="https://en.wikipedia.org/wiki/Graph_coloring"
+                    coords="2390,472,2484,534,2603,335,2810,434,2899,593,2967,607,2951,539,2872,432,2875,340,2897,192,2951,154,2926,78,2864,57,2845,132,2786,208,2735,224,2724,254,2762,299,2727,335,2651,291,2627,256,2562,262,2546,324,2544,359,2487,399,2433,410"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Perfect Pangrams"
+                    title="Perfect Pangrams"
+                    href="https://www.youtube.com/watch?v=EFcvl_IG03k"
+                    coords="558,666,601,970,725,968,822,647"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Orthogonal Matrices"
+                    title="Orthogonal Matrices"
+                    href="https://en.wikipedia.org/wiki/Orthogonal_matrix"
+                    coords="1253,723,1248,812,1577,837,1580,745"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Howdy!"
+                    title="Howdy!"
+                    href="https://en.wikipedia.org/wiki/Howdy"
+                    coords="229,770,181,829,175,878,221,915,334,940,420,931,472,913,561,813,496,767,388,748"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Q(H)R Code"
+                    title="Q(H)R Code"
+                    href="https://en.wikipedia.org/wiki/QR_code"
+                    coords="1822,493,1736,765,2035,884,2146,585"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Origami!"
+                    title="Origami!"
+                    href="https://www.instructables.com/Origami-For-Everyone/"
+                    coords="1485,44,1270,52,1259,1,1493,1"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Symmetry"
+                    title="Symmetry"
+                    href="https://mathworld.wolfram.com/Symmetry.html"
+                    coords="1253,548,1253,621,1633,670,1628,567"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Contradiction"
+                    title="Contradiction"
+                    href="https://en.wikipedia.org/wiki/Contradiction"
+                    coords="981,39,978,163,1086,157,1086,12"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Equivalence Relation"
+                    title="Equivalence Relation"
+                    href="https://mathworld.wolfram.com/EquivalenceRelation.html"
+                    coords="1086,265,1070,384,1159,378,1148,260"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Graph Coloring"
+                    title="Graph Coloring"
+                    href="https://en.wikipedia.org/wiki/Graph_coloring"
+                    coords="1763,213,1755,300,2367,332,2394,235"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Graph Coloring NP Hard"
+                    title="Graph Coloring NP Hard"
+                    href="https://math.stackexchange.com/questions/125136/how-is-the-graph-coloring-problem-np-complete"
+                    coords="1776,378,1757,456,2127,470,2138,386"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Game Theory"
+                    title="Game Theory"
+                    href="https://en.wikipedia.org/wiki/Game_theory"
+                    coords="1199,852,1199,916,1849,938,1849,862"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Set Theory"
+                    title="Set Theory"
+                    href="https://plato.stanford.edu/entries/set-theory/"
+                    coords="1776,50,1766,155,2706,155,2701,71"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Rubiks"
+                    title="Rubiks"
+                    href="https://www.rubiks.com/"
+                    coords="2162,443,2143,529,2224,529,2288,500,2299,427,2216,408"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Tic Tac Toe"
+                    title="Tic Tac Toe"
+                    href="https://www.youtube.com/watch?v=_3MtmD9EyM0"
+                    coords="2264,640,2197,745,2353,804,2404,699"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="YouTube"
+                    title="YouTube"
+                    href="https://www.youtube.com/"
+                    coords="2121,817,2121,927,2332,930,2334,814"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Crowd"
+                    title="Crowd"
+                    href="https://en.wikipedia.org/wiki/Crowd"
+                    coords="2391,820,2615,820,2620,939,2396,944"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Zero Knowledge Sodoku Proof Video"
+                    title="Zero Knowledge Sodoku Proof Video"
+                    href="https://www.youtube.com/watch?v=Otvcbw6k4eo"
+                    coords="2294,557,3008,875,3038,768,2329,503"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Knots"
+                    title="Knots"
+                    href="https://en.wikipedia.org/wiki/Knot_theory"
+                    coords="2520,548,2879,696,2900,653,2798,594,2833,505,2779,467,2625,395"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Jane Street Puzzles"
+                    title="Jane Street Puzzles"
+                    href="https://www.janestreet.com/puzzles/"
+                    coords="2922,230,2911,395,3008,432,3011,230"
+                    shape="poly"
+                />
+                <area
+                    target=""
+                    alt="Optimal Play"
+                    title="Optimal Play"
+                    href="https://en.wikipedia.org/wiki/Solved_game"
+                    coords="2431,762,2779,905,2806,851,2450,703"
+                    shape="poly"
+                />
             </map>
 
             <script>
                 // resize the image map to be scaled correctly
                 function resizeHeadermap() {
-                    const imageSize = {x: 3051, y: 968}
-                    const headerImg = document.getElementById("header-img")
-                    const headerMap = document.getElementById("headermap")
+                    const imageSize = { x: 3051, y: 968 };
+                    const headerImg = document.getElementById("header-img");
+                    const headerMap = document.getElementById("headermap");
 
-                    const headerImgSize = {x: headerImg.clientWidth, y: headerImg.clientHeight}
+                    const headerImgSize = {
+                        x: headerImg.clientWidth,
+                        y: headerImg.clientHeight,
+                    };
                     for (const area of headerMap.querySelectorAll("area")) {
-                        let coords = null
+                        let coords = null;
                         if (area.dataset.coords) {
-                            coords = area.dataset.coords.split(",")
+                            coords = area.dataset.coords.split(",");
                         } else {
-                            coords = area.getAttribute("coords").split(",").map(n => parseFloat(n))
-                            area.dataset.coords = coords.join(",")
+                            coords = area
+                                .getAttribute("coords")
+                                .split(",")
+                                .map((n) => parseFloat(n));
+                            area.dataset.coords = coords.join(",");
                         }
 
                         const newCoords = coords.map((v, i) => {
                             // x and y alternate
-                            const relevantImageSize = (i % 2 == 0) ? imageSize.x : imageSize.y
-                            const relevantParentSize = (i % 2 == 0) ? headerImgSize.x : headerImgSize.y
-                            return Math.round(v / relevantImageSize * relevantParentSize)
-                        })
+                            const relevantImageSize =
+                                i % 2 == 0 ? imageSize.x : imageSize.y;
+                            const relevantParentSize =
+                                i % 2 == 0 ? headerImgSize.x : headerImgSize.y;
+                            return Math.round(
+                                (v / relevantImageSize) * relevantParentSize,
+                            );
+                        });
 
-                        area.setAttribute("coords", newCoords.join(","))
+                        area.setAttribute("coords", newCoords.join(","));
                     }
                 }
 
-                resizeHeadermap()
-                window.addEventListener("resize", resizeHeadermap)
+                resizeHeadermap();
+                window.addEventListener("resize", resizeHeadermap);
             </script>
 
             <p>
                 <span lang="en">
-                    We're a club for students in and around Zürich who enjoy exploring
-                    <a href="https://en.wikipedia.org/wiki/Recreational_mathematics">recreational mathematics</a> — puzzles, problems, patterns, and everything in-between.
-                    Join our <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">WhatsApp group</a> and come to
-                    our next meetup. We usually host meetups every week during the university semester.
-                    If you just want to have some fun, check out our daily <a href="wurzle/">Wurzle</a> or other
+                    We're a club for students in and around Zürich who enjoy
+                    exploring
+                    <a
+                        href="https://en.wikipedia.org/wiki/Recreational_mathematics"
+                        >recreational mathematics</a
+                    >
+                    — puzzles, problems, patterns, and everything in-between.
+                    Join our
+                    <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                        >WhatsApp group</a
+                    >
+                    and come to our next meetup. We usually host meetups every
+                    week during the university semester. If you just want to
+                    have some fun, check out our daily
+                    <a href="wurzle/">Wurzle</a> or other
                     <a href="games/">Games</a> we made.
                 </span>
                 <span lang="de">
-                    Wir sind ein Verein für Studierende in und um Zürich, die sich für
-                    <a href="https://de.wikipedia.org/wiki/Unterhaltungsmathematik">Recreational Mathematics</a> interessieren.
-                    Wir treffen uns während des Semesters wöchentlich und arbeiten zusammen an spaßigen Puzzles, Problemen und Projekten.
-                    Tritt unserem <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">WhatsApp Chat</a> bei, wenn du dabei sein möchtest.
-                    Wir freuen uns jederzeit über neue Gesichter und geben euch gerne Einblicke und Ideen für (neue) Projekte.
-                    Auf dieser Website findet man außerdem einige <a href="games/">Spiele</a>, zum Beispiel unser tägliches <a href="wurzle/">Wurzle</a>.
+                    Wir sind ein Verein für Studierende in und um Zürich, die
+                    sich für
+                    <a
+                        href="https://de.wikipedia.org/wiki/Unterhaltungsmathematik"
+                        >Recreational Mathematics</a
+                    >
+                    interessieren. Wir treffen uns während des Semesters
+                    wöchentlich und arbeiten zusammen an spaßigen Puzzles,
+                    Problemen und Projekten. Tritt unserem
+                    <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                        >WhatsApp Chat</a
+                    >
+                    bei, wenn du dabei sein möchtest. Wir freuen uns jederzeit
+                    über neue Gesichter und geben euch gerne Einblicke und Ideen
+                    für (neue) Projekte. Auf dieser Website findet man außerdem
+                    einige <a href="games/">Spiele</a>, zum Beispiel unser
+                    tägliches <a href="wurzle/">Wurzle</a>.
                 </span>
             </p>
 
@@ -205,178 +466,206 @@
                 <span lang="en">
                     Our next event: <a href="events/mathathon/">Mathathon</a> (13.12.2025). <a href="events/mathathon/">Click here</a> to sign up.
                 </span>
-                
+
                 <span lang="de">
                     Unser nächstes Event: <a href="events/mathathon/">Mathathon</a> (13.12.2025). <a href="events/mathathon/">Klick hier</a> um dabei zu sein.
                 </span>
             </p> -->
 
             <h3>
-                <span lang="en">
-                    Upcoming Events
-                </span>
-                <span lang="de">
-                    Nächste Events
-                </span>
+                <span lang="en"> Upcoming Events </span>
+                <span lang="de"> Nächste Events </span>
             </h3>
 
             <div class="next-events-grid" id="next-events-grid"></div>
 
             <script>
-                const events = [
-                    ["Meetup #24", "05.03.2026", "18:15-21:00", "ETH ML F 39", ""],
-                    ["Meetup #25", "12.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #26", "18.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #27", "26.03.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #28", "01.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
-                    ["Meetup #29", "15.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
-                    ["Meetup #30", "23.04.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #31", "29.04.2026", "18:15-21:00", "ETH HG G 19.2", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.2"],
-                    ["Meetup #32", "07.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #33", "13.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #34", "21.05.2026", "18:15-21:00", "ETH HG G 19.1", "https://ethz.ch/staffnet/de/service/raeume-gebaeude/rauminfo/raumdetails.html?building=HG&floor=G&room=19.1"],
-                    ["Meetup #35", "27.05.2026", "18:15-21:00", "Chinawiese", "https://maps.app.goo.gl/u9bsyGowGyzr6DL87"],
-                ].map(e => ({title: e[0], date: e[1], time: e[2], location: e[3], locationUrl: e[4]}))
+                function loadEvents() {
+                    const eventJSONUrl = "./events.json";
+                    fetch(eventJSONUrl)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            displayEvents(data);
+                        });
+                }
 
-                const purpleColorRGB = [194, 47, 241]
-                const greenColorRGB = [144, 233, 121]
+                const purpleColorRGB = [194, 47, 241];
+                const greenColorRGB = [144, 233, 121];
+                const nextEventsGrid =
+                    document.getElementById("next-events-grid");
 
                 function isPrime(n) {
-                    if (n < 2)
-                        return false
-                    if (n === 2)
-                        return true
-                    if (n % 2 === 0)
-                        return false
+                    if (n < 2) return false;
+                    if (n === 2) return true;
+                    if (n % 2 === 0) return false;
                     for (let i = 3; i <= Math.sqrt(n); i += 2) {
-                        if (n % i === 0)
-                            return false
+                        if (n % i === 0) return false;
                     }
-                    return true
+                    return true;
                 }
 
                 function primeFactors(n) {
-                    let i = 2
-                    let factors = []
+                    let i = 2;
+                    let factors = [];
                     while (i * i <= n) {
                         if (n % i) {
-                            i++
+                            i++;
                         } else {
-                            n /= i
-                            factors.push(i)
+                            n /= i;
+                            factors.push(i);
                         }
                     }
                     if (n > 1) {
-                        factors.push(n)
+                        factors.push(n);
                     }
-                    return factors
+                    return factors;
                 }
 
-                const nextEventsGrid = document.getElementById("next-events-grid")
-                for (const event of events) {
-                    const [day, month, year] = event.date.split(".").map(n => parseInt(n))
-                    const dateObj = new Date(year, month - 1, day)
-                    const weekDay = dateObj.getDay()
+                function displayEvents(events) {
+                    for (const event of events) {
+                        const [day, month, year] = event.date
+                            .split(".")
+                            .map((n) => parseInt(n));
+                        const dateObj = new Date(year, month - 1, day);
+                        const weekDay = dateObj.getDay();
 
-                    const today = new Date()
-                    if ((+today) > (+dateObj + 24 * 60 * 60 * 1000)) {
-                        continue
-                    }
+                        const today = new Date();
+                        if (+today > +dateObj + 24 * 60 * 60 * 1000) {
+                            continue;
+                        }
 
-                    const dayNames = [
-                        '<span lang="en">Mon</span><span lang="de">Mo</span>',
-                        '<span lang="en">Tue</span><span lang="de">Di</span>',
-                        '<span lang="en">Wed</span><span lang="de">Mi</span>',
-                        '<span lang="en">Thu</span><span lang="de">Do</span>',
-                        '<span lang="en">Fri</span><span lang="de">Fr</span>',
-                        '<span lang="en">Sat</span><span lang="de">Sa</span>',
-                        '<span lang="en">Sun</span><span lang="de">So</span>',
-                    ]
+                        const dayNames = [
+                            '<span lang="en">Mon</span><span lang="de">Mo</span>',
+                            '<span lang="en">Tue</span><span lang="de">Di</span>',
+                            '<span lang="en">Wed</span><span lang="de">Mi</span>',
+                            '<span lang="en">Thu</span><span lang="de">Do</span>',
+                            '<span lang="en">Fri</span><span lang="de">Fr</span>',
+                            '<span lang="en">Sat</span><span lang="de">Sa</span>',
+                            '<span lang="en">Sun</span><span lang="de">So</span>',
+                        ];
 
-                    const eventContainer = document.createElement("div")
-                    const titleContainer = document.createElement("div")
-                    const timeContainer = document.createElement("div")
-                    const dateContainer = document.createElement("div")
-                    const locationContainer = document.createElement("a")
+                        const eventContainer = document.createElement("div");
+                        const titleContainer = document.createElement("div");
+                        const timeContainer = document.createElement("div");
+                        const dateContainer = document.createElement("div");
+                        const locationContainer = document.createElement("a");
 
-                    eventContainer.classList.add("event")
-                    titleContainer.classList.add("title")
-                    timeContainer.classList.add("time")
-                    dateContainer.classList.add("date")
-                    locationContainer.classList.add("location")
+                        eventContainer.classList.add("event");
+                        titleContainer.classList.add("title");
+                        timeContainer.classList.add("time");
+                        dateContainer.classList.add("date");
+                        locationContainer.classList.add("location");
 
-                    titleContainer.textContent = event.title
-                    timeContainer.textContent = event.time
-                    dateContainer.innerHTML = `${dayNames[weekDay - 1]} ${event.date}`
-                    locationContainer.textContent = event.location
-                    locationContainer.href = event.locationUrl
+                        titleContainer.textContent = event.title;
+                        timeContainer.textContent = event.time;
 
-                    eventContainer.appendChild(titleContainer)
-                    eventContainer.appendChild(timeContainer)
-                    eventContainer.appendChild(dateContainer)
-                    eventContainer.appendChild(locationContainer)
+                        if (dayNames[weekDay - 1]) {
+                            dateContainer.innerHTML = `${dayNames[weekDay - 1]} ${event.date}`;
+                        } else {
+                            dateContainer.textContent = event.date;
+                        }
 
-                    nextEventsGrid.appendChild(eventContainer)
+                        locationContainer.textContent = event.location;
 
-                    const meetupNumRegexMatch = event.title.match(/#([0-9]+)/)
-                    const meetupNum = meetupNumRegexMatch ? parseInt(meetupNumRegexMatch[1]) : 0
+                        if (event.locationUrl) {
+                            locationContainer.href = event.locationUrl;
+                        }
 
-                    if (meetupNum > 0) {
-                        const factors = primeFactors(meetupNum)
-                        const sortedFactorObjs = factors.reduce((p, c) => {
-                            const foundObj = p.find(v => v.num == c)
-                            if (!foundObj) {
-                                p.push({num: c, power: 1})
-                            } else {
-                                foundObj.power++
-                            }
-                            return p
-                        }, [])
-    
-                        // remove meeting num from title
-                        titleContainer.textContent = event.title.slice(0, meetupNumRegexMatch.index).trim() + " #"
+                        eventContainer.appendChild(titleContainer);
+                        eventContainer.appendChild(timeContainer);
+                        eventContainer.appendChild(dateContainer);
+                        eventContainer.appendChild(locationContainer);
 
-                        // replace with prime factors
-                        for (let i = 0; i < sortedFactorObjs.length; i++) {
-                            const factor = sortedFactorObjs[i]
+                        nextEventsGrid.appendChild(eventContainer);
 
-                            const textElement = document.createElement("span")
-                            textElement.textContent = factor.num.toString()
-                            titleContainer.appendChild(textElement)
-                            
-                            if (factor.power != 1) {
-                                const powerElement = document.createElement("sup")
-                                powerElement.textContent = factor.power.toString()
-                                titleContainer.appendChild(powerElement)
-                            }
-                            
-                            if (i < sortedFactorObjs.length - 1) {
-                                const dotElement = document.createElement("span")
-                                dotElement.textContent = "⋅"
-                                titleContainer.appendChild(dotElement)
+                        const meetupNumRegexMatch =
+                            event.title.match(/#([0-9]+)/);
+                        const meetupNum = meetupNumRegexMatch
+                            ? parseInt(meetupNumRegexMatch[1])
+                            : 0;
+
+                        if (meetupNum > 0) {
+                            const factors = primeFactors(meetupNum);
+                            const sortedFactorObjs = factors.reduce((p, c) => {
+                                const foundObj = p.find((v) => v.num == c);
+                                if (!foundObj) {
+                                    p.push({ num: c, power: 1 });
+                                } else {
+                                    foundObj.power++;
+                                }
+                                return p;
+                            }, []);
+
+                            // remove meeting num from title
+                            titleContainer.textContent =
+                                event.title
+                                    .slice(0, meetupNumRegexMatch.index)
+                                    .trim() + " #";
+
+                            // replace with prime factors
+                            for (let i = 0; i < sortedFactorObjs.length; i++) {
+                                const factor = sortedFactorObjs[i];
+
+                                const textElement =
+                                    document.createElement("span");
+                                textElement.textContent = factor.num.toString();
+                                titleContainer.appendChild(textElement);
+
+                                if (factor.power != 1) {
+                                    const powerElement =
+                                        document.createElement("sup");
+                                    powerElement.textContent =
+                                        factor.power.toString();
+                                    titleContainer.appendChild(powerElement);
+                                }
+
+                                if (i < sortedFactorObjs.length - 1) {
+                                    const dotElement =
+                                        document.createElement("span");
+                                    dotElement.textContent = "⋅";
+                                    titleContainer.appendChild(dotElement);
+                                }
                             }
                         }
-                    }
 
-                    const c = isPrime(meetupNum) ? purpleColorRGB : greenColorRGB
-                    eventContainer.style.setProperty("--event-color", `rgb(${c[0]}, ${c[1]}, ${c[2]})`)
-                    eventContainer.style.setProperty("--event-color-background", `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.2)`)
+                        const c = isPrime(meetupNum)
+                            ? purpleColorRGB
+                            : greenColorRGB;
+                        eventContainer.style.setProperty(
+                            "--event-color",
+                            `rgb(${c[0]}, ${c[1]}, ${c[2]})`,
+                        );
+                        eventContainer.style.setProperty(
+                            "--event-color-background",
+                            `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.2)`,
+                        );
+                    }
                 }
+
+                loadEvents();
             </script>
 
             <style>
-
                 .next-events-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(11em, 1fr));
-                    gap: 1rem;
+                    grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+                    gap: 1.5rem;
                 }
 
                 .next-events-grid .event {
-                    border: var(--button-border);
                     padding: 1rem;
                     border-radius: 1rem;
-                    /* background: var(--button-background); */
+                    border-color: var(--event-color);
+                    border-width: 2px;
+                }
+
+                body[data-style="light"] .next-events-grid .event {
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                }
+
+                body[data-style="dark"] .next-events-grid .event {
+                    border: var(--button-border);
+                    border-radius: 1rem;
                     border-color: var(--event-color);
                     border-width: 2px;
                 }
@@ -393,45 +682,51 @@
                     background: var(--event-color-background);
                     border-top-left-radius: 1rem;
                     border-top-right-radius: 1rem;
-                    padding: .5rem;
+                    padding: 0.5rem;
                     font-family: var(--header-font);
                 }
 
                 .next-events-grid .event :nth-child(2) {
-                    margin-top: .5rem;
+                    margin-top: 0.5rem;
                 }
 
                 .next-events-grid .event .location::before {
                     content: "📍";
+                    margin-right: 10px;
                     text-decoration: none;
                 }
-                
+
                 .next-events-grid .event .time::before {
                     content: "🕕";
-                }
-                
-                .next-events-grid .event .date::before {
-                    content: "📅";
+                    margin-right: 10px;
                 }
 
+                .next-events-grid .event .date::before {
+                    margin-right: 10px;
+                    content: "📅";
+                }
             </style>
 
             <h3>
-                <span lang="en">
-                    Supported by
-                </span>
-                <span lang="de">
-                    Unterstützt von
-                </span>
+                <span lang="en"> Supported by </span>
+                <span lang="de"> Unterstützt von </span>
                 ...
             </h3>
 
             <div class="sponsor-image-grid">
                 <a href="https://www.janestreet.com/">
-                    <img src="assets/sponsors/janestreet.svg" alt="Logo of Janestreet" title="Janestreet">
+                    <img
+                        src="assets/sponsors/janestreet.svg"
+                        alt="Logo of Janestreet"
+                        title="Janestreet"
+                    />
                 </a>
                 <a href="https://sph.ethz.ch/">
-                    <img src="assets/sponsors/sph.svg" alt="Logo of the ETH Student Project House" title="ETH Student Project House">
+                    <img
+                        src="assets/sponsors/sph.svg"
+                        alt="Logo of the ETH Student Project House"
+                        title="ETH Student Project House"
+                    />
                 </a>
             </div>
 
@@ -442,7 +737,7 @@
                     gap: 10px;
                     justify-content: center;
                 }
-                
+
                 .sponsor-image-grid > a {
                     flex: 1 1 0px;
                     width: 0;
@@ -455,78 +750,99 @@
                 }
             </style>
 
-            <img src="assets/gruendungsversammlung-groupfoto-cropped.png" alt="Group Foto of our inaugural meeting" class="gruppenfoto">
+            <img
+                src="assets/gruendungsversammlung-groupfoto-cropped.png"
+                alt="Group Foto of our inaugural meeting"
+                class="gruppenfoto"
+            />
 
             <style>
                 .gruppenfoto {
                     -webkit-filter: drop-shadow(-2px -2px 0 white)
-                                    drop-shadow(-2px 2px 0 white)
-                                    drop-shadow(2px -2px 0 white)
-                                    drop-shadow(2px 2px 0 white);
+                        drop-shadow(-2px 2px 0 white)
+                        drop-shadow(2px -2px 0 white)
+                        drop-shadow(2px 2px 0 white);
                     filter: drop-shadow(-2px -2px 0 white)
-                            drop-shadow(-2px 2px 0 white)
-                            drop-shadow(2px -2px 0 white)
-                            drop-shadow(2px 2px 0 white);
+                        drop-shadow(-2px 2px 0 white)
+                        drop-shadow(2px -2px 0 white)
+                        drop-shadow(2px 2px 0 white);
                 }
             </style>
 
             <p>
                 <span lang="en">
-                    Our interests range from Tic-Tac-Toe strategies to minimal Sudoku layouts — and pretty much anything else that sparks our curiosity.
-                    At one meetup, we dove deep into Sudoku theory and (almost) proved that you need <em>at least four</em> given numbers in a 4×4 Sudoku puzzle to guarantee a unique solution. At another,
+                    Our interests range from Tic-Tac-Toe strategies to minimal
+                    Sudoku layouts — and pretty much anything else that sparks
+                    our curiosity. At one meetup, we dove deep into Sudoku
+                    theory and (almost) proved that you need
+                    <em>at least four</em> given numbers in a 4×4 Sudoku puzzle
+                    to guarantee a unique solution. At another,
                     <a href="problems/">click here</a>.
                 </span>
                 <span lang="de">
-                    Unsere Interessen reichen von Tic-Tac-Toe-Strategien über minimale Sudoku-Layouts bis hin zu allem, was uns gerade fasziniert.
-                    Bei einem Treffen haben wir uns intensiv mit Sudoku-Theorie beschäftigt und (fast) bewiesen, dass man <em>mindestens vier</em> vorgegebene Zahlen in einem 4×4-Sudoku braucht, um eine eindeutige Lösung zu garantieren.
-                    <a href="problems/">Click hier</a> für eine vollständige Liste aller Projekte.
+                    Unsere Interessen reichen von Tic-Tac-Toe-Strategien über
+                    minimale Sudoku-Layouts bis hin zu allem, was uns gerade
+                    fasziniert. Bei einem Treffen haben wir uns intensiv mit
+                    Sudoku-Theorie beschäftigt und (fast) bewiesen, dass man
+                    <em>mindestens vier</em> vorgegebene Zahlen in einem
+                    4×4-Sudoku braucht, um eine eindeutige Lösung zu
+                    garantieren. <a href="problems/">Click hier</a> für eine
+                    vollständige Liste aller Projekte.
                 </span>
             </p>
             <div class="cards-container big-link-cards">
                 <a class="card" href="problems/">
-                    <img src="assets/projects-header-image.jpg">
+                    <img src="assets/projects-header-image.jpg" />
                     <div class="card-body">
                         <div class="card-header">
                             <span lang="en">All Projects</span>
                             <span lang="de">Alle Projekte</span>
                         </div>
                         <span lang="en">
-                            Click here to see all projects and problems that we've worked on.
+                            Click here to see all projects and problems that
+                            we've worked on.
                         </span>
                         <span lang="de">
-                            Clicke hier für eine Liste aller Projekte und Probleme, an denen wir gearbeitet haben.
+                            Clicke hier für eine Liste aller Projekte und
+                            Probleme, an denen wir gearbeitet haben.
                         </span>
                     </div>
                 </a>
-                
+
                 <a class="card" href="games/">
-                    <img src="assets/mathsy-games-header-image.jpg">
+                    <img src="assets/mathsy-games-header-image.jpg" />
                     <div class="card-body">
                         <div class="card-header">
                             <span lang="en">All Games</span>
                             <span lang="de">Alle Spiele</span>
                         </div>
                         <span lang="en">
-                            Click here to see a list of all mathsy games available on this website.
+                            Click here to see a list of all mathsy games
+                            available on this website.
                         </span>
                         <span lang="de">
-                            Clicke hier für eine Liste von mathematischen Spielen auf dieser Website.
+                            Clicke hier für eine Liste von mathematischen
+                            Spielen auf dieser Website.
                         </span>
                     </div>
                 </a>
-                
+
                 <a class="card" href="about-us/">
-                    <img src="assets/gruendungsversammlung-groupfoto-zoomed.jpg">
+                    <img
+                        src="assets/gruendungsversammlung-groupfoto-zoomed.jpg"
+                    />
                     <div class="card-body">
                         <div class="card-header">
                             <span lang="en">About us</span>
                             <span lang="de">Über uns</span>
                         </div>
                         <span lang="en">
-                            Click here to learn more about the club and the people behind it.
+                            Click here to learn more about the club and the
+                            people behind it.
                         </span>
                         <span lang="de">
-                            Clicke hier, um mehr über den Verein und die Personen dahinter zu erfahren.
+                            Clicke hier, um mehr über den Verein und die
+                            Personen dahinter zu erfahren.
                         </span>
                     </div>
                 </a>
@@ -534,12 +850,14 @@
         </main>
 
         <script>
-            const faqEntries = document.querySelectorAll(".faq-container > .entry")
+            const faqEntries = document.querySelectorAll(
+                ".faq-container > .entry",
+            );
             for (const entry of faqEntries) {
                 for (const question of entry.querySelectorAll(".question")) {
                     question.onclick = () => {
-                        entry.classList.toggle("unfolded")
-                    }
+                        entry.classList.toggle("unfolded");
+                    };
                 }
             }
         </script>
@@ -570,15 +888,24 @@
                         <span lang="en">Socials</span>
                         <span lang="de">Medien</span>
                     </div>
-                    <a class="group-item" href="https://www.instagram.com/recmaths.zurich/">
+                    <a
+                        class="group-item"
+                        href="https://www.instagram.com/recmaths.zurich/"
+                    >
                         <span lang="en">Instagram</span>
                         <span lang="de">Instagram</span>
                     </a>
-                    <a class="group-item" href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
+                    <a
+                        class="group-item"
+                        href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA"
+                    >
                         <span lang="en">WhatsApp</span>
                         <span lang="de">WhatsApp</span>
                     </a>
-                    <a class="group-item" href="https://github.com/recmaths-zurich/recmaths-website">
+                    <a
+                        class="group-item"
+                        href="https://github.com/recmaths-zurich/recmaths-website"
+                    >
                         <span lang="en">GitHub</span>
                         <span lang="de">GitHub</span>
                     </a>
@@ -588,7 +915,10 @@
                         <span lang="en">Contact</span>
                         <span lang="de">Kontakt</span>
                     </div>
-                    <a class="group-item" href="https://www.instagram.com/recmaths.zurich/">
+                    <a
+                        class="group-item"
+                        href="https://www.instagram.com/recmaths.zurich/"
+                    >
                         <span lang="en">Instagram Chat</span>
                         <span lang="de">Instagram Chat</span>
                     </a>
@@ -616,12 +946,26 @@
                     </a>
                 </div>
             </div>
-            <hr>
+            <hr />
             <div class="footer-text">
-                <span lang="en" class="text">Made with ❤️ for RecMaths Zurich (<output data-fill="footer-year"></output>)</span>
-                <span lang="de" class="text">Erstellt mit ❤️ für RecMaths Zürich (<output data-fill="footer-year"></output>)</span>
+                <span lang="en" class="text"
+                    >Made with ❤️ for RecMaths Zurich (<output
+                        data-fill="footer-year"
+                    ></output
+                    >)</span
+                >
+                <span lang="de" class="text"
+                    >Erstellt mit ❤️ für RecMaths Zürich (<output
+                        data-fill="footer-year"
+                    ></output
+                    >)</span
+                >
                 <script>
-                    Array.from(document.querySelectorAll('[data-fill="footer-year"]')).forEach(e => e.textContent = new Date().getFullYear())
+                    Array.from(
+                        document.querySelectorAll('[data-fill="footer-year"]'),
+                    ).forEach(
+                        (e) => (e.textContent = new Date().getFullYear()),
+                    );
                 </script>
                 <button class="theme-changer" id="change-style-a">
                     <span lang="en">Change Theme</span>
@@ -629,23 +973,25 @@
                 </button>
             </div>
         </footer>
-        
+
         <script>
-            document.getElementById("change-style-a").onclick = event => {
-                const styles = ["light", "dark"]
-                const currStyle = localStorage.getItem("style") || "light"
-                const nextIndex = (styles.indexOf(currStyle) + 1) % styles.length
-                localStorage.setItem("style", styles[nextIndex])
-                document.body.dataset.style = localStorage.getItem("style") || "light"
-        
-                event.preventDefault()
-            }
+            document.getElementById("change-style-a").onclick = (event) => {
+                const styles = ["light", "dark"];
+                const currStyle = localStorage.getItem("style") || "light";
+                const nextIndex =
+                    (styles.indexOf(currStyle) + 1) % styles.length;
+                localStorage.setItem("style", styles[nextIndex]);
+                document.body.dataset.style =
+                    localStorage.getItem("style") || "light";
+
+                event.preventDefault();
+            };
         </script>
         <!-- END -->
 
         <!-- BEGIN game_of_life_background -->
         <canvas id="game-of-life-background"></canvas>
-        
+
         <style>
             #game-of-life-background {
                 width: 100%;
@@ -654,238 +1000,300 @@
                 z-index: 0;
             }
         </style>
-        
+
         <script>
-        {
-            const gridSize = {x: 40, y: 100}
-            const onColor = "rgba(0, 0, 0, 1)"
-            const offColor = "rgba(255, 255, 255, 0.9)"
-        
-            const TRANSPARENCY = 0.2
-        
-            const logoColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131", "#4273b5", "#223759", "#080d15", "#020305"]
-            const randomLogoOffset = Math.floor(Math.random() * logoColors.length)
-        
-            const greyScales = Array.from({length: gridSize.x * gridSize.y}).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`)
-        
-            function randomLogoColor() {
-                const randomIndex = Math.floor(Math.random() * logoColors.length)
-                return logoColors[randomIndex]
-            }
-        
-            let canvas = document.getElementById("game-of-life-background")
-            let context = canvas.getContext("2d")
-        
-            let grid = new Uint8Array(gridSize.x * gridSize.y)
-        
-            function setGrid(grid, x, y, on=true) {
-                const i = (y * gridSize.x) + x
-                grid[i] = on ? 1 : 0
-            }
-        
-            function getGrid(grid, x, y) {
-                if (x < 0 || y < 0 || x > gridSize.x - 1 || y > gridSize.y) {
-                    return false
+            {
+                const gridSize = { x: 40, y: 100 };
+                const onColor = "rgba(0, 0, 0, 1)";
+                const offColor = "rgba(255, 255, 255, 0.9)";
+
+                const TRANSPARENCY = 0.2;
+
+                const logoColors = [
+                    "#90e979",
+                    "#62db3d",
+                    "#18556d",
+                    "#c22ff1",
+                    "#201131",
+                    "#4273b5",
+                    "#223759",
+                    "#080d15",
+                    "#020305",
+                ];
+                const randomLogoOffset = Math.floor(
+                    Math.random() * logoColors.length,
+                );
+
+                const greyScales = Array.from({
+                    length: gridSize.x * gridSize.y,
+                }).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`);
+
+                function randomLogoColor() {
+                    const randomIndex = Math.floor(
+                        Math.random() * logoColors.length,
+                    );
+                    return logoColors[randomIndex];
                 }
-        
-                const i = (y * gridSize.x) + x
-                return grid[i] == 1
-            }
-        
-            const neighbourDirections = [
-                [1, 1], [1, 0], [1, -1], [0, -1],
-                [0, 1], [-1, 1], [-1, 0], [-1, -1]
-            ]
-        
-            function getSorroundingSum(grid, x, y) {
-                let sum = 0
-                for (const [dx, dy] of neighbourDirections) {
-                    sum += getGrid(grid, x + dx, y + dy)
+
+                let canvas = document.getElementById("game-of-life-background");
+                let context = canvas.getContext("2d");
+
+                let grid = new Uint8Array(gridSize.x * gridSize.y);
+
+                function setGrid(grid, x, y, on = true) {
+                    const i = y * gridSize.x + x;
+                    grid[i] = on ? 1 : 0;
                 }
-                return sum
-            }
-        
-            function applyGridRules() {
-                const newGrid = new Uint8Array(grid.length)
-                for (let x = 0; x < gridSize.x; x++) {
-                    for (let y = 0; y < gridSize.y; y++) {
-                        const sorroundingSum = getSorroundingSum(grid, x, y)
-                        if (getGrid(grid, x, y)) {
-                            if (sorroundingSum < 2) {
-                                // setGrid(newGrid, x, y, false)
-                            } else if (sorroundingSum > 3) {
-                                // setGrid(newGrid, x, y, false)
+
+                function getGrid(grid, x, y) {
+                    if (
+                        x < 0 ||
+                        y < 0 ||
+                        x > gridSize.x - 1 ||
+                        y > gridSize.y
+                    ) {
+                        return false;
+                    }
+
+                    const i = y * gridSize.x + x;
+                    return grid[i] == 1;
+                }
+
+                const neighbourDirections = [
+                    [1, 1],
+                    [1, 0],
+                    [1, -1],
+                    [0, -1],
+                    [0, 1],
+                    [-1, 1],
+                    [-1, 0],
+                    [-1, -1],
+                ];
+
+                function getSorroundingSum(grid, x, y) {
+                    let sum = 0;
+                    for (const [dx, dy] of neighbourDirections) {
+                        sum += getGrid(grid, x + dx, y + dy);
+                    }
+                    return sum;
+                }
+
+                function applyGridRules() {
+                    const newGrid = new Uint8Array(grid.length);
+                    for (let x = 0; x < gridSize.x; x++) {
+                        for (let y = 0; y < gridSize.y; y++) {
+                            const sorroundingSum = getSorroundingSum(
+                                grid,
+                                x,
+                                y,
+                            );
+                            if (getGrid(grid, x, y)) {
+                                if (sorroundingSum < 2) {
+                                    // setGrid(newGrid, x, y, false)
+                                } else if (sorroundingSum > 3) {
+                                    // setGrid(newGrid, x, y, false)
+                                } else {
+                                    setGrid(newGrid, x, y, true);
+                                }
                             } else {
-                                setGrid(newGrid, x, y, true)
-                            }
-                        } else {
-                            if (sorroundingSum == 3) {
-                                setGrid(newGrid, x, y, true)
+                                if (sorroundingSum == 3) {
+                                    setGrid(newGrid, x, y, true);
+                                }
                             }
                         }
                     }
+                    grid = newGrid;
                 }
-                grid = newGrid
-            }
-        
-            function updateCanvas() {
-                context.clearRect(0, 0, canvas.width, canvas.height)
-        
-                const cellWidth = canvas.width / gridSize.x
-                const cellHeight = cellWidth // canvas.height / gridSize.y
-        
-                context.globalAlpha = TRANSPARENCY
-                for (let x = 0; x < gridSize.x; x++) {
-                    for (let y = 0; y < gridSize.y; y++) {
-                        const value = getGrid(grid, x, y)
-                        if (value) {
-                            context.fillStyle = logoColors[(y * gridSize.x + x + randomLogoOffset) % logoColors.length]
-                        } else {
-                            context.fillStyle = greyScales[(y * gridSize.x + x) % greyScales.length]
+
+                function updateCanvas() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const cellWidth = canvas.width / gridSize.x;
+                    const cellHeight = cellWidth; // canvas.height / gridSize.y
+
+                    context.globalAlpha = TRANSPARENCY;
+                    for (let x = 0; x < gridSize.x; x++) {
+                        for (let y = 0; y < gridSize.y; y++) {
+                            const value = getGrid(grid, x, y);
+                            if (value) {
+                                context.fillStyle =
+                                    logoColors[
+                                        (y * gridSize.x +
+                                            x +
+                                            randomLogoOffset) %
+                                            logoColors.length
+                                    ];
+                            } else {
+                                context.fillStyle =
+                                    greyScales[
+                                        (y * gridSize.x + x) % greyScales.length
+                                    ];
+                            }
+
+                            context.fillRect(
+                                x * cellWidth,
+                                y * cellHeight,
+                                cellWidth,
+                                cellHeight,
+                            );
                         }
-        
-                        context.fillRect(
-                            x * cellWidth,
-                            y * cellHeight,
-                            cellWidth,
-                            cellHeight
-                        )
+                    }
+                    context.globalAlpha = 1;
+                }
+
+                const GUN =
+                    "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX";
+
+                const gunOffset = { x: 2, y: 2 };
+                const gunLines = GUN.split("/");
+
+                for (let i = 0; i < gunLines.length; i++) {
+                    for (let j = 0; j < gunLines[i].length; j++) {
+                        if (gunLines[i][j] == "X") {
+                            setGrid(
+                                grid,
+                                j + gunOffset.x,
+                                i + gunOffset.y,
+                                true,
+                            );
+                        }
                     }
                 }
-                context.globalAlpha = 1
-            }
-        
-            const GUN = "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX"
-        
-            const gunOffset = {x: 2, y: 2}
-            const gunLines = GUN.split("/")
-        
-            for (let i = 0; i < gunLines.length; i++) {
-                for (let j = 0; j < gunLines[i].length; j++) {
-                    if (gunLines[i][j] == "X") {
-                        setGrid(grid, j + gunOffset.x, i + gunOffset.y, true)
+
+                const urlParams = new URLSearchParams(location.search);
+                const highSpeedModeActive = urlParams.has("highspeed");
+
+                const updateIntervalMs = highSpeedModeActive ? 100 : 1000;
+
+                let loopTimeout = null;
+
+                function loop() {
+                    updateCanvas();
+                    applyGridRules();
+
+                    loopTimeout = setTimeout(loop, updateIntervalMs);
+                }
+
+                loop();
+
+                canvas.addEventListener("click", (event) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const clickPos = {
+                        x: event.clientX - rect.left,
+                        y: event.clientY - rect.top,
+                    };
+
+                    const gridPos = {
+                        x: Math.floor(clickPos.x / (canvas.width / gridSize.x)),
+                        y: Math.floor(clickPos.y / (canvas.width / gridSize.x)),
+                    };
+
+                    const value = getGrid(grid, gridSize.x, gridSize.y);
+                    setGrid(grid, gridPos.x, gridPos.y, !value);
+
+                    if (loopTimeout !== null) {
+                        clearTimeout(loopTimeout);
                     }
+
+                    loopTimeout = setTimeout(loop, updateIntervalMs);
+
+                    updateCanvas();
+                });
+
+                function resizeCanvas() {
+                    canvas.width = canvas.clientWidth;
+                    canvas.height = canvas.clientHeight;
+                    updateCanvas();
                 }
+
+                resizeCanvas();
+                window.addEventListener("resize", resizeCanvas);
             }
-        
-            const urlParams = new URLSearchParams(location.search)
-            const highSpeedModeActive = urlParams.has("highspeed")
-        
-            const updateIntervalMs = highSpeedModeActive ? 100 : 1000
-        
-            let loopTimeout = null
-        
-            function loop() {
-                updateCanvas()
-                applyGridRules()
-        
-                loopTimeout = setTimeout(loop, updateIntervalMs)
-            }
-        
-            loop()
-        
-            canvas.addEventListener("click", event => {
-                const rect = canvas.getBoundingClientRect()
-                const clickPos = {
-                    x: event.clientX - rect.left,
-                    y: event.clientY - rect.top
-                }
-        
-                const gridPos = {
-                    x: Math.floor(clickPos.x / (canvas.width / gridSize.x)),
-                    y: Math.floor(clickPos.y / (canvas.width / gridSize.x)),
-                }
-        
-                const value = getGrid(grid, gridSize.x, gridSize.y)
-                setGrid(grid, gridPos.x, gridPos.y, !value)
-                
-                if (loopTimeout !== null) {
-                    clearTimeout(loopTimeout)
-                }
-        
-                loopTimeout = setTimeout(loop, updateIntervalMs)
-        
-                updateCanvas()
-            })
-            
-            function resizeCanvas() {
-                canvas.width = canvas.clientWidth
-                canvas.height = canvas.clientHeight
-                updateCanvas()
-            }
-        
-            resizeCanvas()
-            window.addEventListener("resize", resizeCanvas)
-        }
         </script>
         <!-- END -->
 
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = ""
-        
+            const URL_BASE_PATH = "";
+
             {
                 // update theme
                 if (localStorage.getItem("style") == null) {
-                    const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-                    localStorage.setItem("style", prefersDarkMode ? "dark" : "light")
+                    const prefersDarkMode =
+                        window.matchMedia &&
+                        window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches;
+                    localStorage.setItem(
+                        "style",
+                        prefersDarkMode ? "dark" : "light",
+                    );
                 }
-                document.body.dataset.style = localStorage.getItem("style")
-        
+                document.body.dataset.style = localStorage.getItem("style");
+
                 // update language
                 if (localStorage.getItem("lang") == null) {
-                    const userDefaultLang = navigator.language || navigator.userLanguage
+                    const userDefaultLang =
+                        navigator.language || navigator.userLanguage;
                     if (userDefaultLang.startsWith("de")) {
-                        localStorage.setItem("lang", "de")
+                        localStorage.setItem("lang", "de");
                     } else {
-                        localStorage.setItem("lang", "en")
+                        localStorage.setItem("lang", "en");
                     }
                 }
-                document.documentElement.lang = localStorage.getItem("lang")
-        
-        
+                document.documentElement.lang = localStorage.getItem("lang");
+
                 // replace CSS "100vh" with actual inner height in px
                 // (-1 to prevent inaccuracies in some browsers)
                 const updateInnerHeight = () => {
-                    const height = window.screen?.availHeight || window.innerHeight
-                    document.body.style.setProperty("--full-height", `${height - 1}px`)
-                }
-                updateInnerHeight()
-                addEventListener("resize", updateInnerHeight)
-        
+                    const height =
+                        window.screen?.availHeight || window.innerHeight;
+                    document.body.style.setProperty(
+                        "--full-height",
+                        `${height - 1}px`,
+                    );
+                };
+                updateInnerHeight();
+                addEventListener("resize", updateInnerHeight);
+
                 // make smooth jump links work
-                for (const element of document.querySelectorAll(".smooth-jump")) {
-                    console.log(element)
-                    if (!element.dataset.jumpTo) continue
-                    const target = document.querySelector(element.dataset.jumpTo)
-                    if (!target) continue
+                for (const element of document.querySelectorAll(
+                    ".smooth-jump",
+                )) {
+                    console.log(element);
+                    if (!element.dataset.jumpTo) continue;
+                    const target = document.querySelector(
+                        element.dataset.jumpTo,
+                    );
+                    if (!target) continue;
                     element.addEventListener("click", () => {
                         target.scrollIntoView({
-                            behavior: "smooth"
-                        })
-                    })
+                            behavior: "smooth",
+                        });
+                    });
                 }
-        
+
                 // enable mobile debugging
-                const urlParams = new URLSearchParams(window.location.href)
+                const urlParams = new URLSearchParams(window.location.href);
                 if (urlParams.has("show_errors")) {
                     function log(msg) {
-                        const textNode = document.createElement("div")
-                        textNode.textContent = msg
-                        document.body.appendChild(textNode)
+                        const textNode = document.createElement("div");
+                        textNode.textContent = msg;
+                        document.body.appendChild(textNode);
                     }
-        
-                    log("Activated Alert Debug Mode")
-                    addEventListener("error", event => {
-                        log(`[L${event.lineno} C${event.colno}] ${event.message} (${event.filename})`)
-                    })
+
+                    log("Activated Alert Debug Mode");
+                    addEventListener("error", (event) => {
+                        log(
+                            `[L${event.lineno} C${event.colno}] ${event.message} (${event.filename})`,
+                        );
+                    });
                 }
             }
-        
-        console.log("Hi there! If you know how to open this console, why not join our next meetup?")
+
+            console.log(
+                "Hi there! If you know how to open this console, why not join our next meetup?",
+            );
         </script>
         <!-- END -->
-
     </body>
-
 </html>
