@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="en" style="overscroll-behavior: contain;">
 
-    <!-- SET title=Spiele | RecMaths Zürich -->
-    <!-- SET description=Online games page for recmaths.ch -->
+    <!-- SET title=Sylver Coinage | RecMaths Zürich -->
+    <!-- SET description=a recreational maths game of Sylver Coinage (invented by John Conway) on recmaths.ch -->
     <!-- BEGIN default_head -->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>Spiele | RecMaths Zürich</title>
-        <meta name="description" content="Online games page for recmaths.ch">
-        <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
-        <link rel="stylesheet" href="../default_style.css?t=2">
+        <title>Sylver Coinage | RecMaths Zürich</title>
+        <meta name="description" content="$description$">
+        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
+        <link rel="stylesheet" href="../../default_style.css?t=2">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,9 @@
         <!-- BEGIN default_header -->
         <header class="at-top">
             <div class="header-content">
-                <a href="../" class="logo-container">
-                    <img src="../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
-                    <div class="logo-text" href="../">RecMaths</div>
+                <a href="../../" class="logo-container">
+                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <div class="logo-text" href="../../">RecMaths</div>
                 </a>
                 <div class="link-island">
                     <a href="https://chat.whatsapp.com/CIGv32Pj84x2Ee4H5B6oRA">
@@ -112,100 +112,98 @@
         
         <main>
             <h1>
-                <span lang="en">Games</span>
-                <span lang="de">Spiele</span>
+                Sylver Coinage
             </h1>
 
-            <p>
-                <span lang="de">
-                    Hier sind ein paar semi-mathematische Spiele, die du auf dieser Website spielen kannst.
-                    Wenn du Ideen hast oder gerne solche Spiele programmierst, melde dich bei uns auf WhatsApp!
-                </span>
+            <p style="font-style: italic;">
                 <span lang="en">
-                    Here are some semi-mathematical games you can play on this website.
-                    If you have ideas or like programming such games, let us know on WhatsApp!
+                    "Sylver coinage is a mathematical game for two players, invented by John H. Conway. The two players take turns naming positive integers that are not the sum of nonnegative multiples of previously named integers. The player who names 1 loses. For instance, if player A opens with 2, B can win by naming 3 as A is forced to name 1."
                 </span>
+                <span lang="de">
+                    "Sylver Coinage ist ein mathematisches Spiel für zwei Spieler, das von John H. Conway erfunden wurde. Die beiden Spieler nennen abwechselnd positive ganze Zahlen, die sich nicht als Summe nichtnegativer Vielfacher zuvor genannter ganzer Zahlen darstellen lassen. Der Spieler, der die 1 nennt, verliert. Wenn zum Beispiel Spieler A mit der 2 beginnt, kann B gewinnen, indem er die 3 nennt, da A dadurch gezwungen ist, die 1 zu nennen."
+                </span>
+                (<a href="https://en.wikipedia.org/wiki/Sylver_coinage">Wikipedia</a>)
             </p>
+
+            <div class="input-container">
+                <input type="number" id="num-input" min="1" placeholder="1234">
+                <button id="submit-num-button">
+                    <span lang="en">Submit</span>
+                    <span lang="de">Senden</span>
+                </button>
+            </div>
+            <p id="error-out"></p>
+
+            <div id="games-container">
+            </div>
             
-            <div class="cards-container">
-                
-                <a class="card" href="../wurzle/">
-                    <img src="../assets/problem-headers/wurzle-header.jpg">
-                    <div class="card-body">
-                        <div class="card-header">
-                            Wurzle
-                        </div>
-                        <span lang="en">Your favourite daily game about finding roots of simple functions.</span>
-                        <span lang="de">Tägliches Nullstellen-Finden von einfachen Funktionen.</span>
-                    </div>
-                </a>
-                
-                <a class="card" href="personality-test/">
-                    <img src="../assets/problem-headers/function-personality-test.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Function Personality Test</span>
-                            <span lang="de">Funkionen Persönlichkeits-Test</span>
-                        </div>
-                        <span lang="en">Take 20 personality questions to determine your inner mathematical function.</span>
-                        <span lang="de">20 Fragen, eine mathematische Funktion. Welche Funktion bist du?</span>
-                    </div>
-                </a>
-
-                <a class="card" href="sylver-coinage/">
-                    <img src="../assets/problem-headers/sylver-coinage.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Sylver Coinage</span>
-                            <span lang="de">Sylver Coinage</span>
-                        </div>
-                        <span lang="en">A two player game about avoiding linear combinations of numbers.</span>
-                        <span lang="de">Ein zahlentheoretisches zwei-Spieler-Spiel.</span>
-                    </div>
-                </a>
-                
-                <a class="card" href="rock-paper-scissors">
-                    <img src="../assets/problem-headers/rock-paper-scissors.svg">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Rock Paper Scissors vs AI</span>
-                            <span lang="de">Schere Stein Papier gegen KI</span>
-                        </div>
-                        <span lang="en">An AI plays 30 games of rock, paper, scissors against you by learning your patterns.</span>
-                        <span lang="de">Eine KI versucht dich bei 30 Schere-Stein-Papier Spielen mit Pattern-Learning zu besiegen.</span>
-                    </div>
-                </a>
-
-                <a class="card" href="labyrinth/">
-                    <img src="../assets/problem-headers/labyrinth.png">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Labyrinth Generator</span>
-                            <span lang="de">Labyrinth-Generator</span>
-                        </div>
-                        <span lang="en">A small tool for creating and solving labyrinths in different sizes.</span>
-                        <span lang="de">Ein kleines Tool zum Erstellen von Labyrinthen in verschiedenen Größen.</span>
-                    </div>
-                </a>
-                
-                <a class="card">
-                    <img src="../assets/board-members/placeholder.svg">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <span lang="en">Coming Soon...</span>
-                            <span lang="de">Coming Soon...</span>
-                        </div>
-                        <span lang="en">Help us create more games! If you have any ideas, let us know (text us!)</span>
-                        <span lang="de">Hilf uns, mehr Spiele zu erstellen! Wenn du Ideen hast, lass es uns wissen (schreib uns!)</span>
-                    </div>
-                </a>
         </main>
 
         <style>
-            main > .cards-container > a.card > img {
-                background-color: white;
-            }
+
+        #error-out {
+            display: none;
+            color: red;
+            background-color: pink;
+            width: fit-content;
+            padding: 5px 20px;
+            border-radius: .5rem;
+        }
+
+        #games-container > p {
+            margin-bottom: 10px;
+            display: grid;
+            grid-template-columns: 100px auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: .5rem;
+        }
+        
+        #games-container > p > div.nums {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        #games-container > p > div.nums > div {
+            display: inline;
+            padding: 3px;
+            border-radius: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        #games-container > p > div.nums > div:nth-child(2n) {
+            background-color: #c22ff1;
+            color: white;
+        }
+        
+        #games-container > p > div.nums > div:nth-child(2n+1) {
+            background-color: #90e979;
+            color: black;
+        }
+        
+        .input-container {
+            margin-top: 1em;
+            display: grid;
+            grid-template-columns: auto 100px;
+            gap: 10px;
+        }
+
+        .input-container > * {
+            font-size: 1em;
+            padding: 7px;
+        }
         </style>
+
+        <!-- SET js_version=1 -->
+        <!-- SET js_minify=false -->
+
+        <!-- JS_IMPORT games/sylver-coinage/main.js -->
+
+        <!-- BEGIN js_imports -->
+        <script src="../../games/sylver-coinage/main.js?v1"></script>
+        <!-- END -->
 
         <!-- BEGIN default_footer -->
         <footer>
@@ -215,15 +213,15 @@
                         <span lang="en">Sitemap</span>
                         <span lang="de">Unterseiten</span>
                     </div>
-                    <a class="group-item" href="../problems">
+                    <a class="group-item" href="../../problems">
                         <span lang="en">Projects</span>
                         <span lang="de">Projekte</span>
                     </a>
-                    <a class="group-item" href="../games">
+                    <a class="group-item" href="../../games">
                         <span lang="en">Games</span>
                         <span lang="de">Spiele</span>
                     </a>
-                    <a class="group-item" href="../about-us">
+                    <a class="group-item" href="../../about-us">
                         <span lang="en">About us</span>
                         <span lang="de">Über uns</span>
                     </a>
@@ -265,15 +263,15 @@
                         <span lang="en">Legal</span>
                         <span lang="de">Legales</span>
                     </div>
-                    <a class="group-item" href="../impressum">
+                    <a class="group-item" href="../../impressum">
                         <span lang="en">Imprint</span>
                         <span lang="de">Impressum</span>
                     </a>
-                    <a class="group-item" href="../data-privacy">
+                    <a class="group-item" href="../../data-privacy">
                         <span lang="en">Data-Privacy</span>
                         <span lang="de">Datenschutz</span>
                     </a>
-                    <a class="group-item" href="../assets/statuten.pdf">
+                    <a class="group-item" href="../../assets/statuten.pdf">
                         <span lang="en">Statutes</span>
                         <span lang="de">Statuten</span>
                     </a>
@@ -485,7 +483,7 @@
         
         <!-- BEGIN default_js -->
         <script>
-            const URL_BASE_PATH = "../"
+            const URL_BASE_PATH = "../../"
         
             {
                 // update theme

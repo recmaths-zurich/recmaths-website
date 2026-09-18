@@ -5,7 +5,7 @@ Official Website for _Recreational Maths Zürich_
 
 ## Code Structure
 
-The website is written in pure html, js and css. We do not use any third party software - maybe because we're stupid but also because it's more "fun".  
+The website is written in pure html, js and css. We do not use any third party software - maybe because we're stupid but also because it's more fun (for a special definition of "fun").  
 
 Each page is it's own `index.html`. The files use an additional custom build syntax to merge common html elements like the `<head>`. Run `python scripts/build.py` to rebuild the html files. The build system includes the following syntax, constructed to be work inside the html files itself:
 
