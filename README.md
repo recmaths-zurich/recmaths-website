@@ -19,3 +19,8 @@ Each page is it's own `index.html`. The files use an additional custom build syn
   - If the `js_module` key is set to `true`, the javascript import will use the `type=module` mode.
 
 This custom build system is used because it makes it easy to work with the html files directly.
+
+The build also generates the top-level `events.ics` subscription calendar from
+`events.json`, using Zürich local time and daylight-saving rules. After publishing,
+people can subscribe using `https://recmaths.ch/events.ics` in their calendar app.
+Keep event titles unique and stable: they are used to identify events across updates.

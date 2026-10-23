@@ -1,4 +1,5 @@
-import re, os, glob, random, hashlib
+import re, os, glob, random, hashlib, json
+from datetime import datetime, timedelta, timezone
 
 minified_dir = "js/minified"
 
@@ -153,5 +154,86 @@ def build_htmls():
     for file_path in index_files:
         handle_file(file_path)
 
+def build_events_ics():
+    """Build the subscription calendar from events.json (Europe/Zurich times)."""
+    def escape_text(value):
+        return (value.replace("\\", "\\\\")
+                     .replace("\r\n", "\n").replace("\r", "\n")
+                     .replace("\n", "\\n")
+                     .replace(";", "\\;").replace(",", "\\,"))
+
+    def fold_line(line):
+        # iCalendar limits physical lines to 75 UTF-8 bytes, including indentation.
+        parts = []
+        part = ""
+        length = 0
+        for character in line:
+            size = len(character.encode("utf-8"))
+            if length + size > 75:
+                parts.append(part)
+                part = " "
+                length = 1
+            part += character
+            length += size
+        parts.append(part)
+        return "\r\n".join(parts)
+
+    with open("events.json", "r", encoding="utf-8") as file:
+        events = json.load(file)
+
+    lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//RecMaths//Events//EN",
+        "CALSCALE:GREGORIAN",
+        "X-WR-CALNAME:RecMaths Events",
+        # Swiss daylight-saving rules in effect since 1996. Embed the timezone
+        # so clients do not interpret the meetup times in their own timezone.
+        "BEGIN:VTIMEZONE",
+        "TZID:Europe/Zurich",
+        "BEGIN:DAYLIGHT",
+        "DTSTART:19960331T020000",
+        "TZOFFSETFROM:+0100",
+        "TZOFFSETTO:+0200",
+        "TZNAME:CEST",
+        "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU",
+        "END:DAYLIGHT",
+        "BEGIN:STANDARD",
+        "DTSTART:19961027T030000",
+        "TZOFFSETFROM:+0200",
+        "TZOFFSETTO:+0100",
+        "TZNAME:CET",
+        "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU",
+        "END:STANDARD",
+        "END:VTIMEZONE",
+    ]
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    for event in events:
+        start_time, end_time = event["time"].split("-")
+        start = datetime.strptime(f'{event["date"]} {start_time.strip()}', "%d.%m.%Y %H:%M")
+        end = datetime.strptime(f'{event["date"]} {end_time.strip()}', "%d.%m.%Y %H:%M")
+        if end <= start:
+            end += timedelta(days=1)
+
+        # Titles identify meetups, keeping IDs stable when dates or rooms change.
+        uid = hashlib.sha256(event["title"].encode("utf-8")).hexdigest()
+        lines.extend([
+            "BEGIN:VEVENT",
+            f"UID:{uid}@recmaths.ch",
+            f"DTSTAMP:{stamp}",
+            f'DTSTART;TZID=Europe/Zurich:{start.strftime("%Y%m%dT%H%M%S")}',
+            f'DTEND;TZID=Europe/Zurich:{end.strftime("%Y%m%dT%H%M%S")}',
+            f'SUMMARY:{escape_text(event["title"])}',
+            f'LOCATION:{escape_text(event["location"])}',
+        ])
+        if event.get("locationUrl"):
+            lines.append(f'DESCRIPTION:{escape_text(event["locationUrl"])}')
+        lines.append("END:VEVENT")
+    lines.append("END:VCALENDAR")
+
+    with open("events.ics", "w", encoding="utf-8", newline="") as file:
+        file.write("\r\n".join(fold_line(line) for line in lines) + "\r\n")
+
 if __name__ == "__main__":
     build_htmls()
+    build_events_ics()
