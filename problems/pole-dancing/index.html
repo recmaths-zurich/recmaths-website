@@ -130,22 +130,21 @@
             </h1>
 
             <p>
-                Imagine your on a disc starting in the center. On the disc there
-                are placed $n$ poles. You have an coil of yarn (for this
-                pourpose it has infinite length). The end of the yarn is fixed
-                to the middle of the disc. While you walk the disc the yarn is
-                streched from the starting point to you.
+                Imagine you're on a disk starting in the center. There are $n$ poles on the disk.
+                You have a coil of yarn (for this
+                purpose it has infinite length). The end of the yarn is fixed
+                to the middle of the disk. While you walk the disk the yarn is
+                stretched from the starting point to you.
             </p>
             <p>
-                Your goal is to sweep all of the area. In exact have the
-                streched yarn go over each point on the disc. The difficult
-                thing now, is that whenever the yarn hits a pole it wraps around
-                is. Therefore the yarn is now streching between you and the pole
-                and not the middle anymore. Of course going back the yarn can
-                unwrap around the pole again.
+                Your goal is to sweep all of the area. More precisely, have the stretched yarn pass over every point.
+                The difficult thing now is that whenever the yarn hits a pole it wraps around
+                is. Therefore the yarn is now stretched between you and the pole
+                and not between you and the center. Of course, if you retrace your steps,
+                the yarn can unwind from the pole again.
             </p>
             <p>
-                The Question now is: What is the shortest path $L(n)$ to do this
+                The question now is: What is the shortest path $L(n)$ to do this
                 in terms of $n$? Try it out in this interactive simulation:
             </p>
             <hr>
@@ -194,7 +193,7 @@
             </div>
 
             <p style="text-align: center;">
-                Area sweeped: <b id="A"></b>%,
+                Area swept: <b id="A"></b>%,
                 length travelled: <b id="L"></b>
             </p>
 
@@ -202,16 +201,16 @@
 
             <hr>
             <p>
-                In an attempt to make it a little more formal, we could say a path $\gamma : [0, 1] \rightarrow \mathbb{D}$ with $\gamma(0)=(0,0)$, where $\mathbb{D}=\{x\in\mathbb{R}^2 : |x|\le 1 \}$ is the unit disk in $\mathbb{R}^2$,
+                In an attempt to make it a little more formal, we could say that a path $\gamma : [0, 1] \rightarrow \mathbb{D}$ with $\gamma(0)=(0,0)$, where $\mathbb{D}=\{x\in\mathbb{R}^2 : |x|\le 1 \}$ is the unit disk in $\mathbb{R}^2$,
                 is called <span style="text-decoration: underline;">sweeping</span> if following it while holding the yarn attached to the center 'sweeps' the entire area of the disk.
             </p>
             <p>
-                Let $\mathbb{P}_n=\{P \subseteq \mathbb{D} : |P|=n\}$ be the set of all $n$ pole positions. We can then define a function
-                $f : n \longmapsto \sup_{P\in\mathbb{P}_n}$ $\inf_{\gamma\, \text{sweeping}} L(\gamma)$, thus $f(n)$ is how long the best sweeping path is with maximally restricting pole placement. Perhaps a good question: what do these restricting pole placements look like?
+                Let $\mathbb{P}_n=\{P \subseteq \mathbb{D} : |P|=n\}$ be the set of all configurations of $n$ poles. We can then define a function
+                $f : n \longmapsto \sup_{P\in\mathbb{P}_n}$ $\inf_{\gamma\, \text{sweeping}} L(\gamma)$, thus $f(n)$ is how long the best sweeping path is with the most restrictive placement of the poles. Perhaps a good question: what do these restricting pole placements look like?
             </p>
             <p>
                 Assume there are $0$ poles. You can walk to a side and then go around in a circle, sweeping the entire disk. Since this is clearly optimal, $f(0)=2\pi+1$. We can also show $f(2)=f(1)=f(0)=2\pi+1$, but $f(3)>f(2)$ (think about these!).
-                But what does $f$ grow like? Maybe $f\in\Theta(\sqrt n)$?
+                But how does $f$ grow? Maybe $f\in\Theta(\sqrt n)$?
             </p>
             <p>
                 Any ideas or questions about any of this? Come to the next weekly
