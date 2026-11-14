@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en" style="overscroll-behavior: contain">
+    <!-- SET title=Pole Dancing | RecMaths Zürich -->
+    <!-- SET description=Pole Dancing Problem Site for recmaths.ch -->
+    <!-- BEGIN default_head -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Pole Dancing | RecMaths Zürich</title>
+        <meta name="description" content="Pole Dancing Problem Site for recmaths.ch">
+        <link rel="icon" type="image/svg" href="../../assets/logo/favicon.ico">
+        <link rel="stylesheet" href="../../default_style.css?t=2">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
+            tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+            TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+            messageStyle: "none"
+            });
+        </script>
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"
+        ></script>
+    </head>
+
+    <!-- END -->
+
+    <body>
+        <!-- BEGIN default_header -->
+        <header class="at-top">
+            <div class="header-content">
+                <a href="../../" class="logo-container">
+                    <img src="../../assets/logo/logo.svg" class="logo" alt="Recreational Math Zürich Logo" />
+                    <div class="logo-text" href="../../">RecMaths</div>
+                </a>
+                <div class="link-island">
+                    <a href="https://chat.whatsapp.com/HFrCCdMPCXiBrkKwDVFIdD">
+                        <span lang="en">Join</span>
+                        <span lang="de">Beitreten</span>
+                    </a>
+
+                    <a class="change-lang-button"></a>
+                </div>
+                <div class="hamburger-icon" tabindex="0">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="header-drop-menu">
+                <a lang="en" href="https://chat.whatsapp.com/HFrCCdMPCXiBrkKwDVFIdD">Join Club</a>
+
+                <a lang="de" href="https://chat.whatsapp.com/HFrCCdMPCXiBrkKwDVFIdD">Beitreten</a>
+
+                <a class="change-lang-button"></a>
+            </div>
+        </header>
+        <div class="header-placeholder"></div>
+
+        <script>
+            {
+                const changeLangButtons = document.querySelectorAll(".change-lang-button")
+                for (const changeLangButton of changeLangButtons) {
+                    changeLangButton.onclick = event => {
+                        const languages = ["en", "de"]
+                        const currStyle = localStorage.getItem("lang") || languages[0]
+                        const nextIndex = (languages.indexOf(currStyle) + 1) % languages.length
+                        const nextNextIndex = (languages.indexOf(currStyle) + 2) % languages.length
+                        localStorage.setItem("lang", languages[nextIndex])
+                        document.documentElement.lang = localStorage.getItem("lang")
+
+                        changeLangButton.animate([
+                            { transform: "rotateX(0deg)" },
+                            { transform: "rotateX(360deg)" }
+                        ], {
+                            easing: "ease-in-out",
+                            duration: 350,
+                            fill: "forwards"
+                        })
+
+                        event.preventDefault()
+                    }
+                }
+
+                const header = document.querySelector("header")
+                const hamburger = document.querySelector(".hamburger-icon")
+                const headerDropMenu = document.querySelector(".header-drop-menu")
+
+                hamburger.onclick = () => {
+                    header.classList.toggle("expanded")
+                    hamburger.classList.toggle("x")
+                    headerDropMenu.classList.toggle("visible")
+                }
+
+                const getLastUrlBit = href => href.split("/").filter(s => s).slice(-1)[0]
+                for (const a of document.querySelectorAll("header .link-island a")) {
+                    if (getLastUrlBit(a.href) == getLastUrlBit(location.href)) {
+                        a.classList.add("current")
+                    }
+                }
+
+                addEventListener("scroll", () => {
+                    // on bouncy browser views (e.g. latest safari),
+                    // window.scrollY can be negative during the bouncing animation!
+
+                    if (window.scrollY <= 0) {
+                        header.classList.add("at-top")
+                        headerDropMenu.classList.add("at-top")
+                    } else {
+                        header.classList.remove("at-top")
+                        headerDropMenu.classList.remove("at-top")
+                    }
+                })
+            }
+        </script>
+        <!-- END -->
+
+        <main>
+            <h1>
+                <span lang="en">Pole Dancing Problem</span>
+                <span lang="de">Pole Dancing Problem</span>
+            </h1>
+
+            <p>
+                Imagine your on a disc starting in the center. On the disc there
+                are placed $n$ poles. You have an coil of yarn (for this
+                pourpose it has infinite length). The end of the yarn is fixed
+                to the middle of the disc. While you walk the disc the yarn is
+                streched from the starting point to you.
+            </p>
+            <p>
+                Your goal is to sweep all of the area. In exact have the
+                streched yarn go over each point on the disc. The difficult
+                thing now, is that whenever the yarn hits a pole it wraps around
+                is. Therefore the yarn is now streching between you and the pole
+                and not the middle anymore. Of course going back the yarn can
+                unwrap around the pole again.
+            </p>
+            <p>
+                The Question now is: What is the shortest path $L(n)$ to do this
+                in terms of $n$? Try it out in this interactive simulation:
+            </p>
+            <hr>
+
+            <div
+                id="game-grid"
+                style="display: grid; text-align: left; align-items: center; --c-size: calc(min(90vh, 90vw) - 4rem);"
+            >
+                <div
+                    id="stage"
+                    style="
+                        height: var(--c-size);
+                        width: var(--c-size);
+                        margin: auto;
+                    "
+                >
+                    <canvas
+                        id="canvas"
+                        width="2000"
+                        height="2000"
+                        style="
+                            height: var(--c-size);
+                            width: var(--c-size);
+                            z-index: 1;
+                            position: absolute;
+                        "
+                    ></canvas>
+                    <canvas
+                        id="controls"
+                        width="2000"
+                        height="2000"
+                        style="
+                            height: var(--c-size);
+                            width: var(--c-size);
+                            z-index: 2;
+                            position: absolute;
+                        "
+                    ></canvas>
+                    <canvas
+                        id="offscreen"
+                        width="2000"
+                        height="2000"
+                        hidden
+                    ></canvas>
+                </div>
+            </div>
+
+            <p style="text-align: center;">
+                Area sweeped: <b id="A"></b>%,
+                length travelled: <b id="L"></b>
+            </p>
+
+            <script src="main.js?t=0"></script>
+
+            <hr>
+            <p>
+                In an attempt to make it a little more formal, we could say a path $\gamma : [0, 1] \rightarrow \mathbb{D}$ with $\gamma(0)=(0,0)$, where $\mathbb{D}=\{x\in\mathbb{R}^2 : |x|\le 1 \}$ is the unit disk in $\mathbb{R}^2$,
+                is called <span style="text-decoration: underline;">sweeping</span> if following it while holding the yarn attached to the center 'sweeps' the entire area of the disk.
+            </p>
+            <p>
+                Let $\mathbb{P}_n=\{P \subseteq \mathbb{D} : |P|=n\}$ be the set of all $n$ pole positions. We can then define a function
+                $f : n \longmapsto \sup_{P\in\mathbb{P}_n} \inf_{\gamma\, \text{sweeping}} L(\gamma)$, thus $f(n)$ is how long the best sweeping path is with maximally restricting pole placement. Perhaps a good question: what do these restricting pole placements look like?
+            </p>
+            <p>
+                Assume there are $0$ poles. You can walk to a side and then go around in a circle, sweeping the entire disk. Since this is clearly optimal, $f(0)=2\pi+1$. We can also show $f(2)=f(1)=f(0)=2\pi+1$, but $f(3)>f(2)$ (think about these!).
+                But what does $f$ grow like? Maybe $f\in\Theta(\sqrt n)$?
+            </p>
+            <p>
+                Any ideas or questions about any of this? Come to the next weekly
+                recreational math meeting!
+            </p>
+        </main>
+
+        <!-- BEGIN default_footer -->
+        <footer>
+            <div class="link-grid">
+                <div class="link-group">
+                    <div class="group-header">
+                        <span lang="en">Sitemap</span>
+                        <span lang="de">Unterseiten</span>
+                    </div>
+                    <a class="group-item" href="../../problems">
+                        <span lang="en">Projects</span>
+                        <span lang="de">Projekte</span>
+                    </a>
+                    <a class="group-item" href="../../games">
+                        <span lang="en">Games</span>
+                        <span lang="de">Spiele</span>
+                    </a>
+                    <a class="group-item" href="../../about-us">
+                        <span lang="en">About us</span>
+                        <span lang="de">Über uns</span>
+                    </a>
+                </div>
+                <div class="link-group">
+                    <div class="group-header">
+                        <span lang="en">Socials</span>
+                        <span lang="de">Medien</span>
+                    </div>
+                    <a class="group-item" href="https://www.instagram.com/recmaths.zurich/">
+                        <span lang="en">Instagram</span>
+                        <span lang="de">Instagram</span>
+                    </a>
+                    <a class="group-item" href="https://chat.whatsapp.com/HFrCCdMPCXiBrkKwDVFIdD">
+                        <span lang="en">WhatsApp</span>
+                        <span lang="de">WhatsApp</span>
+                    </a>
+                    <a class="group-item" href="https://github.com/recmaths-zurich/recmaths-website">
+                        <span lang="en">GitHub</span>
+                        <span lang="de">GitHub</span>
+                    </a>
+                </div>
+                <div class="link-group">
+                    <div class="group-header">
+                        <span lang="en">Contact</span>
+                        <span lang="de">Kontakt</span>
+                    </div>
+                    <a class="group-item" href="https://www.instagram.com/recmaths.zurich/">
+                        <span lang="en">Instagram Chat</span>
+                        <span lang="de">Instagram Chat</span>
+                    </a>
+                    <a class="group-item" href="mailto:nfriedrich@ethz.ch">
+                        <span lang="en">Email</span>
+                        <span lang="de">Email</span>
+                    </a>
+                </div>
+                <div class="link-group">
+                    <div class="group-header">
+                        <span lang="en">Legal</span>
+                        <span lang="de">Legales</span>
+                    </div>
+                    <a class="group-item" href="../../impressum">
+                        <span lang="en">Imprint</span>
+                        <span lang="de">Impressum</span>
+                    </a>
+                    <a class="group-item" href="../../data-privacy">
+                        <span lang="en">Data-Privacy</span>
+                        <span lang="de">Datenschutz</span>
+                    </a>
+                    <a class="group-item" href="../../assets/statuten.pdf">
+                        <span lang="en">Statutes</span>
+                        <span lang="de">Statuten</span>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-text">
+                <span lang="en" class="text">Made with ❤️ for RecMaths Zurich (<output data-fill="footer-year"></output>)</span>
+                <span lang="de" class="text">Erstellt mit ❤️ für RecMaths Zürich (<output data-fill="footer-year"></output>)</span>
+                <script>
+                    Array.from(document.querySelectorAll('[data-fill="footer-year"]')).forEach(e => e.textContent = new Date().getFullYear())
+                </script>
+                <button class="theme-changer" id="change-style-a">
+                    <span lang="en">Change Theme</span>
+                    <span lang="de">Hell/Dunkel</span>
+                </button>
+            </div>
+        </footer>
+
+        <script>
+            document.getElementById("change-style-a").onclick = event => {
+                const styles = ["light", "dark"]
+                const currStyle = localStorage.getItem("style") || "light"
+                const nextIndex = (styles.indexOf(currStyle) + 1) % styles.length
+                localStorage.setItem("style", styles[nextIndex])
+                document.body.dataset.style = localStorage.getItem("style") || "light"
+
+                event.preventDefault()
+            }
+        </script>
+        <!-- END -->
+
+        <!-- BEGIN game_of_life_background -->
+        <canvas id="game-of-life-background"></canvas>
+
+        <style>
+            #game-of-life-background {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                z-index: 0;
+            }
+        </style>
+
+        <script>
+        {
+            const gridSize = {x: 40, y: 100}
+            const onColor = "rgba(0, 0, 0, 1)"
+            const offColor = "rgba(255, 255, 255, 0.9)"
+
+            const TRANSPARENCY = 0.2
+
+            const logoColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131", "#4273b5", "#223759", "#080d15", "#020305"]
+            const randomLogoOffset = Math.floor(Math.random() * logoColors.length)
+
+            const greyScales = Array.from({length: gridSize.x * gridSize.y}).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`)
+
+            function randomLogoColor() {
+                const randomIndex = Math.floor(Math.random() * logoColors.length)
+                return logoColors[randomIndex]
+            }
+
+            let canvas = document.getElementById("game-of-life-background")
+            let context = canvas.getContext("2d")
+
+            let grid = new Uint8Array(gridSize.x * gridSize.y)
+
+            function setGrid(grid, x, y, on=true) {
+                const i = (y * gridSize.x) + x
+                grid[i] = on ? 1 : 0
+            }
+
+            function getGrid(grid, x, y) {
+                if (x < 0 || y < 0 || x > gridSize.x - 1 || y > gridSize.y) {
+                    return false
+                }
+
+                const i = (y * gridSize.x) + x
+                return grid[i] == 1
+            }
+
+            const neighbourDirections = [
+                [1, 1], [1, 0], [1, -1], [0, -1],
+                [0, 1], [-1, 1], [-1, 0], [-1, -1]
+            ]
+
+            function getSorroundingSum(grid, x, y) {
+                let sum = 0
+                for (const [dx, dy] of neighbourDirections) {
+                    sum += getGrid(grid, x + dx, y + dy)
+                }
+                return sum
+            }
+
+            function applyGridRules() {
+                const newGrid = new Uint8Array(grid.length)
+                for (let x = 0; x < gridSize.x; x++) {
+                    for (let y = 0; y < gridSize.y; y++) {
+                        const sorroundingSum = getSorroundingSum(grid, x, y)
+                        if (getGrid(grid, x, y)) {
+                            if (sorroundingSum < 2) {
+                                // setGrid(newGrid, x, y, false)
+                            } else if (sorroundingSum > 3) {
+                                // setGrid(newGrid, x, y, false)
+                            } else {
+                                setGrid(newGrid, x, y, true)
+                            }
+                        } else {
+                            if (sorroundingSum == 3) {
+                                setGrid(newGrid, x, y, true)
+                            }
+                        }
+                    }
+                }
+                grid = newGrid
+            }
+
+            function updateCanvas() {
+                context.clearRect(0, 0, canvas.width, canvas.height)
+
+                const cellWidth = canvas.width / gridSize.x
+                const cellHeight = cellWidth // canvas.height / gridSize.y
+
+                context.globalAlpha = TRANSPARENCY
+                for (let x = 0; x < gridSize.x; x++) {
+                    for (let y = 0; y < gridSize.y; y++) {
+                        const value = getGrid(grid, x, y)
+                        if (value) {
+                            context.fillStyle = logoColors[(y * gridSize.x + x + randomLogoOffset) % logoColors.length]
+                        } else {
+                            context.fillStyle = greyScales[(y * gridSize.x + x) % greyScales.length]
+                        }
+
+                        context.fillRect(
+                            x * cellWidth,
+                            y * cellHeight,
+                            cellWidth,
+                            cellHeight
+                        )
+                    }
+                }
+                context.globalAlpha = 1
+            }
+
+            const GUN = "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX"
+
+            const gunOffset = {x: 2, y: 2}
+            const gunLines = GUN.split("/")
+
+            for (let i = 0; i < gunLines.length; i++) {
+                for (let j = 0; j < gunLines[i].length; j++) {
+                    if (gunLines[i][j] == "X") {
+                        setGrid(grid, j + gunOffset.x, i + gunOffset.y, true)
+                    }
+                }
+            }
+
+            const urlParams = new URLSearchParams(location.search)
+            const highSpeedModeActive = urlParams.has("highspeed")
+
+            const updateIntervalMs = highSpeedModeActive ? 100 : 1000
+
+            let loopTimeout = null
+
+            function loop() {
+                updateCanvas()
+                applyGridRules()
+
+                loopTimeout = setTimeout(loop, updateIntervalMs)
+            }
+
+            loop()
+
+            canvas.addEventListener("click", event => {
+                const rect = canvas.getBoundingClientRect()
+                const clickPos = {
+                    x: event.clientX - rect.left,
+                    y: event.clientY - rect.top
+                }
+
+                const gridPos = {
+                    x: Math.floor(clickPos.x / (canvas.width / gridSize.x)),
+                    y: Math.floor(clickPos.y / (canvas.width / gridSize.x)),
+                }
+
+                const value = getGrid(grid, gridSize.x, gridSize.y)
+                setGrid(grid, gridPos.x, gridPos.y, !value)
+
+                if (loopTimeout !== null) {
+                    clearTimeout(loopTimeout)
+                }
+
+                loopTimeout = setTimeout(loop, updateIntervalMs)
+
+                updateCanvas()
+            })
+
+            function resizeCanvas() {
+                canvas.width = canvas.clientWidth
+                canvas.height = canvas.clientHeight
+                updateCanvas()
+            }
+
+            resizeCanvas()
+            window.addEventListener("resize", resizeCanvas)
+        }
+        </script>
+        <!-- END -->
+
+        <!-- BEGIN default_js -->
+        <script>
+            const URL_BASE_PATH = "../../"
+
+            {
+                // update theme
+                if (localStorage.getItem("style") == null) {
+                    const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+                    localStorage.setItem("style", prefersDarkMode ? "dark" : "light")
+                }
+                document.body.dataset.style = localStorage.getItem("style")
+
+                // update language
+                if (localStorage.getItem("lang") == null) {
+                    const userDefaultLang = navigator.language || navigator.userLanguage
+                    if (userDefaultLang.startsWith("de")) {
+                        localStorage.setItem("lang", "de")
+                    } else {
+                        localStorage.setItem("lang", "en")
+                    }
+                }
+                document.documentElement.lang = localStorage.getItem("lang")
+
+
+                // replace CSS "100vh" with actual inner height in px
+                // (-1 to prevent inaccuracies in some browsers)
+                const updateInnerHeight = () => {
+                    const height = window.screen?.availHeight || window.innerHeight
+                    document.body.style.setProperty("--full-height", `${height - 1}px`)
+                }
+                updateInnerHeight()
+                addEventListener("resize", updateInnerHeight)
+
+                // make smooth jump links work
+                for (const element of document.querySelectorAll(".smooth-jump")) {
+                    console.log(element)
+                    if (!element.dataset.jumpTo) continue
+                    const target = document.querySelector(element.dataset.jumpTo)
+                    if (!target) continue
+                    element.addEventListener("click", () => {
+                        target.scrollIntoView({
+                            behavior: "smooth"
+                        })
+                    })
+                }
+
+                // enable mobile debugging
+                const urlParams = new URLSearchParams(window.location.href)
+                if (urlParams.has("show_errors")) {
+                    function log(msg) {
+                        const textNode = document.createElement("div")
+                        textNode.textContent = msg
+                        document.body.appendChild(textNode)
+                    }
+
+                    log("Activated Alert Debug Mode")
+                    addEventListener("error", event => {
+                        log(`[L${event.lineno} C${event.colno}] ${event.message} (${event.filename})`)
+                    })
+                }
+            }
+
+        console.log("Hi there! If you know how to open this console, why not join our next meetup?")
+        </script>
+        <!-- END -->
+    </body>
+</html>
