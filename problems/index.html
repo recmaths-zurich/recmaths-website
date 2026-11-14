@@ -12,11 +12,11 @@
         <meta name="description" content="projects list page for recmaths.ch">
         <link rel="icon" type="image/svg" href="../assets/logo/favicon.ico">
         <link rel="stylesheet" href="../default_style.css?t=2">
-    
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    
+
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
             jax: ["input/TeX", "output/HTML-CSS"],
@@ -32,7 +32,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"
         ></script>
     </head>
-    
+
     <!-- END -->
 
     <body>
@@ -49,7 +49,7 @@
                         <span lang="en">Join</span>
                         <span lang="de">Beitreten</span>
                     </a>
-        
+
                     <a class="change-lang-button"></a>
                 </div>
                 <div class="hamburger-icon" tabindex="0">
@@ -60,14 +60,14 @@
             </div>
             <div class="header-drop-menu">
                 <a lang="en" href="https://chat.whatsapp.com/HFrCCdMPCXiBrkKwDVFIdD">Join Club</a>
-        
+
                 <a lang="de" href="https://chat.whatsapp.com/HFrCCdMPCXiBrkKwDVFIdD">Beitreten</a>
-        
+
                 <a class="change-lang-button"></a>
             </div>
         </header>
         <div class="header-placeholder"></div>
-        
+
         <script>
             {
                 const changeLangButtons = document.querySelectorAll(".change-lang-button")
@@ -79,7 +79,7 @@
                         const nextNextIndex = (languages.indexOf(currStyle) + 2) % languages.length
                         localStorage.setItem("lang", languages[nextIndex])
                         document.documentElement.lang = localStorage.getItem("lang")
-        
+
                         changeLangButton.animate([
                             { transform: "rotateX(0deg)" },
                             { transform: "rotateX(360deg)" }
@@ -88,32 +88,32 @@
                             duration: 350,
                             fill: "forwards"
                         })
-        
+
                         event.preventDefault()
                     }
                 }
-        
+
                 const header = document.querySelector("header")
                 const hamburger = document.querySelector(".hamburger-icon")
                 const headerDropMenu = document.querySelector(".header-drop-menu")
-        
+
                 hamburger.onclick = () => {
                     header.classList.toggle("expanded")
                     hamburger.classList.toggle("x")
                     headerDropMenu.classList.toggle("visible")
                 }
-        
+
                 const getLastUrlBit = href => href.split("/").filter(s => s).slice(-1)[0]
                 for (const a of document.querySelectorAll("header .link-island a")) {
                     if (getLastUrlBit(a.href) == getLastUrlBit(location.href)) {
                         a.classList.add("current")
                     }
                 }
-        
+
                 addEventListener("scroll", () => {
                     // on bouncy browser views (e.g. latest safari),
                     // window.scrollY can be negative during the bouncing animation!
-        
+
                     if (window.scrollY <= 0) {
                         header.classList.add("at-top")
                         headerDropMenu.classList.add("at-top")
@@ -125,7 +125,7 @@
             }
         </script>
         <!-- END -->
-        
+
         <main>
             <h1>
                 <span lang="en">Projects and Problems</span>
@@ -146,7 +146,7 @@
             </p>
 
             <div class="cards-container">
-                <a class="card" href="water">
+                <a class="card" href="pole-dancing/">
                     <img src="../assets/problem-headers/pole-dancing.jpg">
                     <div class="card-body">
                         <div class="card-header">
@@ -156,7 +156,7 @@
                         If you're (hypothetically) playing hide & seek and one person seeks blindfolded but uses rope and there's poles, what's the best way?
                     </div>
                 </a>
-                
+
                 <a class="card" href="water">
                     <img src="../assets/problem-headers/water-problem.png">
                     <div class="card-body">
@@ -168,7 +168,7 @@
                         <span lang="de">Wo platziert man Wasser auf einem n×n-Gitter, um die Schritte des „Zwei-Nachbarn“-Ausbreitungsprozesses zu maximieren?</span>
                     </div>
                 </a>
-                
+
                 <a class="card" href="procedural-music">
                     <img src="../assets/problem-headers/procedural-music.png">
                     <div class="card-body">
@@ -180,7 +180,7 @@
                         <span lang="de">Prozedurale Musik nutzt Algorithmen und mathematische Verfahren—z. B. Fourier-Transformationen, Kurven- oder Zahlenmappings und algebraische Strukturen—zur Erzeugung und Gestaltung von Kompositionen.</span>
                     </div>
                 </a>
-                
+
                 <a class="card" href="constructing-numbers">
                     <img src="../assets/problem-headers/constructing-numbers.png">
                     <div class="card-body">
@@ -192,7 +192,7 @@
                         <span lang="de">Die Visualisierung konstruierbarer Zahlen besteht darin, mit Animationen Schritt-für-Schritt-Konstruktionen per Lineal und Zirkel zu zeigen und zugleich minimale Konstruktionsfolgen sowie passende Minimalitätsbegriffe zu untersuchen.</span>
                     </div>
                 </a>
-                
+
                 <a class="card" href="stamp-folding">
                     <img src="../assets/problem-headers/stamp-folding.png">
                     <div class="card-body">
@@ -292,7 +292,7 @@
                 </button>
             </div>
         </footer>
-        
+
         <script>
             document.getElementById("change-style-a").onclick = event => {
                 const styles = ["light", "dark"]
@@ -300,7 +300,7 @@
                 const nextIndex = (styles.indexOf(currStyle) + 1) % styles.length
                 localStorage.setItem("style", styles[nextIndex])
                 document.body.dataset.style = localStorage.getItem("style") || "light"
-        
+
                 event.preventDefault()
             }
         </script>
@@ -308,7 +308,7 @@
 
         <!-- BEGIN game_of_life_background -->
         <canvas id="game-of-life-background"></canvas>
-        
+
         <style>
             #game-of-life-background {
                 width: 100%;
@@ -317,49 +317,49 @@
                 z-index: 0;
             }
         </style>
-        
+
         <script>
         {
             const gridSize = {x: 40, y: 100}
             const onColor = "rgba(0, 0, 0, 1)"
             const offColor = "rgba(255, 255, 255, 0.9)"
-        
+
             const TRANSPARENCY = 0.2
-        
+
             const logoColors = ["#90e979", "#62db3d", "#18556d", "#c22ff1", "#201131", "#4273b5", "#223759", "#080d15", "#020305"]
             const randomLogoOffset = Math.floor(Math.random() * logoColors.length)
-        
+
             const greyScales = Array.from({length: gridSize.x * gridSize.y}).map(() => `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.05})`)
-        
+
             function randomLogoColor() {
                 const randomIndex = Math.floor(Math.random() * logoColors.length)
                 return logoColors[randomIndex]
             }
-        
+
             let canvas = document.getElementById("game-of-life-background")
             let context = canvas.getContext("2d")
-        
+
             let grid = new Uint8Array(gridSize.x * gridSize.y)
-        
+
             function setGrid(grid, x, y, on=true) {
                 const i = (y * gridSize.x) + x
                 grid[i] = on ? 1 : 0
             }
-        
+
             function getGrid(grid, x, y) {
                 if (x < 0 || y < 0 || x > gridSize.x - 1 || y > gridSize.y) {
                     return false
                 }
-        
+
                 const i = (y * gridSize.x) + x
                 return grid[i] == 1
             }
-        
+
             const neighbourDirections = [
                 [1, 1], [1, 0], [1, -1], [0, -1],
                 [0, 1], [-1, 1], [-1, 0], [-1, -1]
             ]
-        
+
             function getSorroundingSum(grid, x, y) {
                 let sum = 0
                 for (const [dx, dy] of neighbourDirections) {
@@ -367,7 +367,7 @@
                 }
                 return sum
             }
-        
+
             function applyGridRules() {
                 const newGrid = new Uint8Array(grid.length)
                 for (let x = 0; x < gridSize.x; x++) {
@@ -390,13 +390,13 @@
                 }
                 grid = newGrid
             }
-        
+
             function updateCanvas() {
                 context.clearRect(0, 0, canvas.width, canvas.height)
-        
+
                 const cellWidth = canvas.width / gridSize.x
                 const cellHeight = cellWidth // canvas.height / gridSize.y
-        
+
                 context.globalAlpha = TRANSPARENCY
                 for (let x = 0; x < gridSize.x; x++) {
                     for (let y = 0; y < gridSize.y; y++) {
@@ -406,7 +406,7 @@
                         } else {
                             context.fillStyle = greyScales[(y * gridSize.x + x) % greyScales.length]
                         }
-        
+
                         context.fillRect(
                             x * cellWidth,
                             y * cellHeight,
@@ -417,12 +417,12 @@
                 }
                 context.globalAlpha = 1
             }
-        
+
             const GUN = "------------------------X/----------------------X-X/------------XX------XX------------XX/-----------X---X----XX------------XX/XX--------X-----X---XX/XX--------X---X-XX----X-X/----------X-----X-------X/-----------X---X/------------XX"
-        
+
             const gunOffset = {x: 2, y: 2}
             const gunLines = GUN.split("/")
-        
+
             for (let i = 0; i < gunLines.length; i++) {
                 for (let j = 0; j < gunLines[i].length; j++) {
                     if (gunLines[i][j] == "X") {
@@ -430,63 +430,63 @@
                     }
                 }
             }
-        
+
             const urlParams = new URLSearchParams(location.search)
             const highSpeedModeActive = urlParams.has("highspeed")
-        
+
             const updateIntervalMs = highSpeedModeActive ? 100 : 1000
-        
+
             let loopTimeout = null
-        
+
             function loop() {
                 updateCanvas()
                 applyGridRules()
-        
+
                 loopTimeout = setTimeout(loop, updateIntervalMs)
             }
-        
+
             loop()
-        
+
             canvas.addEventListener("click", event => {
                 const rect = canvas.getBoundingClientRect()
                 const clickPos = {
                     x: event.clientX - rect.left,
                     y: event.clientY - rect.top
                 }
-        
+
                 const gridPos = {
                     x: Math.floor(clickPos.x / (canvas.width / gridSize.x)),
                     y: Math.floor(clickPos.y / (canvas.width / gridSize.x)),
                 }
-        
+
                 const value = getGrid(grid, gridSize.x, gridSize.y)
                 setGrid(grid, gridPos.x, gridPos.y, !value)
-                
+
                 if (loopTimeout !== null) {
                     clearTimeout(loopTimeout)
                 }
-        
+
                 loopTimeout = setTimeout(loop, updateIntervalMs)
-        
+
                 updateCanvas()
             })
-            
+
             function resizeCanvas() {
                 canvas.width = canvas.clientWidth
                 canvas.height = canvas.clientHeight
                 updateCanvas()
             }
-        
+
             resizeCanvas()
             window.addEventListener("resize", resizeCanvas)
         }
         </script>
         <!-- END -->
-        
+
         <!-- BEGIN default_js -->
         <script>
             const URL_BASE_PATH = "../"
-        
+
             {
                 // update theme
                 if (localStorage.getItem("style") == null) {
@@ -494,7 +494,7 @@
                     localStorage.setItem("style", prefersDarkMode ? "dark" : "light")
                 }
                 document.body.dataset.style = localStorage.getItem("style")
-        
+
                 // update language
                 if (localStorage.getItem("lang") == null) {
                     const userDefaultLang = navigator.language || navigator.userLanguage
@@ -505,8 +505,8 @@
                     }
                 }
                 document.documentElement.lang = localStorage.getItem("lang")
-        
-        
+
+
                 // replace CSS "100vh" with actual inner height in px
                 // (-1 to prevent inaccuracies in some browsers)
                 const updateInnerHeight = () => {
@@ -515,7 +515,7 @@
                 }
                 updateInnerHeight()
                 addEventListener("resize", updateInnerHeight)
-        
+
                 // make smooth jump links work
                 for (const element of document.querySelectorAll(".smooth-jump")) {
                     console.log(element)
@@ -528,7 +528,7 @@
                         })
                     })
                 }
-        
+
                 // enable mobile debugging
                 const urlParams = new URLSearchParams(window.location.href)
                 if (urlParams.has("show_errors")) {
@@ -537,14 +537,14 @@
                         textNode.textContent = msg
                         document.body.appendChild(textNode)
                     }
-        
+
                     log("Activated Alert Debug Mode")
                     addEventListener("error", event => {
                         log(`[L${event.lineno} C${event.colno}] ${event.message} (${event.filename})`)
                     })
                 }
             }
-        
+
         console.log("Hi there! If you know how to open this console, why not join our next meetup?")
         </script>
         <!-- END -->
