@@ -201,12 +201,19 @@
 
             <hr>
             <p>
-                In an attempt to make it a little more formal, we could say that a path $\gamma : [0, 1] \rightarrow \mathbb{D}$ with $\gamma(0)=(0,0)$, where $\mathbb{D}=\{x\in\mathbb{R}^2 : |x|\le 1 \}$ is the unit disk in $\mathbb{R}^2$,
-                is called <span style="text-decoration: underline;">sweeping</span> if following it while holding the yarn attached to the center 'sweeps' the entire area of the disk.
+                In an attempt to make it a little more formal, let $n$ be the number of poles and $\mathbb{P}_n=\{P \subseteq \mathbb{D}\setminus{(0,0)} : |P|=n\}$ be the set of all configurations of $n$ poles (poles are points, no thickness). Consider some $P\in\mathbb{P}_n$.
+                We say that a continuous and rectifiable path $\gamma : [0, 1] \rightarrow \mathbb{D}\setminus P$ with $\gamma(0)=(0, 0)$, where $\mathbb{D}=\{x\in\mathbb{R}^2 : |x|\le 1 \}$ is the unit disk in $\mathbb{R}^2$,
+                is sweeping if following it while holding the yarn attached to the center 'sweeps' the entire disk:
             </p>
             <p>
-                Let $\mathbb{P}_n=\{P \subseteq \mathbb{D} : |P|=n\}$ be the set of all configurations of $n$ poles. We can then define a function
-                $f : n \longmapsto \sup_{P\in\mathbb{P}_n}$ $\inf_{\gamma\, \text{sweeping}} L(\gamma)$, thus $f(n)$ is how long the best sweeping path is with the most restrictive placement of the poles. Perhaps a good question: what do these restricting pole placements look like?
+                For any $t\in[0,1]$, let $y_t\subset\mathbb{D}$ be the current yarn path. We assume the yarn is always tight, meaning that it follows the shortest
+                path that can be obtained by continuously deforming the path $\gamma|_{[0,t]}$ that has been walked so far, without crossing any poles (the tightest path in its homotopy class) and while keeping the endpoints fixed.
+                The tightened yarn may touch poles, but cannot pass through them.
+                We say that a point $p\in\mathbb{D}$ has been swept if there exists some point in time $t$ such that $p\in y_t$. The disk is swept if every $p\in\mathbb{D}\setminus P$ is swept.
+            </p>
+            <p>
+                We can then define a function
+                $f : n \longmapsto \sup_{P\in\mathbb{P}_n}$ $\inf_{\gamma\, \text{sweeping } P} L(\gamma)$, thus $f(n)$ is how long the best sweeping path is with the most restrictive placement of the poles. Perhaps a good question: what do these restricting pole placements look like?
             </p>
             <p>
                 Assume there are $0$ poles. You can walk to a side and then go around in a circle, sweeping the entire disk. Since this is clearly optimal, $f(0)=2\pi+1$. We can also show $f(2)=f(1)=f(0)=2\pi+1$, but $f(3)>f(2)$ (think about these!).
