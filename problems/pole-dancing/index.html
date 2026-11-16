@@ -151,13 +151,13 @@
 
             <div
                 id="game-grid"
-                style="display: grid; text-align: left; align-items: center; --c-size: calc(min(90vh, 90vw) - 4rem);"
+                style="display: grid; text-align: left; align-items: center;"
             >
                 <div
                     id="stage"
                     style="
-                        height: var(--c-size);
-                        width: var(--c-size);
+                        aspect-ratio: 1 / 1;
+                        width: min(100%, 85vh);
                         margin: auto;
                     "
                 >
@@ -166,10 +166,9 @@
                         width="2000"
                         height="2000"
                         style="
-                            height: var(--c-size);
-                            width: var(--c-size);
+                            width: 100%;
                             z-index: 1;
-                            position: absolute;
+                            margin-bottom: -100%;
                         "
                     ></canvas>
                     <canvas
@@ -177,10 +176,8 @@
                         width="2000"
                         height="2000"
                         style="
-                            height: var(--c-size);
-                            width: var(--c-size);
+                            width: 100%;
                             z-index: 2;
-                            position: absolute;
                         "
                     ></canvas>
                     <canvas
