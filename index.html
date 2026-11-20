@@ -654,7 +654,12 @@
                             const restTextElement = document.createElement("span");
                             const minContinueIndex = meetupNumRegexMatch.index + meetupNumRegexMatch[0].length
                             restTextElement.textContent = event.title.slice(minContinueIndex)
-                            titleContainer.appendChild(restTextElement)
+
+                            if (restTextElement.textContent.length > 0) {
+                                const br = document.createElement("br")
+                                titleContainer.appendChild(br)
+                                titleContainer.appendChild(restTextElement)
+                            }
                         }
 
                         const c = isPrime(meetupNum)
