@@ -226,8 +226,11 @@ def build_events_ics():
             f'SUMMARY:{escape_text(event["title"])}',
             f'LOCATION:{escape_text(event["location"])}',
         ])
-        if event.get("locationUrl"):
-            lines.append(f'DESCRIPTION:{escape_text(event["locationUrl"])}')
+        description = "\n\n".join(
+            part for part in (event.get("description"), event.get("locationUrl")) if part
+        )
+        if description:
+            lines.append(f"DESCRIPTION:{escape_text(description)}")
         lines.append("END:VEVENT")
     lines.append("END:VCALENDAR")
 

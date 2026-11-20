@@ -150,24 +150,27 @@
   },
   
   {
-    "title": "Meetup #46",
+    "title": "Meetup #46 (Paper Bridge Building)",
     "date": "26.11.2026",
     "time": "18:15-21:00",
-    "location": "ETH HG G 19.2"
+    "location": "ETH HG G 19.2",
+    "description": "As the theme for the meetup, we will organise a small paper bridge building competition. You will be provided some paper and the challenge to build a bridge holding the maximum possible weight."
   },
   
   {
-    "title": "Meetup #47",
+    "title": "Meetup #47 (Origami & Maths)",
     "date": "03.12.2026",
     "time": "18:15-21:00",
-    "location": "ETH HG G 19.2"
+    "location": "ETH HG G 19.2",
+    "description": "As the theme for the meetup, we will introduce some fun connections between Origami and Maths. There will be the opportunity for lots of fun folding!"
   },
   
   {
-    "title": "Meetup #48",
+    "title": "Meetup #48 (Mini Mathathon)",
     "date": "10.12.2026",
     "time": "18:15-21:00",
-    "location": "ETH HG G 19.1"
+    "location": "ETH HG G 19.1",
+    "description": "As the theme for the meetup, we will host a Mini Mathathon (we will present a simple game, people can code strategies to be played against each other)."
   },
   
   {

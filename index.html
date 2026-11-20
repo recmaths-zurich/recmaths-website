@@ -564,12 +564,14 @@
                         const timeContainer = document.createElement("div");
                         const dateContainer = document.createElement("div");
                         const locationContainer = document.createElement("a");
+                        const descriptionContainer = document.createElement("p")
 
                         eventContainer.classList.add("event");
                         titleContainer.classList.add("title");
                         timeContainer.classList.add("time");
                         dateContainer.classList.add("date");
                         locationContainer.classList.add("location");
+                        descriptionContainer.classList.add("description");
 
                         titleContainer.textContent = event.title;
                         timeContainer.textContent = event.time;
@@ -590,6 +592,11 @@
                         eventContainer.appendChild(timeContainer);
                         eventContainer.appendChild(dateContainer);
                         eventContainer.appendChild(locationContainer);
+
+                        if (event.description) {
+                            descriptionContainer.textContent = event.description;
+                            eventContainer.appendChild(descriptionContainer);
+                        }
 
                         nextEventsGrid.appendChild(eventContainer);
 
@@ -719,6 +726,11 @@
                 .next-events-grid .event .date::before {
                     margin-right: 10px;
                     content: "📅";
+                }
+
+                .next-events-grid .event .description {
+                    margin-top: 1em;
+                    font-size: 1em;
                 }
             </style>
 
