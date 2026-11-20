@@ -236,13 +236,13 @@ function downListener(event, touch) {
         poles.push([x, y]);
     } else if (mode == "REMOVE") {
         let i = findNearestPoleIndex(x, y);
-        if (i != -1 && d2(x, y, ...poles[i]) <= 1000) {
+        if (i != -1 && d2(x, y, ...poles[i]) <= 1000 + 40000*touch) {
             poles[i] = poles[0];
             poles.shift();
         }
     } else if (mode == "MOVE") {
         let i = findNearestPoleIndex(x, y);
-        if (i != -1 && d2(x, y, ...poles[i]) <= 1000) {
+        if (i != -1 && d2(x, y, ...poles[i]) <= 1000  + 40000*touch) {
             poleOnMouse = i;
             poles[i] = [x, y];
         }
