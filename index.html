@@ -536,6 +536,8 @@
                     return factors;
                 }
 
+                window.r = {}
+
                 function displayEvents(events) {
                     for (const event of events) {
                         const [day, month, year] = event.date
@@ -648,6 +650,11 @@
                                     titleContainer.appendChild(dotElement);
                                 }
                             }
+
+                            const restTextElement = document.createElement("span");
+                            const minContinueIndex = meetupNumRegexMatch.index + meetupNumRegexMatch[0].length
+                            restTextElement.textContent = event.title.slice(minContinueIndex)
+                            titleContainer.appendChild(restTextElement)
                         }
 
                         const c = isPrime(meetupNum)
